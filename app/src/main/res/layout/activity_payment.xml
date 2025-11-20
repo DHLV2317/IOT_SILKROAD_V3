@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rootPayment"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/brand_celeste"
+        android:title="Pago"
+        android:titleTextColor="@android:color/white"
+        app:navigationIcon="@drawable/ic_arrow_back_24" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tResumen"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Resumen de pago"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/tMonto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Total: S/. 0.00"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Tarjetas -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvTarjetas"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"/>
+
+            <Button
+                android:id="@+id/btnAddCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Agregar nueva tarjeta"
+                android:backgroundTint="@color/brand_celeste"
+                android:textColor="@android:color/white"
+                android:layout_marginTop="8dp" />
+
+            <!-- Servicios adicionales -->
+            <TextView
+                android:id="@+id/tExtrasTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Servicios adicionales"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="4dp"
+                android:visibility="gone"/>
+
+            <LinearLayout
+                android:id="@+id/containerExtras"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone"/>
+
+            <Button
+                android:id="@+id/btnPagar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Pagar"
+                android:backgroundTint="@color/brand_celeste"
+                android:textColor="@android:color/white"
+                android:layout_marginTop="16dp" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

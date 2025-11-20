@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/m_tours"
+        android:title="Tours"
+        android:icon="@android:drawable/ic_menu_mapmode" />
+
+    <item
+        android:id="@+id/m_reservations"
+        android:title="Reservas"
+        android:icon="@android:drawable/ic_menu_agenda" />
+
+    <item
+        android:id="@+id/m_guides"
+        android:title="Guías"
+        android:icon="@android:drawable/ic_menu_compass" />
+
+    <item
+        android:id="@+id/m_payments"
+        android:title="Pagos"
+        android:icon="@android:drawable/ic_menu_save" />
+
+    <item
+        android:id="@+id/m_reports"
+        android:title="Reportes"
+        android:icon="@android:drawable/ic_menu_sort_by_size" />
+
+    <item
+        android:id="@+id/m_support"
+        android:title="Soporte / Chat"
+        android:icon="@android:drawable/ic_menu_send" />
+
+</menu>

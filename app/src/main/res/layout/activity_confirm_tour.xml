@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!-- 🔷 Toolbar superior -->
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/brand_celeste"
+        android:title="Reservas"
+        android:titleTextColor="@android:color/white"
+        app:navigationIcon="@drawable/ic_arrow_back_24" />
+
+    <!-- Contenido -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:padding="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <!-- Nombre del tour -->
+            <TextView
+                android:id="@+id/tTourName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="16dp"
+                android:text="Tour 1"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <!-- Cupo disponible -->
+            <TextView
+                android:id="@+id/tTourPeople"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cupos disponibles: -"
+                android:layout_marginTop="4dp"
+                android:textSize="16sp" />
+
+            <!-- Fechas del tour -->
+            <TextView
+                android:id="@+id/tTourDates"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Fechas: -"
+                android:layout_marginTop="4dp"
+                android:textSize="16sp" />
+
+            <!-- Precio unitario -->
+            <TextView
+                android:id="@+id/tUnitPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Precio por persona: S/. 0.00"
+                android:layout_marginTop="8dp"
+                android:textSize="16sp" />
+
+            <!-- Título selector de personas -->
+            <TextView
+                android:id="@+id/tPaxLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Personas a reservar"
+                android:layout_marginTop="24dp"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <!-- Selector de pax [-   1   +] -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="8dp"
+                android:gravity="center_vertical">
+
+                <Button
+                    android:id="@+id/btnMinus"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:text="-"
+                    android:backgroundTint="@color/brand_celeste"
+                    android:textColor="@android:color/white" />
+
+                <TextView
+                    android:id="@+id/tPaxValue"
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="1"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginEnd="12dp" />
+
+                <Button
+                    android:id="@+id/btnPlus"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:text="+"
+                    android:backgroundTint="@color/brand_celeste"
+                    android:textColor="@android:color/white" />
+            </LinearLayout>
+
+            <!-- Total del tour -->
+            <TextView
+                android:id="@+id/tTotal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Total: S/. 0.00"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="24dp"/>
+
+            <!-- Botón para confirmar la reserva -->
+            <Button
+                android:id="@+id/btnConfirm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Confirmar y pagar"
+                android:backgroundTint="@color/brand_celeste"
+                android:textColor="@android:color/white" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

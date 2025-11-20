@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/m_home"
+        android:title="Inicio"
+        android:icon="@android:drawable/ic_menu_mylocation" />
+
+    <item
+        android:id="@+id/m_profile"
+        android:title="Mi perfil"
+        android:icon="@android:drawable/ic_menu_edit" />
+
+    <item
+        android:id="@+id/m_history"
+        android:title="Historial de tours"
+        android:icon="@android:drawable/ic_menu_recent_history" />
+
+    <item
+        android:id="@+id/m_payments"
+        android:title="Métodos de pago"
+        android:icon="@android:drawable/ic_menu_save" />
+
+    <item
+        android:id="@+id/m_support_chat"
+        android:title="Chat de soporte"
+        android:icon="@android:drawable/ic_menu_send" />
+
+    <item
+        android:id="@+id/m_logout"
+        android:title="Cerrar sesión"
+        android:icon="@android:drawable/ic_lock_power_off" />
+</menu>

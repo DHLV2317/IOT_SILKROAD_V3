@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/brand_celeste"
+        android:title="Tour"
+        android:titleTextColor="@android:color/white" />
+
+    <ImageView
+        android:id="@+id/imgTour"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:scaleType="centerCrop"
+        android:layout_marginTop="16dp"
+        android:background="#DDD"
+        android:layout_marginBottom="16dp"
+        tools:src="@drawable/ic_launcher_foreground"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Nombre del tour -->
+            <TextView
+                android:id="@+id/tTourName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tour 1"
+                android:padding="8dp"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:layout_marginBottom="8dp"/>
+
+            <!-- Empresa y guía -->
+            <TextView
+                android:id="@+id/tTourCompany"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Empresa: —"
+                android:padding="4dp"
+                android:textSize="14sp"
+                android:layout_marginBottom="4dp"/>
+
+            <TextView
+                android:id="@+id/tTourGuide"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Guía: —"
+                android:padding="4dp"
+                android:textSize="14sp"
+                android:layout_marginBottom="8dp"/>
+
+            <!-- Idiomas -->
+            <TextView
+                android:id="@+id/tTourLangs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Idiomas: —"
+                android:padding="4dp"
+                android:textSize="14sp"
+                android:layout_marginBottom="8dp"/>
+
+            <!-- Capacidad y cupos -->
+            <TextView
+                android:id="@+id/tTourCapacity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Cupos: 0 / 0"
+                android:padding="4dp"
+                android:textSize="14sp"
+                android:layout_marginBottom="8dp"/>
+
+            <!-- Descripción -->
+            <TextView
+                android:id="@+id/tTourDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Descripción del tour"
+                android:padding="8dp"
+                android:layout_marginBottom="8dp" />
+
+            <!-- Fechas rango -->
+            <TextView
+                android:id="@+id/tTourDateFrom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Inicio: 20/10/2025"
+                android:padding="8dp"
+                android:layout_marginBottom="4dp"/>
+
+            <TextView
+                android:id="@+id/tTourDateTo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Fin: 22/10/2025"
+                android:padding="8dp"
+                android:layout_marginBottom="8dp"/>
+
+            <!-- Selector de día específico -->
+            <TextView
+                android:id="@+id/tTourSelectedDateLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Elige el día para tu tour:"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="4dp"/>
+
+            <Spinner
+                android:id="@+id/spinnerDates"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="4dp"/>
+
+            <TextView
+                android:id="@+id/tTourSelectedDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Día seleccionado: —"
+                android:padding="8dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="8dp"/>
+
+            <!-- Duración -->
+            <TextView
+                android:id="@+id/tTourDuration"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Duración: 3 días"
+                android:padding="8dp"
+                android:layout_marginBottom="8dp"/>
+
+            <!-- Lista de paradas -->
+            <TextView
+                android:id="@+id/tParadasTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Paradas del tour"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="4dp"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvParadas"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:listitem="@android:layout/simple_list_item_1"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Botón Reservar abajo -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="16dp">
+
+        <Button
+            android:id="@+id/btnAdd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Reservar S/. 100"
+            android:textColor="@android:color/white"
+            android:backgroundTint="@color/brand_celeste" />
+    </LinearLayout>
+</LinearLayout>

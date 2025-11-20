@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Android básicos -->
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!-- Marca / UI  (elige 1 valor para brand_celeste) -->
+    <color name="brand_celeste">#26C6DA</color>  <!-- usa este o cambia al #00BCD4 -->
+    <color name="brand_dark">#008C9E</color>
+    <color name="brand_light">#B2EBF2</color>
+    <color name="brand_verde">#4CAF50</color>
+    <color name="transparent">#00000000</color>
+
+    <!-- Auxiliares -->
+    <color name="pill_gray">#FFE0E0E0</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+
+    <!-- Superadmin -->
+    <color name="seda">#FF2DAEBC</color>
+    <color name="gris">#FF808080</color>
+    <color name="base">#FFEFEEFE</color>
+    <color name="base2">#FFEFEEFF</color>
+    <color name="green">#FF00FF00</color>
+    <color name="red">#FFFF0000</color>
+    <color name="ab">#FFAABBEE</color>
+</resources>

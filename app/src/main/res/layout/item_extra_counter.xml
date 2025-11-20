@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="8dp"
+    android:background="#F5F5F5"
+    android:layout_marginBottom="8dp">
+
+    <TextView
+        android:id="@+id/tExtraName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Extra X"
+        android:textStyle="bold"
+        android:textSize="14sp"/>
+
+    <TextView
+        android:id="@+id/tExtraPrice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="S/. 10.00 por persona"
+        android:textSize="13sp"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="6dp"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <Button
+            android:id="@+id/btnMinusExtra"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:text="-"
+            android:backgroundTint="@color/brand_celeste"
+            android:textColor="@android:color/white" />
+
+        <TextView
+            android:id="@+id/tExtraQty"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="0"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"/>
+
+        <Button
+            android:id="@+id/btnPlusExtra"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:text="+"
+            android:backgroundTint="@color/brand_celeste"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
+</LinearLayout>

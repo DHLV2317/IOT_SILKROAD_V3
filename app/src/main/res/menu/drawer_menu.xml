@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_inicio"
+        android:title="Inicio" />
+    <item
+        android:id="@+id/nav_administradores"
+        android:title="Administradores" />
+    <item
+        android:id="@+id/nav_solicitudes_guias"
+        android:title="Solicitudes de guias" />
+    <item
+        android:id="@+id/nav_guias"
+        android:title="Guías" />
+    <item
+        android:id="@+id/nav_clientes"
+        android:title="Clientes" />
+    <item
+        android:id="@+id/nav_reportes"
+        android:title="Reportes" />
+    <item
+        android:id="@+id/nav_logs"
+        android:title="Logs" />
+    <item
+        android:id="@+id/nav_cerrar_sesion"
+        android:title="Cerrar sesión" />
+    <!--item
+        android:id="@+id/nav_dialog"
+        android:title="" />
+    <item
+        android:id="@+id/nav_grupo_iot_item"
+        android:title=""
+        app:actionLayout="@menu/menu_item_grupo_iot" /-->
+</menu>

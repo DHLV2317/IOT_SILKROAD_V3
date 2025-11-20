@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- 🏷️ APP -->
+    <string name="app_name">SILKROAD_IOT</string>
+
+    <!-- 🧑‍💻 LOGIN UI -->
+    <string name="email_hint">Correo electrónico</string>
+    <string name="password_hint">Contraseña</string>
+    <string name="forgot_password">¿Olvidaste tu contraseña?</string>
+    <string name="login">Iniciar sesión</string>
+    <string name="register">Regístrate</string>
+    <string name="continue_with">o continúa con</string>
+
+    <!-- 🔵 GOOGLE (de tu google-services.json) -->
+    <string name="default_web_client_id">
+        109695199773-qakegcv4b89vrna0apdg98amusa24fa5.apps.googleusercontent.com
+    </string>
+    <string name="sign_in_with_google">Continuar con Google</string>
+
+    <!-- 🔷 FACEBOOK (APP IOT_SILKROAD) -->
+    <string name="facebook_app_id">798701992983350</string>
+    <string name="facebook_client_token">52afc3f9d87a68fb3bbea79d24075cdd</string>
+    <string name="fb_login_protocol_scheme">fb798701992983350</string>
+    <string name="sign_in_with_facebook">Continuar con Facebook</string>
+
+    <!-- 🍎 APPLE LOGIN (placeholder por ahora) -->
+    <string name="apple_service_id">com.example.silkroad_iot.apple</string>
+
+    <!-- 🐦 TWITTER/X LOGIN (placeholders) -->
+    <string name="twitter_api_key">YOUR_TWITTER_KEY</string>
+    <string name="twitter_api_secret">YOUR_TWITTER_SECRET</string>
+
+    <!-- 🧭 NAVIGATION -->
+    <string name="navigation_drawer_open">Abrir menú</string>
+    <string name="navigation_drawer_close">Cerrar menú</string>
+    <string name="nav_open">Abrir menú</string>
+    <string name="nav_close">Cerrar menú</string>
+
+    <!-- 📋 LISTAS / ESTADOS -->
+    <string name="empty_stops">Sin paradas registradas</string>
+    <string name="error_loading_stops">No se pudieron cargar las paradas</string>
+    <string name="error_loading_tour">No se pudo cargar el tour</string>
+    <string name="empty_guides">No hay guías registradas</string>
+
+</resources>
