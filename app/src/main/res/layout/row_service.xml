@@ -1,18 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="wrap_content"
-    android:orientation="horizontal" android:padding="8dp"
-    android:background="@android:color/white">
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/M3_Card_Filled"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="@dimen/spacing_xs"
+    android:layout_marginBottom="@dimen/spacing_xs">
 
-    <TextView
-        android:id="@+id/tInfo"
-        android:layout_width="0dp" android:layout_height="wrap_content"
-        android:layout_weight="1" android:text="Desayuno · Incluido / Extra S/ 0.00"
-        android:textColor="#444"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/spacing_sm"
+        android:gravity="center_vertical">
 
-    <TextView
-        android:id="@+id/btnRemove"
-        android:layout_width="wrap_content" android:layout_height="wrap_content"
-        android:text="Quitar" android:padding="6dp"
-        android:background="#E0E0E0" android:textStyle="bold"/>
-</LinearLayout>
+        <TextView
+            android:id="@+id/tInfo"
+            style="@style/M3_Body_Medium"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Desayuno · Incluido / Extra S/ 0.00" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnRemove"
+            style="@style/M3_TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Quitar"
+            android:textColor="?attr/colorError" />
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

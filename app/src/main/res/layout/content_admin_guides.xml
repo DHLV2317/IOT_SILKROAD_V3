@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/rootContent"
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -11,15 +12,18 @@
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:layout_margin="12dp" />
+        android:layout_margin="@dimen/spacing_md" />
 
     <!-- Buscador -->
     <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginEnd="12dp"
-        android:hint="Buscar guía (nombre, idioma, estado)">
+        android:layout_marginStart="@dimen/spacing_md"
+        android:layout_marginEnd="@dimen/spacing_md"
+        android:hint="Buscar guía (nombre, idioma, estado)"
+        app:startIconDrawable="@drawable/ic_search_24"
+        app:startIconTint="?attr/colorPrimary">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/inputSearch"
@@ -32,18 +36,20 @@
         android:id="@+id/progress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="@dimen/spacing_md"
         android:layout_gravity="center_horizontal"
         android:visibility="gone"/>
 
     <!-- Mensaje vacío -->
     <TextView
         android:id="@+id/tEmpty"
+        style="@style/M3_Body_Large"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="No hay guías aprobados."
+        android:textColor="?attr/colorOnSurfaceVariant"
         android:gravity="center"
-        android:layout_margin="12dp"
+        android:layout_margin="@dimen/spacing_md"
         android:visibility="gone"/>
 
     <!-- Lista de guías -->
@@ -52,6 +58,6 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:layout_margin="12dp"/>
+        android:layout_margin="@dimen/spacing_md"/>
 
 </LinearLayout>

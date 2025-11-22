@@ -1,12 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/tTitle"
-    android:layout_width="wrap_content"
-    android:layout_height="40dp"
-    android:gravity="center"
-    android:paddingLeft="20dp"
-    android:paddingRight="20dp"
-    android:textSize="16sp"
-    android:textColor="@android:color/black"
-    android:background="@drawable/bg_chip"
-    android:layout_margin="6dp"/>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/Widget.SilkRoad.CardView.Outlined"
+    android:layout_width="140dp"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="@dimen/spacing_sm"
+    android:clickable="true"
+    android:focusable="true">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="@dimen/spacing_md"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- Icono del Departamento -->
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/imgDepartment"
+            android:layout_width="@dimen/icon_size_xl"
+            android:layout_height="@dimen/icon_size_xl"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_map"
+            android:background="@color/primary_container"
+            android:padding="@dimen/spacing_sm"
+            app:shapeAppearanceOverlay="@style/ShapeAppearance.SilkRoad.MediumComponent"
+            app:tint="@color/on_primary_container" />
+
+        <!-- Nombre del Departamento -->
+        <TextView
+            android:id="@+id/tvDepartmentName"
+            android:textAppearance="@style/TextAppearance.SilkRoad.LabelLarge"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:layout_marginTop="@dimen/spacing_sm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="Cusco" />
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

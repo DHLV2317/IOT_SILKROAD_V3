@@ -1,189 +1,218 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
 
-    <LinearLayout
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:fitsSystemWindows="true"
+        app:elevation="0dp">
 
-        <!-- Toolbar -->
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/toolbar"
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/collapsingToolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            app:title="Detalles del guía"
-            app:backgroundTint="@color/brand_celeste"
-            app:titleTextColor="@android:color/white"
-            app:navigationIcon="@drawable/ic_arrow_back_24"
-            app:navigationIconTint="@android:color/white" />
+            android:layout_height="280dp"
+            android:fitsSystemWindows="true"
+            app:contentScrim="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:statusBarScrim="?attr/colorPrimaryVariant"
+            app:expandedTitleMarginStart="@dimen/spacing_lg"
+            app:expandedTitleMarginBottom="@dimen/spacing_lg">
 
-        <!-- ===== Header estilo perfil ===== -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/brand_celeste"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:padding="24dp">
-
-            <!-- IMPORTANTE: id = img (coincide con binding en la Activity) -->
-            <ImageView
-                android:id="@+id/img"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:src="@drawable/ic_person_24"
-                android:background="@android:color/white"
-                android:padding="20dp"
-                android:layout_marginBottom="8dp" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnChangePhoto"
-                style="@style/M3_OutlinedButton"
-                android:layout_width="wrap_content"
-                android:layout_height="36dp"
-                android:text="📷 Cambiar foto"
-                android:textSize="12sp"
-                app:strokeColor="@color/white"
-                android:textColor="@color/white"
-                android:layout_marginBottom="12dp" />
-
-            <TextView
-                android:id="@+id/tName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Nombre del Guía"
-                android:textColor="@android:color/white"
-                android:textSize="22sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="4dp" />
-
-            <TextView
-                android:id="@+id/tState"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Estado: —"
-                android:textColor="@android:color/white"
-                android:textSize="14sp" />
-        </LinearLayout>
-
-        <!-- ===== Card: datos del guía ===== -->
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="4dp">
-
+            <!-- Header con gradiente -->
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@drawable/bg_gradient_primary"
+                android:gravity="center"
                 android:orientation="vertical"
-                android:padding="20dp">
+                android:padding="@dimen/spacing_xl"
+                app:layout_collapseMode="parallax">
 
-                <TextView
+                <!-- Avatar circular -->
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/img"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:src="@drawable/ic_person_24"
+                    android:background="?attr/colorSurface"
+                    android:padding="@dimen/spacing_lg"
+                    android:scaleType="centerCrop"
+                    android:elevation="@dimen/elevation_sm"
+                    app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full"
+                    app:strokeColor="?attr/colorSurface"
+                    app:strokeWidth="4dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnChangePhoto"
+                    style="@style/Widget.Material3.Button.OutlinedButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="🧾 Información"
-                    android:textStyle="bold"
-                    android:textSize="18sp"
-                    android:layout_marginBottom="12dp" />
+                    android:text="📷 Cambiar foto"
+                    android:textSize="@dimen/text_sm"
+                    android:layout_marginTop="@dimen/spacing_md"
+                    app:strokeColor="?attr/colorOnPrimary"
+                    android:textColor="?attr/colorOnPrimary" />
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:id="@+id/tName"
+                    style="@style/M3_Headline_Large"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:text="Idiomas" />
-                <TextView
-                    android:id="@+id/tLangs"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp" />
+                    android:text="Nombre del Guía"
+                    android:textColor="?attr/colorOnPrimary"
+                    android:layout_marginTop="@dimen/spacing_md" />
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:id="@+id/tState"
+                    style="@style/M3_Body_Medium"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:text="Correo" />
-                <TextView
-                    android:id="@+id/tEmail"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:text="Teléfono" />
-                <TextView
-                    android:id="@+id/tPhone"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:text="Tour actual" />
-                <TextView
-                    android:id="@+id/tCurrentTour"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp" />
+                    android:text="Estado: —"
+                    android:textColor="?attr/colorOnPrimary"
+                    android:layout_marginTop="@dimen/spacing_xs" />
             </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
 
-        <!-- ===== Card: Historial ===== -->
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="4dp">
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:title="Detalles del guía"
+                app:titleTextColor="?attr/colorOnPrimary"
+                app:navigationIcon="@drawable/ic_arrow_back_24"
+                app:navigationIconTint="?attr/colorOnPrimary"
+                app:layout_collapseMode="pin" />
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
 
-            <LinearLayout
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <!-- Card: Información del guía -->
+            <com.google.android.material.card.MaterialCardView
+                style="@style/M3_Card_Elevated"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="20dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="📋 Historial de tours"
-                    android:textStyle="bold"
-                    android:textSize="18sp"
-                    android:layout_marginBottom="8dp" />
+                android:layout_marginBottom="@dimen/spacing_md">
 
                 <LinearLayout
-                    android:id="@+id/boxHistory"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical" />
+                    android:orientation="vertical"
+                    android:padding="@dimen/spacing_lg">
 
-                <TextView
-                    android:id="@+id/tNoHistory"
+                    <TextView
+                        style="@style/M3_Title_Medium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="🧾 Información"
+                        android:layout_marginBottom="@dimen/spacing_md" />
+
+                    <TextView
+                        style="@style/M3_Label_Medium"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Idiomas"
+                        android:textColor="?attr/colorOnSurfaceVariant" />
+                    <TextView
+                        android:id="@+id/tLangs"
+                        style="@style/M3_Body_Large"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/spacing_md" />
+
+                    <TextView
+                        style="@style/M3_Label_Medium"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Correo"
+                        android:textColor="?attr/colorOnSurfaceVariant" />
+                    <TextView
+                        android:id="@+id/tEmail"
+                        style="@style/M3_Body_Large"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/spacing_md" />
+
+                    <TextView
+                        style="@style/M3_Label_Medium"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Teléfono"
+                        android:textColor="?attr/colorOnSurfaceVariant" />
+                    <TextView
+                        android:id="@+id/tPhone"
+                        style="@style/M3_Body_Large"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/spacing_md" />
+
+                    <TextView
+                        style="@style/M3_Label_Medium"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Tour actual"
+                        android:textColor="?attr/colorOnSurfaceVariant" />
+                    <TextView
+                        android:id="@+id/tCurrentTour"
+                        style="@style/M3_Body_Large"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Card: Historial de tours -->
+            <com.google.android.material.card.MaterialCardView
+                style="@style/M3_Card_Elevated"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_md">
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Sin historial."
-                    android:layout_marginTop="6dp"
-                    android:visibility="gone" />
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
+                    android:orientation="vertical"
+                    android:padding="@dimen/spacing_lg">
 
-        <!-- Botón volver -->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnBack"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:text="Volver"
-            android:textColor="@android:color/white"
-            app:backgroundTint="@color/brand_celeste" />
+                    <TextView
+                        style="@style/M3_Title_Medium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="📋 Historial de tours"
+                        android:layout_marginBottom="@dimen/spacing_md" />
 
-    </LinearLayout>
-</ScrollView>
+                    <LinearLayout
+                        android:id="@+id/boxHistory"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical" />
+
+                    <TextView
+                        android:id="@+id/tNoHistory"
+                        style="@style/M3_Body_Medium"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Sin historial."
+                        android:textColor="?attr/colorOnSurfaceVariant"
+                        android:layout_marginTop="@dimen/spacing_sm"
+                        android:visibility="gone" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Botón volver -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnBack"
+                style="@style/M3_FilledButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Volver" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

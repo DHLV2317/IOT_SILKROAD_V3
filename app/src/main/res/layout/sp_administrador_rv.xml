@@ -1,94 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    style="@style/M3_Card_Elevated"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:minHeight="100dp"
+    android:layout_margin="@dimen/spacing_xs"
+    android:clickable="true"
+    android:focusable="true"
     tools:context=".ui.superadmin.AdministradoresActivity">
 
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView1"
-        android:layout_width="350dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="12dp"
-        android:clickable="true"
-        android:focusable="true"
-        android:backgroundTint="@color/seda"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:padding="@dimen/spacing_md">
 
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/imageView1"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="@drawable/img_superamin_base"
+            android:scaleType="centerCrop"
+            app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Medium"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/base"
-            android:orientation="horizontal"
-            android:layout_marginStart="1dp"
-            android:layout_marginTop="2dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginStart="@dimen/spacing_md"
+            app:layout_constraintStart_toEndOf="@+id/imageView1"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
 
-            <ImageView
-                android:id="@+id/imageView1"
-                android:layout_width="100dp"
-                android:layout_height="match_parent"
-                android:background="@drawable/img_superamin_base"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.147"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:layout_editor_absoluteY="567dp" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/textView1"
+                style="@style/M3_Title_Medium"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:text="Nombre"
+                android:layout_marginBottom="@dimen/spacing_xs"/>
 
-                <TextView
-                    android:id="@+id/textView1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:letterSpacing="0.02"
-                    android:text="Nombre"
-                    android:textAllCaps="false"
-                    android:textColor="@color/black"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    android:typeface="sans"
-                    app:layout_constraintStart_toEndOf="@+id/imageView2"
-                    tools:layout_editor_absoluteY="575dp" />
-
-                <TextView
-                    android:id="@+id/textView2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:letterSpacing="0.02"
-                    android:text="Empresa"
-                    android:textAllCaps="false"
-                    android:textColor="@color/gris"
-                    android:textSize="14sp"
-                    android:typeface="sans"
-                    app:layout_constraintTop_toBottomOf="@+id/textView"
-                    tools:layout_editor_absoluteX="171dp" />
-            </LinearLayout>
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_weight="1" />
-
-
+            <TextView
+                android:id="@+id/textView2"
+                style="@style/M3_Body_Medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Empresa"
+                android:textColor="@color/text_secondary"/>
         </LinearLayout>
-    </androidx.cardview.widget.CardView>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

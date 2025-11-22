@@ -2,121 +2,206 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:fillViewport="true">
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:padding="16dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:padding="@dimen/spacing_lg">
 
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:title="Registro Cliente"
-            app:backgroundTint="@color/brand_celeste"
-            app:titleTextColor="@color/white" />
+        <!-- Logo -->
+        <ImageView
+            android:id="@+id/imgLogo"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginTop="@dimen/spacing_lg"
+            android:src="@drawable/logo_silkroad"
+            android:contentDescription="@string/app_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
+        <!-- Título -->
         <TextView
             android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_lg"
             android:text="Crear cuenta"
-            android:textStyle="bold"
-            android:textSize="22sp"
-            android:textColor="@color/brand_celeste"
-            android:layout_marginTop="12dp" />
+            android:textAppearance="@style/TextAppearance.SilkRoad.HeadlineLarge"
+            android:textColor="@color/primary"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imgLogo" />
 
+        <!-- Subtítulo -->
+        <TextView
+            android:id="@+id/tvSubtitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_xs"
+            android:text="Completa tus datos para registrarte"
+            android:textAppearance="@style/TextAppearance.SilkRoad.BodyMedium"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvTitle" />
+
+        <!-- Nombre -->
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layoutName"
+            style="@style/Widget.SilkRoad.TextInputLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_lg"
             android:hint="Nombre completo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            app:startIconDrawable="@drawable/ic_person_24"
+            app:startIconTint="@color/primary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvSubtitle">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/inputName"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:textAppearance="@style/TextAppearance.SilkRoad.BodyLarge" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <!-- Email -->
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layoutEmail"
+            style="@style/Widget.SilkRoad.TextInputLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_md"
             android:hint="Correo electrónico"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            app:startIconDrawable="@android:drawable/ic_dialog_email"
+            app:startIconTint="@color/primary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutName">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/inputEmail"
-                android:inputType="textEmailAddress"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:textAppearance="@style/TextAppearance.SilkRoad.BodyLarge" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <!-- Contraseña -->
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layoutPass1"
+            style="@style/Widget.SilkRoad.TextInputLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_md"
             android:hint="Crear contraseña"
             app:endIconMode="password_toggle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            app:endIconTint="@color/primary"
+            app:startIconDrawable="@android:drawable/ic_lock_idle_lock"
+            app:startIconTint="@color/primary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutEmail">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/inputPass1"
-                android:inputType="textPassword"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:textAppearance="@style/TextAppearance.SilkRoad.BodyLarge" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <!-- Helper text -->
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/tvPasswordHint"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Mínimo 8 caracteres, 1 número y 1 símbolo."
-            android:textSize="12sp"
-            android:layout_marginTop="4dp"
-            android:textColor="@android:color/darker_gray" />
+            android:layout_marginTop="@dimen/spacing_xs"
+            android:text="Mínimo 8 caracteres, 1 número y 1 símbolo"
+            android:textAppearance="@style/TextAppearance.SilkRoad.BodyMedium"
+            android:textColor="@color/text_tertiary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutPass1" />
 
+        <!-- Confirmar Contraseña -->
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layoutPass2"
+            style="@style/Widget.SilkRoad.TextInputLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_md"
             android:hint="Confirmar contraseña"
             app:endIconMode="password_toggle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp">
+            app:endIconTint="@color/primary"
+            app:startIconDrawable="@android:drawable/ic_lock_idle_lock"
+            app:startIconTint="@color/primary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvPasswordHint">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/inputPass2"
-                android:inputType="textPassword"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:textAppearance="@style/TextAppearance.SilkRoad.BodyLarge" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <CheckBox
+        <!-- Términos y condiciones -->
+        <com.google.android.material.checkbox.MaterialCheckBox
             android:id="@+id/ckTerms"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_md"
             android:text="He leído y acepto los Términos y la Política de Privacidad"
-            android:layout_marginTop="8dp" />
+            android:textAppearance="@style/TextAppearance.SilkRoad.BodyMedium"
+            app:buttonTint="@color/primary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutPass2" />
 
+        <!-- Botón Continuar -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnContinue"
+            style="@style/Widget.SilkRoad.Button.Filled"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/button_height_medium"
+            android:layout_marginTop="@dimen/spacing_lg"
             android:text="Continuar"
-            android:backgroundTint="@color/brand_celeste"
-            android:textColor="@color/white"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ckTerms" />
 
+        <!-- Botón Registro Guía -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnRegisterGuide"
+            style="@style/Widget.SilkRoad.Button.Outlined"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/button_height_medium"
+            android:layout_marginTop="@dimen/spacing_md"
             android:text="Registrarse como Guía"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnContinue" />
 
+        <!-- Progress Bar -->
         <ProgressBar
             android:id="@+id/progressBar"
             style="?android:attr/progressBarStyleLarge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="16dp"
-            android:visibility="gone" />
-    </LinearLayout>
+            android:layout_marginTop="@dimen/spacing_lg"
+            android:indeterminateTint="@color/primary"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnRegisterGuide" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

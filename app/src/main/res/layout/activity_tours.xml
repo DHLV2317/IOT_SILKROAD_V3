@@ -1,44 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/toolbar"
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/brand_celeste"
-        android:title="Tours disponibles"
-        android:titleTextColor="@android:color/white" />
-
-    <!-- 🏢 Imagen de la empresa -->
-    <ImageView
-        android:id="@+id/imgCompanyLogo"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="16dp"
-        android:src="@drawable/ic_launcher_foreground"
-        android:scaleType="centerCrop"
-        android:contentDescription="Logo Empresa" />
-
-    <!-- 🏢 Nombre de la empresa -->
-    <TextView
-        android:id="@+id/tvCompanyName"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nombre de la Empresa"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="16dp" />
+        app:elevation="0dp">
 
-    <!-- 📋 Lista de tours -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvTours"
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:title="Tours disponibles"
+            app:titleTextColor="?attr/colorOnPrimary"
+            style="@style/Widget.Material3.Toolbar" />
+
+        <!-- Header con info de la empresa -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/spacing_md"
+            app:cardCornerRadius="@dimen/corner_radius_lg"
+            app:cardElevation="@dimen/elevation_md">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="@dimen/spacing_lg">
+
+                <!-- Logo de la empresa -->
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/imgCompanyLogo"
+                    android:layout_width="160dp"
+                    android:layout_height="160dp"
+                    android:src="@drawable/ic_launcher_foreground"
+                    android:scaleType="centerCrop"
+                    android:background="@drawable/bg_chip"
+                    android:backgroundTint="?attr/colorSurfaceVariant"
+                    app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Large"
+                    app:strokeColor="?attr/colorOutlineVariant"
+                    app:strokeWidth="1dp"
+                    android:contentDescription="Logo Empresa" />
+
+                <!-- Nombre de la empresa -->
+                <TextView
+                    android:id="@+id/tvCompanyName"
+                    style="@style/M3_Headline_Medium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nombre de la Empresa"
+                    android:layout_marginTop="@dimen/spacing_md"
+                    android:textAlignment="center" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <!-- Lista de tours -->
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:padding="16dp" />
-</LinearLayout>
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/spacing_sm">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvTours"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                android:clipToPadding="false" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

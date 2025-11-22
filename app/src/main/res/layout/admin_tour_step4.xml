@@ -3,26 +3,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/groupStep4"
     android:visibility="gone"
+    style="@style/M3_Card_Elevated"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="12dp"
-    app:cardCornerRadius="18dp"
-    app:cardElevation="5dp"
-    app:strokeWidth="1dp"
-    app:strokeColor="@color/brand_light">
+    android:layout_marginBottom="@dimen/spacing_md">
 
     <LinearLayout
         android:orientation="vertical"
-        android:padding="16dp"
+        android:padding="@dimen/spacing_lg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <TextView
+            style="@style/M3_Title_Large"
             android:text="Asignar Guías"
-            android:textStyle="bold"
-            android:textSize="17sp"
-            android:textColor="@color/brand_dark"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="@dimen/spacing_md"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
@@ -30,14 +25,15 @@
             android:id="@+id/boxGuides"
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/spacing_md" />
 
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
             android:hint="Propuesta de pago al guía (S/.)"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp">
+            android:layout_marginBottom="@dimen/spacing_md">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/inputPayment"
                 android:inputType="numberDecimal"
@@ -46,10 +42,9 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
+            style="@style/M3_Body_Small"
             android:text="Nota: puedes invitar a varios guías; el primero que acepte quedará asignado."
-            android:textSize="12sp"
-            android:textColor="#666"
-            android:layout_marginTop="6dp"
+            android:textColor="?attr/colorOnSurfaceVariant"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </LinearLayout>

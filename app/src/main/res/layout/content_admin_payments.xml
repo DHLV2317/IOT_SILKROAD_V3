@@ -5,38 +5,36 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="@dimen/spacing_lg">
 
     <!-- Header tipo card -->
     <com.google.android.material.card.MaterialCardView
+        style="@style/M3_Card_Elevated"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
-        app:cardCornerRadius="16dp"
-        app:cardElevation="4dp">
+        android:layout_marginBottom="@dimen/spacing_md">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:padding="@dimen/spacing_lg">
 
             <TextView
                 android:id="@+id/tHeader"
+                style="@style/M3_Title_Large"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Pagos a guías / proveedores"
-                android:textStyle="bold"
-                android:textSize="18sp"
-                android:textColor="@color/brand_dark"
-                android:layout_marginBottom="4dp"/>
+                android:layout_marginBottom="@dimen/spacing_xs"/>
 
             <TextView
                 android:id="@+id/tSubheader"
+                style="@style/M3_Body_Medium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Revisa y gestiona los pagos pendientes, pagados y en revisión."
-                android:textSize="14sp"/>
+                android:textColor="?attr/colorOnSurfaceVariant"/>
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 
@@ -45,13 +43,17 @@
         android:id="@+id/filtersBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginBottom="@dimen/spacing_md">
 
         <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="Buscar por guía o tour">
+            android:hint="Buscar por guía o tour"
+            app:startIconDrawable="@drawable/ic_search_24"
+            app:startIconTint="?attr/colorPrimary">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/inputSearch"
@@ -59,10 +61,14 @@
                 android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <Space
+            android:layout_width="@dimen/spacing_md"
+            android:layout_height="0dp" />
+
         <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
             android:layout_width="140dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
             android:hint="Estado">
 
             <AutoCompleteTextView
@@ -78,20 +84,18 @@
         android:id="@+id/listPayments"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="8dp"
         android:layout_weight="1"
         android:clipToPadding="false"
-        android:paddingBottom="8dp" />
+        android:paddingBottom="@dimen/spacing_md" />
 
     <!-- Botón reporte de pagos -->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnExportPayments"
+        style="@style/M3_FilledButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Exportar reporte de pagos"
-        android:backgroundTint="@color/brand_celeste"
-        android:textColor="@android:color/white"
-        android:layout_marginTop="12dp"
-        android:layout_marginBottom="8dp" />
+        android:layout_marginTop="@dimen/spacing_md"
+        android:layout_marginBottom="@dimen/spacing_md" />
 
 </LinearLayout>

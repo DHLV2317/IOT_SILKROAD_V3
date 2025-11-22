@@ -1,138 +1,151 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:elevation="0dp">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:title="Cuenta Pendiente"
+            android:background="?attr/colorTertiary"
+            android:elevation="@dimen/elevation_sm"
+            app:titleTextColor="?attr/colorOnTertiary"
+            app:navigationIcon="@drawable/ic_arrow_back_24"
+            app:navigationIconTint="?attr/colorOnTertiary" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:title="Cuenta Pendiente"
-            app:backgroundTint="@android:color/holo_orange_dark"
-            app:titleTextColor="@color/white" />
-
         <!-- Header de estado -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="24dp"
-            android:background="@android:color/holo_orange_dark"
+            android:padding="@dimen/spacing_xxl"
+            android:background="@drawable/bg_gradient_tertiary"
             android:gravity="center">
 
-            <ImageView
+            <com.google.android.material.imageview.ShapeableImageView
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:src="@drawable/ic_person_24"
-                android:background="@drawable/bg_chip"
-                android:backgroundTint="@color/white"
-                android:padding="16dp"
+                android:background="?attr/colorSurface"
+                android:padding="@dimen/spacing_lg"
                 android:contentDescription="@string/app_name"
-                android:layout_marginBottom="16dp"/>
+                android:elevation="@dimen/elevation_md"
+                android:layout_marginBottom="@dimen/spacing_lg"
+                app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full"
+                app:strokeColor="?attr/colorSurface"
+                app:strokeWidth="4dp"/>
 
             <TextView
                 android:id="@+id/txtGuideName"
+                style="@style/M3_Headline_Medium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Nombre del Guía"
-                android:textColor="@color/white"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="8dp"/>
+                android:textColor="?attr/colorOnTertiary"
+                android:layout_marginBottom="@dimen/spacing_sm"/>
 
             <TextView
                 android:id="@+id/txtGuideEmail"
+                style="@style/M3_Body_Large"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="email@demo.com"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                android:layout_marginBottom="16dp"/>
+                android:textColor="?attr/colorOnTertiary"
+                android:layout_marginBottom="@dimen/spacing_lg"/>
 
             <TextView
                 android:id="@+id/txtStatusInfo"
+                style="@style/M3_Title_Large"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="⏳ Pendiente de Aprobación"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                android:textStyle="bold"/>
+                android:textColor="?attr/colorOnTertiary" />
 
         </LinearLayout>
 
         <!-- Información de la solicitud -->
         <com.google.android.material.card.MaterialCardView
+            style="@style/M3_Card_Elevated"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="4dp">
+            android:layout_margin="@dimen/spacing_lg">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="20dp">
+                android:padding="@dimen/spacing_xl">
 
                 <TextView
+                    style="@style/M3_Title_Large"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="📋 Información de tu Solicitud"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="16dp"/>
+                    android:layout_marginBottom="@dimen/spacing_lg"/>
 
                 <TextView
                     android:id="@+id/txtStatusDescription"
+                    style="@style/M3_Body_Large"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Tu solicitud está siendo revisada por nuestro equipo de administradores."
-                    android:textSize="16sp"
-                    android:layout_marginBottom="16dp"/>
+                    android:layout_marginBottom="@dimen/spacing_lg"/>
 
                 <TextView
                     android:id="@+id/txtDocumentInfo"
+                    style="@style/M3_Body_Medium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="DNI: 12345678"
-                    android:textSize="14sp"
-                    android:layout_marginBottom="8dp"/>
+                    android:layout_marginBottom="@dimen/spacing_sm"/>
 
                 <TextView
                     android:id="@+id/txtPhoneInfo"
+                    style="@style/M3_Body_Medium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Teléfono: +51 987 654 321"
-                    android:textSize="14sp"
-                    android:layout_marginBottom="8dp"/>
+                    android:layout_marginBottom="@dimen/spacing_sm"/>
 
                 <TextView
                     android:id="@+id/txtLanguagesInfo"
+                    style="@style/M3_Body_Medium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Idiomas: Español, Inglés"
-                    android:textSize="14sp"
-                    android:layout_marginBottom="16dp"/>
+                    android:layout_marginBottom="@dimen/spacing_lg"/>
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@android:color/darker_gray"
-                    android:layout_marginVertical="16dp"/>
+                    android:background="?attr/colorOutlineVariant"
+                    android:layout_marginVertical="@dimen/spacing_lg"/>
 
                 <TextView
                     android:id="@+id/txtLastCheck"
+                    style="@style/M3_Body_Small"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Envío inicial: Hace 2 días"
-                    android:textSize="12sp"
-                    android:textColor="@android:color/darker_gray"/>
+                    android:textColor="?attr/colorOnSurfaceVariant"/>
 
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
@@ -142,8 +155,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginBottom="16dp">
+            android:layout_marginHorizontal="@dimen/spacing_lg"
+            android:layout_marginBottom="@dimen/spacing_lg">
 
             <!-- Botón + loader -->
             <FrameLayout
@@ -152,12 +165,11 @@
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnRefreshStatus"
+                    style="@style/M3_FilledButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="🔄 Verificar Estado"
-                    android:textSize="16sp"
-                    android:layout_marginBottom="12dp"
-                    app:backgroundTint="@color/brand_celeste" />
+                    android:layout_marginBottom="@dimen/spacing_md" />
 
                 <ProgressBar
                     android:id="@+id/progress"
@@ -165,52 +177,51 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:layout_gravity="end|center_vertical"
-                    android:layout_marginEnd="16dp"
+                    android:layout_marginEnd="@dimen/spacing_lg"
                     android:visibility="gone"/>
             </FrameLayout>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnBackToLogin"
+                style="@style/M3_OutlinedButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="← Volver al Login"
-                android:textSize="16sp"
-                style="@style/Widget.Material3.Button.OutlinedButton"
-                app:strokeColor="@android:color/holo_orange_dark" />
+                app:strokeColor="?attr/colorTertiary" />
 
         </LinearLayout>
 
         <!-- Información adicional -->
         <com.google.android.material.card.MaterialCardView
+            style="@style/M3_Card_Elevated"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="4dp">
+            android:layout_margin="@dimen/spacing_lg">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="20dp">
+                android:padding="@dimen/spacing_xl">
 
                 <TextView
+                    style="@style/M3_Title_Large"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="ℹ️ ¿Qué sigue?"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="12dp"/>
+                    android:layout_marginBottom="@dimen/spacing_md"/>
 
                 <TextView
+                    style="@style/M3_Body_Medium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="1. Nuestro equipo revisará tu documentación\n2. Verificaremos tus referencias y experiencia\n3. Te notificaremos por email sobre la decisión\n4. Una vez aprobado, tendrás acceso completo"
-                    android:textSize="14sp"
-                    android:lineSpacingExtra="4dp"/>
+                    android:lineSpacingExtra="@dimen/spacing_xs"/>
 
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
     </LinearLayout>
-</ScrollView>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

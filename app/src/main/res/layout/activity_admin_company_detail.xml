@@ -1,103 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/background">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/surface">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:title="Empresa"
+            app:titleTextAppearance="@style/M3_Title_Large"
+            app:navigationIcon="@drawable/ic_arrow_back_24" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <!-- Toolbar -->
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            app:title="Empresa"
-            app:backgroundTint="@color/brand_celeste"
-            app:titleTextColor="@android:color/white"
-            app:navigationIcon="@drawable/ic_arrow_back_24"
-            app:navigationIconTint="@android:color/white" />
-
         <!-- Header estilo perfil (usa imagen = logo empresa) -->
-
-        <!-- Card de datos editables -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/brand_celeste"
+            android:background="@drawable/bg_gradient_primary"
             android:gravity="center"
             android:orientation="vertical"
-            android:padding="24dp">
+            android:padding="@dimen/spacing_xl">
 
             <!-- IMPORTANTE: id = imgLogo para que coincida con el Activity -->
-            <ImageView
+            <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/imgLogo"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
-                android:layout_marginBottom="8dp"
-                android:background="@drawable/bg_chip"
-                android:backgroundTint="@color/white"
-                android:padding="20dp"
-                android:src="@drawable/ic_image_24" />
+                android:layout_marginBottom="@dimen/spacing_md"
+                android:background="?attr/colorSurface"
+                android:padding="@dimen/spacing_lg"
+                android:src="@drawable/ic_image_24"
+                android:elevation="@dimen/elevation_sm"
+                app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full"
+                app:strokeColor="?attr/colorSurface"
+                app:strokeWidth="4dp" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnChangePhoto"
-                style="@style/M3_OutlinedButton"
+                style="@style/Widget.Material3.Button.OutlinedButton"
                 android:layout_width="wrap_content"
-                android:layout_height="36dp"
-                android:layout_marginBottom="16dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_md"
                 android:text="📷 Cambiar logo"
-                android:textColor="@color/white"
-                android:textSize="12sp"
-                app:strokeColor="@color/white" />
+                android:textColor="?attr/colorOnPrimary"
+                android:textSize="@dimen/text_sm"
+                app:strokeColor="?attr/colorOnPrimary" />
 
             <TextView
                 android:id="@+id/txtCompanyTitle"
+                style="@style/M3_Headline_Large"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="6dp"
+                android:layout_marginBottom="@dimen/spacing_xs"
                 android:text="Nombre de la empresa"
-                android:textColor="@android:color/white"
-                android:textSize="22sp"
-                android:textStyle="bold" />
+                android:textColor="?attr/colorOnPrimary" />
 
             <TextView
                 android:id="@+id/txtSubtitle"
+                style="@style/M3_Body_Medium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Configura los datos visibles para clientes y guías"
-                android:textColor="@android:color/white"
-                android:textSize="13sp" />
+                android:textColor="?attr/colorOnPrimary" />
         </LinearLayout>
 
         <com.google.android.material.card.MaterialCardView
+            style="@style/M3_Card_Elevated"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="4dp">
+            android:layout_margin="@dimen/spacing_md">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="20dp">
+                android:padding="@dimen/spacing_lg">
 
                 <TextView
+                    style="@style/M3_Title_Medium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="✏️ Datos de la empresa"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="14dp" />
+                    android:layout_marginBottom="@dimen/spacing_md" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginBottom="@dimen/spacing_md"
                     android:hint="Nombre de la empresa">
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/inputCompanyName"
@@ -200,26 +207,25 @@
 
         <!-- (Opcional) Card de info / métricas -->
         <com.google.android.material.card.MaterialCardView
+            style="@style/M3_Card_Elevated"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="2dp">
+            android:layout_margin="@dimen/spacing_md">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="20dp"
+                android:padding="@dimen/spacing_lg"
                 android:orientation="vertical">
                 <TextView
+                    style="@style/M3_Title_Medium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="📊 Resumen"
-                    android:textStyle="bold"
-                    android:textSize="16sp"
-                    android:layout_marginBottom="8dp"/>
+                    android:layout_marginBottom="@dimen/spacing_sm"/>
                 <TextView
                     android:id="@+id/txtSummary"
+                    style="@style/M3_Body_Medium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Puedes mostrar aquí métricas básicas (tours, ingresos, etc.)."/>
@@ -227,4 +233,5 @@
         </com.google.android.material.card.MaterialCardView>
 
     </LinearLayout>
-</ScrollView>
+    </androidx.core.widget.NestedScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

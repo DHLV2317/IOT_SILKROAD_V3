@@ -1,106 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/background">
 
-    <LinearLayout
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        app:elevation="0dp">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:backgroundTint="@color/brand_celeste"
-            app:titleTextColor="@color/white" />
+            android:layout_height="?attr/actionBarSize"
+            app:title="Historial de Tours"
+            app:titleTextAppearance="@style/M3_Title_Large"
+            app:navigationIcon="@drawable/ic_arrow_back_24" />
+    </com.google.android.material.appbar.AppBarLayout>
 
-        <!-- Estadísticas del mes -->
-        <com.google.android.material.card.MaterialCardView
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="4dp">
+            android:orientation="vertical"
+            android:padding="@dimen/spacing_md">
 
-            <LinearLayout
+            <!-- Estadísticas del mes -->
+            <com.google.android.material.card.MaterialCardView
+                style="@style/M3_Card_Elevated"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="20dp">
+                android:layout_marginBottom="@dimen/spacing_md">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="📊 Estadísticas del Mes"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="12dp"/>
-
-                <TextView
-                    android:id="@+id/txtMonthlyStats"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Cargando estadísticas..."
-                    android:textSize="14sp"
-                    android:fontFamily="monospace"
-                    android:lineSpacingExtra="2dp"/>
-
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
-
-        <!-- Historial completo -->
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="4dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="20dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="📜 Historial Completo de Tours"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="16dp"/>
-
-                <ScrollView
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="400dp"
-                    android:background="@android:color/black"
-                    android:backgroundTint="#F8F8F8"
-                    android:padding="12dp">
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/spacing_lg">
 
                     <TextView
-                        android:id="@+id/txtFullHistory"
-                        android:layout_width="match_parent"
+                        style="@style/M3_Title_Large"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Cargando historial detallado..."
-                        android:textSize="12sp"
+                        android:text="📊 Estadísticas del Mes"
+                        android:layout_marginBottom="@dimen/spacing_md"/>
+
+                    <TextView
+                        android:id="@+id/txtMonthlyStats"
+                        style="@style/M3_Body_Medium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Cargando estadísticas..."
                         android:fontFamily="monospace"
-                        android:textColor="@android:color/black"
-                        android:lineSpacingExtra="1dp"/>
+                        android:lineSpacingExtra="2dp"/>
 
-                </ScrollView>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
 
-                <TextView
-                    android:layout_width="wrap_content"
+            <!-- Historial completo -->
+            <com.google.android.material.card.MaterialCardView
+                style="@style/M3_Card_Elevated"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="💡 Desliza hacia arriba para ver más tours"
-                    android:textSize="12sp"
-                    android:textColor="@android:color/darker_gray"
-                    android:layout_marginTop="8dp"/>
+                    android:orientation="vertical"
+                    android:padding="@dimen/spacing_lg">
 
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
+                    <TextView
+                        style="@style/M3_Title_Large"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="📜 Historial Completo de Tours"
+                        android:layout_marginBottom="@dimen/spacing_md"/>
 
-    </LinearLayout>
-</ScrollView>
+                    <com.google.android.material.card.MaterialCardView
+                        style="@style/M3_Card_Filled"
+                        android:layout_width="match_parent"
+                        android:layout_height="400dp"
+                        android:layout_marginBottom="@dimen/spacing_sm"
+                        app:cardBackgroundColor="@color/surface_container">
+
+                        <ScrollView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="@dimen/spacing_md">
+
+                            <TextView
+                                android:id="@+id/txtFullHistory"
+                                style="@style/M3_Body_Small"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Cargando historial detallado..."
+                                android:fontFamily="monospace"
+                                android:textColor="@color/text_primary"
+                                android:lineSpacingExtra="1dp"/>
+                        </ScrollView>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <TextView
+                        style="@style/M3_Label_Medium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="💡 Desliza hacia arriba para ver más tours"
+                        android:textColor="@color/text_tertiary"/>
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

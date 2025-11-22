@@ -1,39 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        app:elevation="0dp">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:backgroundTint="@color/brand_celeste"
-            app:titleTextColor="@color/white" />
+            android:layout_height="?attr/actionBarSize"
+            app:titleTextColor="?attr/colorOnPrimary"
+            style="@style/Widget.Material3.Toolbar" />
 
         <!-- Header con foto de perfil -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="24dp"
-            android:background="@color/brand_celeste"
+            android:padding="@dimen/spacing_xl"
+            android:background="@drawable/bg_gradient_primary"
             android:gravity="center">
 
-            <ImageView
+            <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/imgProfilePhoto"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:src="@drawable/ic_person_24"
-                android:background="@drawable/bg_chip"
-                android:backgroundTint="@color/white"
-                android:padding="20dp"
-                android:layout_marginBottom="8dp"/>
+                android:background="?attr/colorSurface"
+                android:padding="@dimen/spacing_lg"
+                android:scaleType="centerCrop"
+                android:layout_marginBottom="@dimen/spacing_sm"
+                app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full"
+                app:strokeColor="?attr/colorSurface"
+                app:strokeWidth="4dp"/>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnChangePhoto"
@@ -48,23 +51,34 @@
 
             <TextView
                 android:id="@+id/txtProfileName"
+                style="@style/M3_Headline_Medium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Nombre del Guía"
-                android:textColor="@color/white"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="8dp"/>
+                android:textColor="?attr/colorOnPrimary"
+                android:layout_marginBottom="@dimen/spacing_sm"/>
 
             <TextView
                 android:id="@+id/txtApprovalStatus"
+                style="@style/M3_Body_Large"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Estado: ✅ Aprobado"
-                android:textColor="@color/white"
-                android:textSize="16sp"/>
+                android:textColor="?attr/colorOnPrimary"/>
 
         </LinearLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/spacing_md">
 
         <!-- Datos Personales Editables -->
         <com.google.android.material.card.MaterialCardView
@@ -81,12 +95,11 @@
                 android:padding="20dp">
 
                 <TextView
+                    style="@style/M3_Title_Medium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="✏️ Editar Información Personal"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="16dp"/>
+                    android:layout_marginBottom="@dimen/spacing_md"/>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
@@ -165,11 +178,11 @@
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnSaveChanges"
+                    style="@style/M3_FilledButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="💾 Guardar Cambios"
-                    android:enabled="false"
-                    app:backgroundTint="@color/brand_verde" />
+                    android:enabled="false" />
 
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
@@ -328,6 +341,7 @@
                 app:backgroundTint="@android:color/holo_red_dark" />
 
         </LinearLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 
-    </LinearLayout>
-</ScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

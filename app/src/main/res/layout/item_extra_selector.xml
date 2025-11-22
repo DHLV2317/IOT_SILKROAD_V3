@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<com.google.android.material.card.MaterialCardView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/M3_Card_Filled"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:paddingTop="4dp"
-    android:paddingBottom="4dp">
+    android:layout_marginHorizontal="@dimen/spacing_xs"
+    android:layout_marginBottom="@dimen/spacing_xs">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:padding="@dimen/spacing_md"
         android:gravity="center_vertical">
 
         <LinearLayout
@@ -21,18 +23,19 @@
 
             <TextView
                 android:id="@+id/tExtraName"
+                style="@style/M3_Title_Small"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Nombre extra"
-                android:textStyle="bold"
-                android:textSize="14sp" />
+                android:text="Nombre extra" />
 
             <TextView
                 android:id="@+id/tExtraPrice"
+                style="@style/M3_Body_Medium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="S/. 0.00 por persona"
-                android:textSize="13sp" />
+                android:textColor="?attr/colorOnSurfaceVariant"
+                android:layout_marginTop="@dimen/spacing_xs" />
         </LinearLayout>
 
         <!-- Selector de cantidad para este extra -->
@@ -42,35 +45,28 @@
             android:orientation="horizontal"
             android:gravity="center_vertical">
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnMinusExtra"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:text="-"
-                android:textSize="16sp" />
+                style="@style/Widget.Material3.Button.Icon"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:text="-" />
 
             <TextView
                 android:id="@+id/tExtraQty"
-                android:layout_width="40dp"
+                style="@style/M3_Title_Medium"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:text="0"
                 android:gravity="center"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                android:layout_marginHorizontal="@dimen/spacing_sm" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnPlusExtra"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:text="+"
-                android:textSize="16sp" />
+                style="@style/Widget.Material3.Button.Icon"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:text="+" />
         </LinearLayout>
     </LinearLayout>
-
-    <!-- Línea separadora suave -->
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:background="#DDDDDD"
-        android:layout_marginTop="4dp" />
-</LinearLayout>
+</com.google.android.material.card.MaterialCardView>

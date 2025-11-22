@@ -3,33 +3,29 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/groupStep2"
     android:visibility="gone"
+    style="@style/M3_Card_Elevated"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="12dp"
-    app:cardCornerRadius="18dp"
-    app:cardElevation="5dp"
-    app:strokeWidth="1dp"
-    app:strokeColor="@color/brand_light">
+    android:layout_marginBottom="@dimen/spacing_md">
 
     <LinearLayout
         android:orientation="vertical"
-        android:padding="16dp"
+        android:padding="@dimen/spacing_lg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <TextView
+            style="@style/M3_Title_Large"
             android:text="Lugares / Paradas"
-            android:textStyle="bold"
-            android:textSize="17sp"
-            android:textColor="@color/brand_dark"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="@dimen/spacing_md"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/spacing_md">
 
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
@@ -44,7 +40,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <Space
-                android:layout_width="8dp"
+                android:layout_width="@dimen/spacing_md"
                 android:layout_height="0dp" />
 
             <com.google.android.material.textfield.TextInputLayout
@@ -62,14 +58,12 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnAddStop"
+            style="@style/M3_FilledButton"
             android:text="Añadir parada"
-            android:layout_marginTop="8dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:backgroundTint="@color/brand_celeste"
-            app:icon="@drawable/ic_add_24"
-            app:iconTint="@android:color/white"
-            android:textColor="@android:color/white" />
+            android:layout_marginBottom="@dimen/spacing_md"
+            app:icon="@drawable/ic_add_24" />
 
         <LinearLayout
             android:id="@+id/boxStops"

@@ -1,81 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/rootContent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true">
+    android:fillViewport="true"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     <LinearLayout
         android:id="@+id/rootReports"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="12dp">
+        android:padding="@dimen/spacing_md">
 
-        <!-- Filtros (placeholder) -->
-        <LinearLayout
+        <!-- Filtros -->
+        <com.google.android.material.card.MaterialCardView
+            style="@style/M3_Card_Filled"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_marginBottom="@dimen/spacing_md">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Período"
-                android:layout_marginEnd="8dp">
+                android:orientation="vertical"
+                android:padding="@dimen/spacing_md">
 
-                <AutoCompleteTextView
-                    android:id="@+id/inputPeriod"
-                    android:layout_width="140dp"
+                <TextView
+                    style="@style/M3_Title_Medium"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:inputType="none"/>
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:text="Filtros"
+                    android:layout_marginBottom="@dimen/spacing_sm"/>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:hint="Orden">
-
-                <AutoCompleteTextView
-                    android:id="@+id/inputOrder"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="none"/>
-            </com.google.android.material.textfield.TextInputLayout>
-        </LinearLayout>
+                    android:orientation="horizontal">
 
-        <!-- Fecha dinámica del reporte -->
-        <TextView
-            android:id="@+id/tReportDate"
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:hint="Período"
+                        android:layout_marginEnd="@dimen/spacing_xs">
+
+                        <AutoCompleteTextView
+                            android:id="@+id/inputPeriod"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="none"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:hint="Orden"
+                        android:layout_marginStart="@dimen/spacing_xs">
+
+                        <AutoCompleteTextView
+                            android:id="@+id/inputOrder"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="none"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Gráfico -->
+        <com.google.android.material.card.MaterialCardView
+            style="@style/M3_Card_Elevated"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Generado: —"
-            android:textSize="12sp"
-            android:textColor="@android:color/darker_gray"
-            android:layout_marginTop="4dp" />
+            android:layout_marginBottom="@dimen/spacing_md">
 
-        <TextView
-            android:id="@+id/tChartTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Por tours (menor → mayor)"
-            android:textStyle="bold"
-            android:layout_marginTop="8dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/spacing_md">
 
-        <!-- Barras -->
-        <LinearLayout
-            android:id="@+id/chartBars"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:gravity="bottom"
-            android:orientation="horizontal"
-            android:layout_marginTop="8dp"
-            android:padding="8dp"
-            android:background="#F4F4F4"
-            android:divider="@android:color/transparent"
-            android:showDividers="middle">
+                <TextView
+                    android:id="@+id/tReportDate"
+                    style="@style/M3_Label_Small"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Generado: —"
+                    android:textColor="@color/text_tertiary"
+                    android:layout_marginBottom="@dimen/spacing_xs" />
+
+                <TextView
+                    android:id="@+id/tChartTitle"
+                    style="@style/M3_Title_Medium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Por tours (menor → mayor)"
+                    android:layout_marginBottom="@dimen/spacing_sm"/>
+
+                <!-- Barras -->
+                <LinearLayout
+                    android:id="@+id/chartBars"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:gravity="bottom"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/spacing_sm"
+                    android:background="@color/surface_container"
+                    android:divider="@android:color/transparent"
+                    android:showDividers="middle">
 
             <LinearLayout
                 android:id="@+id/bar1"
@@ -92,6 +129,7 @@
                     android:layout_margin="6dp"/>
                 <TextView
                     android:id="@+id/tBar1"
+                    style="@style/M3_Label_Small"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -109,10 +147,11 @@
                     android:id="@+id/barFill2"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:background="#FB8C00"
-                    android:layout_margin="6dp"/>
+                    android:background="@color/secondary"
+                    android:layout_margin="@dimen/spacing_xs"/>
                 <TextView
                     android:id="@+id/tBar2"
+                    style="@style/M3_Label_Small"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -130,10 +169,11 @@
                     android:id="@+id/barFill3"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:background="#FDD835"
-                    android:layout_margin="6dp"/>
+                    android:background="@color/tertiary"
+                    android:layout_margin="@dimen/spacing_xs"/>
                 <TextView
                     android:id="@+id/tBar3"
+                    style="@style/M3_Label_Small"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -151,10 +191,11 @@
                     android:id="@+id/barFill4"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:background="#43A047"
-                    android:layout_margin="6dp"/>
+                    android:background="@color/success"
+                    android:layout_margin="@dimen/spacing_xs"/>
                 <TextView
                     android:id="@+id/tBar4"
+                    style="@style/M3_Label_Small"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -168,10 +209,11 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:weightSum="4"
-            android:layout_marginTop="4dp">
+            android:layout_marginVertical="@dimen/spacing_xs">
 
             <TextView
                 android:id="@+id/tLegend1"
+                style="@style/M3_Label_Small"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -180,6 +222,7 @@
 
             <TextView
                 android:id="@+id/tLegend2"
+                style="@style/M3_Label_Small"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -188,6 +231,7 @@
 
             <TextView
                 android:id="@+id/tLegend3"
+                style="@style/M3_Label_Small"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -196,67 +240,97 @@
 
             <TextView
                 android:id="@+id/tLegend4"
+                style="@style/M3_Label_Small"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="—" />
         </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Por Tours (mayor → menor)"
-            android:textStyle="bold"
-            android:layout_marginTop="12dp"/>
-
-        <LinearLayout
-            android:id="@+id/boxTopTours"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="6dp"/>
-
+        <!-- Top Tours -->
         <com.google.android.material.card.MaterialCardView
+            style="@style/M3_Card_Elevated"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            app:cardUseCompatPadding="true">
+            android:layout_marginBottom="@dimen/spacing_md">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="12dp">
+                android:padding="@dimen/spacing_md">
+
+                <TextView
+                    style="@style/M3_Title_Medium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Por Tours (mayor → menor)"
+                    android:layout_marginBottom="@dimen/spacing_sm"/>
+
+                <LinearLayout
+                    android:id="@+id/boxTopTours"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"/>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Resumen Estadísticas -->
+        <com.google.android.material.card.MaterialCardView
+            style="@style/M3_Card_Filled"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/spacing_md">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/spacing_md">
+
+                <TextView
+                    style="@style/M3_Title_Medium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Resumen"
+                    android:layout_marginBottom="@dimen/spacing_sm"/>
 
                 <TextView
                     android:id="@+id/tIncome"
+                    style="@style/M3_Body_Large"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Ingresos: S/ —"/>
+                    android:text="Ingresos: S/ —"
+                    android:paddingVertical="@dimen/spacing_xs"/>
 
                 <TextView
                     android:id="@+id/tReservations"
+                    style="@style/M3_Body_Large"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Reservas: —"/>
+                    android:text="Reservas: —"
+                    android:paddingVertical="@dimen/spacing_xs"/>
 
                 <TextView
                     android:id="@+id/tTopService"
+                    style="@style/M3_Body_Large"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Servicio top: —"/>
+                    android:text="Servicio top: —"
+                    android:paddingVertical="@dimen/spacing_xs"/>
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnExportPdf"
+            style="@style/M3_FilledButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Exportar reporte (PDF)"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="24dp"
-            android:textColor="@android:color/white"
-            android:backgroundTint="@color/brand_celeste"/>
+            android:layout_marginBottom="@dimen/spacing_xl"
+            app:icon="@android:drawable/ic_menu_save"/>
     </LinearLayout>
-</ScrollView>
+</androidx.core.widget.NestedScrollView>

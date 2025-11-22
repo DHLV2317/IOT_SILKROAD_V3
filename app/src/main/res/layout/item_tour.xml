@@ -1,37 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<com.google.android.material.card.MaterialCardView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:padding="12dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/Widget.SilkRoad.CardView"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="@dimen/spacing_xs"
+    android:layout_marginVertical="@dimen/spacing_sm"
+    android:clickable="true"
+    android:focusable="true"
+    app:cardElevation="@dimen/elevation_xs">
 
-    <ImageView
-        android:id="@+id/imgTour"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="180dp"
-        android:scaleType="centerCrop"/>
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/tTourName"
-        android:textStyle="bold"
-        android:textSize="16sp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        <!-- Imagen del Tour -->
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/imgTour"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/tour_card_image_height"
+            android:scaleType="centerCrop"
+            android:background="@drawable/bg_image_placeholder"
+            app:shapeAppearanceOverlay="@style/ShapeAppearance.SilkRoad.MediumComponent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ic_map_placeholder" />
 
-    <TextView
-        android:id="@+id/tTourPrice"
-        android:textColor="#666"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        <!-- Overlay gradiente en la imagen -->
+        <View
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:background="@drawable/bg_gradient_primary"
+            android:alpha="0.3"
+            app:layout_constraintBottom_toBottomOf="@id/imgTour"
+            app:layout_constraintEnd_toEndOf="@id/imgTour"
+            app:layout_constraintStart_toStartOf="@id/imgTour" />
 
-    <TextView
-        android:id="@+id/tFecha"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        <!-- Contenedor de información -->
+        <LinearLayout
+            android:orientation="vertical"
+            android:padding="@dimen/spacing_md"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imgTour">
 
-    <TextView
-        android:id="@+id/tTourDescription"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-</LinearLayout>
+            <!-- Nombre del Tour -->
+            <TextView
+                android:id="@+id/tTourName"
+                android:textAppearance="@style/TextAppearance.SilkRoad.TitleLarge"
+                android:textStyle="bold"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="Tour por Machu Picchu" />
+
+            <!-- Descripción -->
+            <TextView
+                android:id="@+id/tTourDescription"
+                android:textAppearance="@style/TextAppearance.SilkRoad.BodyMedium"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:layout_marginTop="@dimen/spacing_xs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="Descubre las maravillas de la ciudad perdida de los Incas" />
+
+            <!-- Precio y Fecha -->
+            <LinearLayout
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="@dimen/spacing_md"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <!-- Precio -->
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="S/. "
+                        android:textAppearance="@style/TextAppearance.SilkRoad.BodyMedium"
+                        android:textColor="@color/primary"
+                        android:textStyle="bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/tTourPrice"
+                        android:textAppearance="@style/TextAppearance.SilkRoad.HeadlineMedium"
+                        android:textColor="@color/primary"
+                        android:textStyle="bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="150.00" />
+
+                </LinearLayout>
+
+                <!-- Fecha -->
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/tFecha"
+                    style="@style/Widget.SilkRoad.Chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:chipIcon="@drawable/baseline_arrow_circle_down_24"
+                    app:chipIconTint="@color/on_primary_container"
+                    tools:text="25 Nov" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

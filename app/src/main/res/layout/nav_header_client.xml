@@ -1,32 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:padding="16dp"
-    android:layout_width="match_parent" android:layout_height="160dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:padding="@dimen/spacing_xl"
+    android:layout_width="match_parent"
+    android:layout_height="180dp"
     android:gravity="bottom"
-    android:background="@color/brand_celeste">
+    android:background="@drawable/bg_gradient_primary">
 
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/imgAvatarHeader"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
         android:src="@drawable/ic_person_24"
-        android:background="@drawable/shape_circle_white"
-        android:padding="8dp" />
+        android:background="?attr/colorSurface"
+        android:padding="@dimen/spacing_md"
+        android:elevation="@dimen/elevation_sm"
+        app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full"
+        app:strokeColor="?attr/colorSurface"
+        app:strokeWidth="3dp" />
 
     <TextView
         android:id="@+id/tvHeaderName"
+        style="@style/M3_Title_Large"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Nombre Usuario"
-        android:textStyle="bold"
-        android:textColor="@android:color/white"
-        android:textSize="16sp"
-        android:layout_marginTop="8dp" />
+        android:textColor="?attr/colorOnPrimary"
+        android:layout_marginTop="@dimen/spacing_md" />
 
     <TextView
         android:id="@+id/tvHeaderEmail"
+        style="@style/M3_Body_Medium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="correo@ejemplo.com"
-        android:textColor="@android:color/white" />
+        android:textColor="?attr/colorOnPrimary"
+        android:alpha="0.87" />
 </LinearLayout>

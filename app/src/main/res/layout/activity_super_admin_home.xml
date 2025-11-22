@@ -8,81 +8,74 @@
     tools:context=".ui.superadmin.SuperAdminHomeActivity"
     tools:openDrawer="start">
 
-    <!-- Contenido Principal de la Pantalla -->
-    <LinearLayout
+    <!-- Contenido Principal -->
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@color/surface">
 
-            <androidx.appcompat.widget.Toolbar
+            <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="@android:color/white"
                 app:title="SuperAdministrador"
-                app:titleTextColor="@android:color/black"
+                app:titleTextAppearance="@style/M3_Title_Large"
                 app:navigationIcon="@drawable/ic_menu_grey" />
-
         </com.google.android.material.appbar.AppBarLayout>
 
-
-        <!--FrameLayout
-            android:id="@+id/content_frame"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"-->
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/main_content_container"
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@android:color/white">
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:id="@+id/main_content_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/spacing_md">
 
             <ImageView
                 android:id="@+id/imageView2"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.10"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/spacing_xl"
+                android:layout_marginBottom="@dimen/spacing_xl"
                 app:srcCompat="@drawable/logo_silkroad" />
 
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
+            <com.google.android.material.card.MaterialCardView
+                style="@style/M3_Card_Elevated"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="32dp"
-                android:letterSpacing="0.02"
-                android:shadowColor="@color/black"
-                android:shadowDx="1"
-                android:shadowDy="1"
-                android:shadowRadius="2"
-                android:text="Cambiar contraseña"
-                android:textAllCaps="false"
-                android:textColor="@color/black"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+                android:layout_marginBottom="@dimen/spacing_md">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputLayout2"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="32dp"
-                app:endIconMode="password_toggle"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView2">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/spacing_lg">
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        style="@style/M3_Title_Medium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/spacing_md"
+                        android:text="Cambiar contraseña" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/textInputLayout2"
+                        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/spacing_md"
+                        android:hint="Nueva contraseña"
+                        app:endIconMode="password_toggle">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"

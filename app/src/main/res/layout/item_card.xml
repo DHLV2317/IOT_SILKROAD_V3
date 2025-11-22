@@ -1,50 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
-    android:padding="12dp"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/M3_Card_Elevated"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@android:color/white"
-    android:layout_marginBottom="8dp"
-    android:elevation="2dp">
-
-    <RadioButton
-        android:id="@+id/rbSelect"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="12dp" />
+    android:layout_marginHorizontal="@dimen/spacing_sm"
+    android:layout_marginBottom="@dimen/spacing_sm">
 
     <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_height="wrap_content">
+        android:orientation="horizontal"
+        android:padding="@dimen/spacing_md"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical">
 
-        <TextView
-            android:id="@+id/tvAlias"
+        <RadioButton
+            android:id="@+id/rbSelect"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tarjeta principal"
-            android:textStyle="bold" />
+            android:layout_marginEnd="@dimen/spacing_md" />
 
-        <TextView
-            android:id="@+id/tvBrand"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="VISA (CREDIT)" />
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/tvLast4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="•••• 4242" />
+            <TextView
+                android:id="@+id/tvAlias"
+                style="@style/M3_Title_Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tarjeta principal" />
 
-        <TextView
-            android:id="@+id/tvBalance"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Saldo: S/. 0.00"
-            android:textColor="#555555"
-            android:layout_marginTop="4dp" />
+            <TextView
+                android:id="@+id/tvBrand"
+                style="@style/M3_Body_Medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="VISA (CREDIT)"
+                android:textColor="?attr/colorOnSurfaceVariant" />
+
+            <TextView
+                android:id="@+id/tvLast4"
+                style="@style/M3_Body_Medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="•••• 4242"
+                android:textColor="?attr/colorOnSurfaceVariant" />
+
+            <TextView
+                android:id="@+id/tvBalance"
+                style="@style/M3_Label_Medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Saldo: S/. 0.00"
+                android:textColor="?attr/colorPrimary"
+                android:layout_marginTop="@dimen/spacing_xs" />
+        </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+</com.google.android.material.card.MaterialCardView>

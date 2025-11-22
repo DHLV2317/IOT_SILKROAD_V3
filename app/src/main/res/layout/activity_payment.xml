@@ -1,74 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/rootPayment"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/toolbar"
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/brand_celeste"
-        android:title="Pago"
-        android:titleTextColor="@android:color/white"
-        app:navigationIcon="@drawable/ic_arrow_back_24" />
+        android:layout_height="wrap_content"
+        app:elevation="0dp">
 
-    <ScrollView
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:title="Pago"
+            app:titleTextColor="?attr/colorOnPrimary"
+            app:navigationIcon="@drawable/ic_arrow_back_24"
+            app:navigationIconTint="?attr/colorOnPrimary"
+            style="@style/Widget.Material3.Toolbar" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true">
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
             android:orientation="vertical"
-            android:padding="16dp"
+            android:padding="@dimen/spacing_md"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/tResumen"
+            <com.google.android.material.card.MaterialCardView
+                style="@style/M3_Card_Elevated"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Resumen de pago"
-                android:textStyle="bold"
-                android:textSize="18sp"
-                android:layout_marginBottom="8dp" />
+                android:layout_marginBottom="@dimen/spacing_md">
 
-            <TextView
-                android:id="@+id/tMonto"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Total: S/. 0.00"
-                android:layout_marginBottom="16dp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/spacing_lg">
+
+                    <TextView
+                        android:id="@+id/tResumen"
+                        style="@style/M3_Title_Medium"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Resumen de pago"
+                        android:layout_marginBottom="@dimen/spacing_sm" />
+
+                    <TextView
+                        android:id="@+id/tMonto"
+                        style="@style/M3_Headline_Small"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Total: S/. 0.00"
+                        android:textColor="?attr/colorPrimary" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
 
             <!-- Tarjetas -->
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvTarjetas"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"/>
+                android:layout_marginBottom="@dimen/spacing_md"/>
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnAddCard"
+                style="@style/M3_OutlinedButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Agregar nueva tarjeta"
-                android:backgroundTint="@color/brand_celeste"
-                android:textColor="@android:color/white"
-                android:layout_marginTop="8dp" />
+                android:layout_marginBottom="@dimen/spacing_md" />
 
             <!-- Servicios adicionales -->
             <TextView
                 android:id="@+id/tExtrasTitle"
+                style="@style/M3_Title_Medium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Servicios adicionales"
-                android:textStyle="bold"
-                android:textSize="16sp"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="4dp"
+                android:layout_marginBottom="@dimen/spacing_sm"
                 android:visibility="gone"/>
 
             <LinearLayout
@@ -78,14 +95,12 @@
                 android:orientation="vertical"
                 android:visibility="gone"/>
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnPagar"
+                style="@style/M3_FilledButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Pagar"
-                android:backgroundTint="@color/brand_celeste"
-                android:textColor="@android:color/white"
-                android:layout_marginTop="16dp" />
+                android:text="Pagar" />
         </LinearLayout>
-    </ScrollView>
-</LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

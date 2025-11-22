@@ -1,254 +1,189 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     tools:context=".ui.superadmin.DetallesLogActivity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="409dp"
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/base"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:background="@color/surface">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:title="Detalles del Log"
+            app:titleTextAppearance="@style/M3_Title_Large"
+            app:navigationIcon="@drawable/ic_arrow_back_24" />
+    </com.google.android.material.appbar.AppBarLayout>
 
-        android:letterSpacing="0.02"
-        android:shadowColor="@color/black"
-        android:shadowDx="1"
-        android:shadowDy="1"
-        android:shadowRadius="2"
-        android:text="Evento de Guía"
-        android:textAllCaps="false"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        android:typeface="sans"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/spacing_md">
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="60dp"
-        android:layout_height="25dp"
+            <com.google.android.material.card.MaterialCardView
+                style="@style/M3_Card_Elevated"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_md">
 
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="28dp"
-        android:letterSpacing="0.02"
-        android:shadowColor="@color/black"
-        android:shadowDx="1"
-        android:shadowDy="1"
-        android:shadowRadius="2"
-        android:text="Evento:"
-        android:textAllCaps="false"
-        android:textColor="@color/black"
-        android:textSize="14sp"
-        android:typeface="sans"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/spacing_md">
 
-    <TextView
-        android:id="@+id/textView9"
-        android:layout_width="60dp"
-        android:layout_height="25dp"
+                    <TextView
+                        android:id="@+id/textView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Evento de Guía"
+                        android:textAppearance="@style/M3_Title_Medium"
+                        android:textColor="@color/text_primary"
+                        android:layout_marginBottom="@dimen/spacing_md" />
 
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
-        android:letterSpacing="0.02"
-        android:shadowColor="@color/black"
-        android:shadowDx="1"
-        android:shadowDy="1"
-        android:shadowRadius="2"
-        android:text="Usuario:"
-        android:textAllCaps="false"
-        android:textColor="@color/gris"
-        android:textSize="14sp"
-        android:typeface="sans"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="@dimen/spacing_sm">
 
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="60dp"
-        android:layout_height="25dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
-        android:letterSpacing="0.02"
-        android:shadowColor="@color/black"
-        android:shadowDx="1"
-        android:shadowDy="1"
-        android:shadowRadius="2"
-        android:text=""
-        android:textAllCaps="false"
-        android:textColor="@color/gris"
-        android:textSize="14sp"
-        android:typeface="sans"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+                        <TextView
+                            android:id="@+id/textView1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Evento:"
+                            android:textAppearance="@style/M3_Label_Medium"
+                            android:textColor="@color/text_secondary"
+                            android:layout_marginEnd="@dimen/spacing_xs" />
 
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="60dp"
-        android:layout_height="25dp"
+                        <TextView
+                            android:id="@+id/textView10"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Evento número 1"
+                            android:textAppearance="@style/M3_Body_Medium"
+                            android:textColor="@color/text_primary" />
+                    </LinearLayout>
 
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
-        android:letterSpacing="0.02"
-        android:shadowColor="@color/black"
-        android:shadowDx="1"
-        android:shadowDy="1"
-        android:shadowRadius="2"
-        android:text="Fecha:"
-        android:textAllCaps="false"
-        android:textColor="@color/gris"
-        android:textSize="14sp"
-        android:typeface="sans"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView1" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="@dimen/spacing_sm">
 
-    <TextView
-        android:id="@+id/textView12"
-        android:layout_marginStart="5dp"
-        android:layout_width="wrap_content"
-        android:layout_height="25dp"
-        android:layout_marginBottom="16dp"
-        android:letterSpacing="0.02"
-        android:shadowColor="@color/black"
-        android:shadowDx="1"
-        android:shadowDy="1"
-        android:shadowRadius="2"
-        android:text="Evento:"
-        android:textAllCaps="false"
-        android:textColor="@color/gris"
-        android:textSize="14sp"
-        android:typeface="sans"
-        app:layout_constraintBottom_toTopOf="@+id/textView9"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/textView7" />
+                        <TextView
+                            android:id="@+id/textView7"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Fecha:"
+                            android:textAppearance="@style/M3_Label_Medium"
+                            android:textColor="@color/text_secondary"
+                            android:layout_marginEnd="@dimen/spacing_xs" />
 
-    <TextView
-        android:id="@+id/textView10"
-        android:layout_width="wrap_content"
-        android:layout_height="25dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginBottom="16dp"
-        android:letterSpacing="0.02"
-        android:shadowColor="@color/black"
-        android:shadowDx="1"
-        android:shadowDy="1"
-        android:shadowRadius="2"
-        android:text="Evento número 1"
-        android:textAllCaps="false"
-        android:textColor="@color/black"
-        android:textSize="14sp"
-        android:typeface="sans"
-        app:layout_constraintBottom_toTopOf="@+id/textView7"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/textView1" />
+                        <TextView
+                            android:id="@+id/textView12"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Evento:"
+                            android:textAppearance="@style/M3_Body_Medium"
+                            android:textColor="@color/text_primary" />
+                    </LinearLayout>
 
-    <TextView
-        android:id="@+id/textView14"
-        android:layout_width="wrap_content"
-        android:layout_height="25dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginBottom="16dp"
-        android:letterSpacing="0.02"
-        android:shadowColor="@color/black"
-        android:shadowDx="1"
-        android:shadowDy="1"
-        android:shadowRadius="2"
-        android:text=""
-        android:textAllCaps="false"
-        android:textColor="@color/gris"
-        android:textSize="14sp"
-        android:typeface="sans"
-        app:layout_constraintBottom_toTopOf="@+id/textView15"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/textView8" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="@dimen/spacing_sm">
 
-    <TextView
-        android:id="@+id/textView15"
-        android:layout_width="349dp"
-        android:layout_height="21dp"
+                        <TextView
+                            android:id="@+id/textView9"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Usuario:"
+                            android:textAppearance="@style/M3_Label_Medium"
+                            android:textColor="@color/text_secondary"
+                            android:layout_marginEnd="@dimen/spacing_xs" />
 
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
-        android:letterSpacing="0.02"
-        android:shadowColor="@color/black"
-        android:shadowDx="1"
-        android:shadowDy="1"
-        android:shadowRadius="2"
-        android:text="Descripción: "
-        android:textAllCaps="false"
-        android:textColor="@color/black"
-        android:textSize="14sp"
-        android:typeface="sans"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+                        <TextView
+                            android:id="@+id/textView13"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Evento:"
+                            android:textAppearance="@style/M3_Body_Medium"
+                            android:textColor="@color/text_primary" />
+                    </LinearLayout>
 
-    <TextView
-        android:id="@+id/textView13"
-        android:layout_width="wrap_content"
-        android:layout_height="25dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginBottom="16dp"
-        android:letterSpacing="0.02"
-        android:shadowColor="@color/black"
-        android:shadowDx="1"
-        android:shadowDy="1"
-        android:shadowRadius="2"
-        android:text="Evento:"
-        android:textAllCaps="false"
-        android:textColor="@color/gris"
-        android:textSize="14sp"
-        android:typeface="sans"
-        app:layout_constraintBottom_toTopOf="@+id/textView8"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/textView9" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView15">
+                        <TextView
+                            android:id="@+id/textView8"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:textAppearance="@style/M3_Label_Medium"
+                            android:textColor="@color/text_secondary"
+                            android:layout_marginEnd="@dimen/spacing_xs" />
 
-        <TextView
-            android:id="@+id/textView16"
-            android:layout_width="350dp"
-            android:layout_height="372dp"
-            android:background="@color/base2"
-            android:letterSpacing="0.02"
-            android:padding="10dp"
-            android:shadowColor="@color/black"
-            android:shadowDx="1"
-            android:shadowDy="1"
-            android:shadowRadius="2"
-            android:text="Descripción 3.14159"
-            android:textAllCaps="false"
-            android:textColor="@color/gris"
-            android:textSize="14sp"
-            android:typeface="sans" />
+                        <TextView
+                            android:id="@+id/textView14"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text=""
+                            android:textAppearance="@style/M3_Body_Medium"
+                            android:textColor="@color/text_primary" />
+                    </LinearLayout>
 
-    </androidx.cardview.widget.CardView>
+                </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                android:id="@+id/textView15"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Descripción: "
+                android:textAppearance="@style/M3_Title_Medium"
+                android:textColor="@color/text_primary"
+                android:layout_marginBottom="@dimen/spacing_sm" />
+
+            <com.google.android.material.card.MaterialCardView
+                style="@style/M3_Card_Filled"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/textView16"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="200dp"
+                    android:padding="@dimen/spacing_md"
+                    android:text="Descripción 3.14159"
+                    android:textAppearance="@style/M3_Body_Medium"
+                    android:textColor="@color/text_secondary" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

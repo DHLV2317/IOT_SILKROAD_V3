@@ -1,42 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     tools:context=".ui.superadmin.DetallesSolicitudGuiaActivity">
 
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/toolbar"
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        app:backgroundTint="@color/base"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:title="Solicitud de guía"
-        app:titleTextColor="@color/black" />
+        android:layout_height="wrap_content"
+        android:background="@color/surface">
 
-    <ImageView
-        android:id="@+id/sideBar"
-        android:layout_width="80dp"
-        android:layout_height="0dp"
-        android:background="@color/brand_celeste"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:title="Solicitud de guía"
+            app:titleTextAppearance="@style/M3_Title_Large"
+            app:navigationIcon="@drawable/ic_arrow_back_24" />
+    </com.google.android.material.appbar.AppBarLayout>
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:id="@+id/scrollView2"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:fillViewport="true"
-        app:layout_constraintTop_toBottomOf="@id/toolbar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@id/sideBar"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:focusable="false">
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -197,7 +187,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:hint="Idiomas"
                     android:singleLine="true" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -206,42 +196,32 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_md"
                 android:orientation="horizontal">
 
-                <Button
+                <com.google.android.material.button.MaterialButton
                     android:id="@+id/en"
-                    android:layout_width="150dp"
-                    android:layout_height="56dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginBottom="16dp"
-                    android:backgroundTint="@color/green"
+                    style="@style/M3_FilledButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="@dimen/spacing_xs"
                     android:onClick="spaceptarGuia"
                     android:text="Aceptar"
-                    android:textAllCaps="true"
-                    android:textColor="@color/black"
-                    android:textSize="14sp"
-                    app:cornerRadius="14dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textInputLayout7" />
+                    app:backgroundTint="@color/green" />
 
 
-                <Button
+                <com.google.android.material.button.MaterialButton
                     android:id="@+id/di"
-                    android:layout_width="150dp"
-                    android:layout_height="56dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="28dp"
-                    android:layout_marginBottom="16dp"
-                    android:backgroundTint="@color/red"
+                    style="@style/M3_FilledButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="@dimen/spacing_xs"
                     android:onClick="spdenegarGuia"
                     android:text="Denegar"
-                    android:textAllCaps="true"
-                    android:textColor="@color/black"
-                    android:textSize="14sp"
-                    app:cornerRadius="14dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textInputLayout7" />
+                    app:backgroundTint="@android:color/holo_red_light" />
             </LinearLayout>
         </LinearLayout>
-    </ScrollView>
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

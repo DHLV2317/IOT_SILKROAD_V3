@@ -6,25 +6,30 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true">
 
-    <!-- Contenido principal: Toolbar + contenedor -->
-    <LinearLayout
+    <!-- Contenido principal: CoordinatorLayout + Toolbar + contenedor -->
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/toolbar"
+        <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@color/brand_celeste"
-            app:titleTextColor="@android:color/white" />
+            android:layout_height="wrap_content"
+            android:background="@color/surface">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:titleTextAppearance="@style/M3_Title_Large"
+                app:navigationIcon="@drawable/ic_menu_grey" />
+        </com.google.android.material.appbar.AppBarLayout>
 
         <FrameLayout
             android:id="@+id/contentContainer"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
-    </LinearLayout>
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <!-- Menú lateral (angosto) -->
     <com.google.android.material.navigation.NavigationView

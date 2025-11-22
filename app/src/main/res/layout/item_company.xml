@@ -1,27 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:padding="12dp"
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/Widget.SilkRoad.CardView"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="@dimen/spacing_xs"
+    android:layout_marginVertical="@dimen/spacing_sm"
+    android:clickable="true"
+    android:focusable="true">
 
-    <ImageView
-        android:id="@+id/imgCompany"
+    <LinearLayout
+        android:orientation="horizontal"
+        android:padding="@dimen/spacing_md"
+        android:gravity="center_vertical"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/logo_silkroad"/>
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/tTitle"
-        android:textStyle="bold"
-        android:textSize="16sp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        <!-- Logo de la Empresa -->
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/imgCompany"
+            android:layout_width="@dimen/icon_size_xl"
+            android:layout_height="@dimen/icon_size_xl"
+            android:scaleType="centerCrop"
+            android:background="@color/surface_variant"
+            app:shapeAppearanceOverlay="@style/ShapeAppearance.SilkRoad.SmallComponent"
+            tools:src="@drawable/logo_silkroad" />
 
-    <TextView
-        android:id="@+id/tRating"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="#666" />
-</LinearLayout>
+        <!-- Información de la Empresa -->
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_marginStart="@dimen/spacing_md"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tvCompanyName"
+                android:textAppearance="@style/TextAppearance.SilkRoad.TitleLarge"
+                android:textStyle="bold"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="SilkRoad Tours" />
+
+            <TextView
+                android:id="@+id/tvCompanyLocation"
+                android:textAppearance="@style/TextAppearance.SilkRoad.BodyMedium"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:layout_marginTop="@dimen/spacing_xs"
+                android:drawablePadding="@dimen/spacing_xs"
+                app:drawableStartCompat="@drawable/location_on_24px"
+                app:drawableTint="@color/text_secondary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="Cusco, Perú" />
+
+            <!-- Rating -->
+            <LinearLayout
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="@dimen/spacing_xs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="@dimen/icon_size_small"
+                    android:layout_height="@dimen/icon_size_small"
+                    android:src="@android:drawable/star_on"
+                    app:tint="@color/rating_star" />
+
+                <TextView
+                    android:id="@+id/tvRating"
+                    android:textAppearance="@style/TextAppearance.SilkRoad.BodyMedium"
+                    android:textStyle="bold"
+                    android:layout_marginStart="@dimen/spacing_xs"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="4.8" />
+
+                <TextView
+                    android:id="@+id/tvReviews"
+                    android:textAppearance="@style/TextAppearance.SilkRoad.BodyMedium"
+                    android:layout_marginStart="@dimen/spacing_xs"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="(125 reseñas)" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- Icono de flecha -->
+        <ImageView
+            android:layout_width="@dimen/icon_size_medium"
+            android:layout_height="@dimen/icon_size_medium"
+            android:src="@drawable/ic_arrow_back_24"
+            android:rotation="180"
+            app:tint="@color/text_tertiary" />
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

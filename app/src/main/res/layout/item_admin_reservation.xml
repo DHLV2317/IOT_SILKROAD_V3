@@ -2,83 +2,79 @@
 <com.google.android.material.card.MaterialCardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/M3_Card_Elevated"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp"
-    app:cardCornerRadius="12dp"
-    app:cardElevation="2dp">
+    android:layout_marginHorizontal="@dimen/spacing_sm"
+    android:layout_marginBottom="@dimen/spacing_sm">
 
     <LinearLayout
-        android:padding="12dp"
+        android:padding="@dimen/spacing_md"
         android:orientation="horizontal"
         android:gravity="center_vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <!-- IMAGEN DEL TOUR -->
-        <ImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/aImg"
             android:layout_width="64dp"
             android:layout_height="64dp"
             android:src="@drawable/ic_menu_24"
-            android:background="#EEEEEE" />
+            android:background="?attr/colorSurfaceVariant"
+            android:scaleType="centerCrop"
+            app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Medium" />
 
         <!-- CONTENEDOR DEL TEXTO -->
         <LinearLayout
             android:orientation="vertical"
-            android:layout_marginStart="12dp"
+            android:layout_marginStart="@dimen/spacing_md"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/aTitle"
+                style="@style/M3_Title_Small"
                 android:text="Tour"
-                android:textStyle="bold"
-                android:textSize="16sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
             <TextView
                 android:id="@+id/aSubtitle"
+                style="@style/M3_Body_Small"
                 android:text="Cliente · 1 pax · S/ 0.00"
-                android:textSize="12sp"
-                android:layout_marginTop="2dp"
+                android:textColor="?attr/colorOnSurfaceVariant"
+                android:layout_marginTop="@dimen/spacing_xs"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
             <TextView
                 android:id="@+id/aDate"
+                style="@style/M3_Body_Small"
                 android:text="12 Ene 2025"
-                android:textSize="12sp"
-                android:layout_marginTop="2dp"
+                android:textColor="?attr/colorOnSurfaceVariant"
+                android:layout_marginTop="@dimen/spacing_xs"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
-
         </LinearLayout>
 
         <!-- ESTADO -->
-        <TextView
+        <com.google.android.material.chip.Chip
             android:id="@+id/aStatus"
-            android:text="pendiente"
-            android:padding="4dp"
-            android:background="@color/pill_gray"
-            android:textColor="@android:color/white"
-            android:textSize="12sp"
-            android:layout_marginStart="4dp"
+            style="@style/Widget.Material3.Chip.Assist"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="pendiente"
+            android:layout_marginStart="@dimen/spacing_xs" />
 
         <!-- BOTÓN VER DETALLE -->
-        <TextView
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnDetail"
-            android:text="Ver"
-            android:textStyle="bold"
-            android:textColor="@color/brand_celeste"
-            android:layout_marginStart="12dp"
+            style="@style/M3_TextButton"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
+            android:layout_height="wrap_content"
+            android:text="Ver"
+            android:layout_marginStart="@dimen/spacing_xs" />
     </LinearLayout>
-
 </com.google.android.material.card.MaterialCardView>

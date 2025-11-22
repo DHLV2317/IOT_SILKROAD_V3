@@ -1,41 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/brand_celeste"
-    android:padding="16dp"
-    android:orientation="vertical">
+    android:background="@drawable/bg_gradient_primary"
+    android:padding="@dimen/spacing_lg"
+    android:orientation="vertical"
+    android:gravity="center_horizontal">
 
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/imgProfile"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:src="@android:drawable/ic_menu_myplaces"
-        android:tint="@android:color/white"
-        android:layout_gravity="center_horizontal" />
+        app:tint="?attr/colorOnPrimary"
+        android:background="?attr/colorSurface"
+        android:padding="@dimen/spacing_md"
+        app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full"
+        app:strokeColor="?attr/colorSurface"
+        app:strokeWidth="3dp" />
 
     <TextView
         android:id="@+id/tName"
+        style="@style/M3_Title_Large"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Administrador"
-        android:textStyle="bold"
-        android:textColor="@android:color/white"
-        android:layout_marginTop="8dp" />
+        android:textColor="?attr/colorOnPrimary"
+        android:layout_marginTop="@dimen/spacing_md" />
 
     <TextView
         android:id="@+id/tEmail"
+        style="@style/M3_Body_Medium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="admin@empresa.com"
-        android:textColor="@android:color/white" />
+        android:textColor="?attr/colorOnPrimary"
+        android:layout_marginTop="@dimen/spacing_xs" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnLogout"
+        style="@style/M3_OutlinedButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Salir"
-        android:layout_marginTop="12dp"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-        android:textColor="@android:color/white" />
+        android:layout_marginTop="@dimen/spacing_md"
+        android:textColor="?attr/colorOnPrimary"
+        app:strokeColor="?attr/colorOnPrimary" />
 </LinearLayout>

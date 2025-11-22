@@ -1,27 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Android básicos -->
+    <!-- ============================================ -->
+    <!-- COLORES BASE -->
+    <!-- ============================================ -->
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-
-    <!-- Marca / UI  (elige 1 valor para brand_celeste) -->
-    <color name="brand_celeste">#26C6DA</color>  <!-- usa este o cambia al #00BCD4 -->
-    <color name="brand_dark">#008C9E</color>
-    <color name="brand_light">#B2EBF2</color>
-    <color name="brand_verde">#4CAF50</color>
     <color name="transparent">#00000000</color>
 
-    <!-- Auxiliares -->
-    <color name="pill_gray">#FFE0E0E0</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
+    <!-- ============================================ -->
+    <!-- MARCA PRINCIPAL (SILKROAD) -->
+    <!-- ============================================ -->
+    <color name="primary">#26C6DA</color>
+    <color name="primary_dark">#0097A7</color>
+    <color name="primary_light">#80DEEA</color>
+    <color name="primary_container">#E0F7FA</color>
+    <color name="on_primary">#FFFFFF</color>
+    <color name="on_primary_container">#00363A</color>
 
-    <!-- Superadmin -->
-    <color name="seda">#FF2DAEBC</color>
-    <color name="gris">#FF808080</color>
-    <color name="base">#FFEFEEFE</color>
-    <color name="base2">#FFEFEEFF</color>
-    <color name="green">#FF00FF00</color>
-    <color name="red">#FFFF0000</color>
-    <color name="ab">#FFAABBEE</color>
+    <!-- ============================================ -->
+    <!-- COLORES SECUNDARIOS -->
+    <!-- ============================================ -->
+    <color name="secondary">#4CAF50</color>
+    <color name="secondary_dark">#388E3C</color>
+    <color name="secondary_light">#81C784</color>
+    <color name="secondary_container">#E8F5E9</color>
+    <color name="on_secondary">#FFFFFF</color>
+    <color name="on_secondary_container">#1B5E20</color>
+
+    <!-- ============================================ -->
+    <!-- COLORES DE SUPERFICIE Y FONDO -->
+    <!-- ============================================ -->
+    <color name="background">#FAFAFA</color>
+    <color name="surface">#FFFFFF</color>
+    <color name="surface_variant">#F5F5F5</color>
+    <color name="on_background">#1C1B1F</color>
+    <color name="on_surface">#1C1B1F</color>
+    <color name="on_surface_variant">#49454F</color>
+
+    <!-- ============================================ -->
+    <!-- COLORES DE ESTADO -->
+    <!-- ============================================ -->
+    <color name="error">#BA1A1A</color>
+    <color name="error_container">#FFDAD6</color>
+    <color name="on_error">#FFFFFF</color>
+    <color name="on_error_container">#410002</color>
+
+    <color name="success">#2E7D32</color>
+    <color name="success_container">#C8E6C9</color>
+    <color name="on_success">#FFFFFF</color>
+
+    <color name="warning">#F57C00</color>
+    <color name="warning_container">#FFE0B2</color>
+    <color name="on_warning">#FFFFFF</color>
+
+    <color name="info">#1976D2</color>
+    <color name="info_container">#BBDEFB</color>
+    <color name="on_info">#FFFFFF</color>
+
+    <!-- ============================================ -->
+    <!-- COLORES DE TEXTO -->
+    <!-- ============================================ -->
+    <color name="text_primary">#212121</color>
+    <color name="text_secondary">#757575</color>
+    <color name="text_tertiary">#9E9E9E</color>
+    <color name="text_disabled">#BDBDBD</color>
+    <color name="text_hint">#9E9E9E</color>
+
+    <!-- ============================================ -->
+    <!-- COLORES DE BORDES Y DIVISORES -->
+    <!-- ============================================ -->
+    <color name="outline">#79747E</color>
+    <color name="outline_variant">#CAC4D0</color>
+    <color name="divider">#E0E0E0</color>
+
+    <!-- ============================================ -->
+    <!-- OVERLAY Y SOMBRAS -->
+    <!-- ============================================ -->
+    <color name="scrim">#000000</color>
+    <color name="shadow">#000000</color>
+    <color name="overlay_light">#1A000000</color>
+    <color name="overlay_medium">#4D000000</color>
+    <color name="overlay_dark">#80000000</color>
+
+    <!-- ============================================ -->
+    <!-- COLORES ESPECÍFICOS DE LA APP -->
+    <!-- ============================================ -->
+    <!-- Retrocompatibilidad con nombres antiguos -->
+    <color name="brand_celeste">@color/primary</color>
+    <color name="brand_dark">@color/primary_dark</color>
+    <color name="brand_light">@color/primary_light</color>
+    <color name="brand_verde">@color/secondary</color>
+
+    <!-- Estados de tours/reservas -->
+    <color name="status_pending">#FFA726</color>
+    <color name="status_confirmed">#66BB6A</color>
+    <color name="status_cancelled">#EF5350</color>
+    <color name="status_completed">#42A5F5</color>
+
+    <!-- Ratings -->
+    <color name="rating_star">#FFC107</color>
+    <color name="rating_background">#E0E0E0</color>
+
+    <!-- ============================================ -->
+    <!-- GRADIENTES (para drawables) -->
+    <!-- ============================================ -->
+    <color name="gradient_start">#26C6DA</color>
+    <color name="gradient_end">#0097A7</color>
+
+    <!-- ============================================ -->
+    <!-- LEGACY COLORS (mantener para compatibilidad) -->
+    <!-- ============================================ -->
+    <color name="pill_gray">#E0E0E0</color>
+    <color name="teal_200">#03DAC5</color>
+    <color name="teal_700">#018786</color>
+    <color name="seda">#2DAEBC</color>
+    <color name="gris">#808080</color>
+    <color name="base">#FAFAFA</color>
+    <color name="base2">#F5F5F5</color>
+    <color name="green">#4CAF50</color>
+    <color name="red">#F44336</color>
 </resources>

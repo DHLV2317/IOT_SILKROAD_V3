@@ -1,157 +1,192 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/background">
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:padding="16dp"
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/surface">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/brand_celeste"
             app:title="Detalle de reserva"
-            app:titleTextColor="@android:color/white" />
+            app:titleTextAppearance="@style/M3_Title_Large"
+            app:navigationIcon="@drawable/ic_arrow_back_24" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:padding="@dimen/spacing_md"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <!-- Tarjeta datos de la reserva -->
         <com.google.android.material.card.MaterialCardView
+            style="@style/M3_Card_Elevated"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            app:cardUseCompatPadding="true">
+            android:layout_marginBottom="@dimen/spacing_md">
 
             <LinearLayout
                 android:orientation="vertical"
-                android:padding="12dp"
+                android:padding="@dimen/spacing_md"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <TextView
-                    style="@style/TextAppearance.MaterialComponents.Subtitle1"
+                    style="@style/M3_Title_Medium"
+                    android:text="📋 Información de la reserva"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/spacing_md" />
+
+                <TextView
+                    style="@style/M3_Label_Medium"
                     android:text="Tour"
+                    android:textColor="@color/text_secondary"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
                 <TextView
                     android:id="@+id/tTourName"
+                    style="@style/M3_Body_Large"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/spacing_sm"
                     android:text="—" />
 
                 <TextView
-                    style="@style/TextAppearance.MaterialComponents.Subtitle1"
+                    style="@style/M3_Label_Medium"
                     android:text="Fecha"
-                    android:layout_marginTop="8dp"
+                    android:textColor="@color/text_secondary"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
                 <TextView
                     android:id="@+id/tDate"
+                    style="@style/M3_Body_Large"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/spacing_sm"
                     android:text="—" />
 
                 <TextView
-                    style="@style/TextAppearance.MaterialComponents.Subtitle1"
+                    style="@style/M3_Label_Medium"
                     android:text="Monto total"
-                    android:layout_marginTop="8dp"
+                    android:textColor="@color/text_secondary"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
                 <TextView
                     android:id="@+id/tAmount"
+                    style="@style/M3_Body_Large"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/spacing_sm"
                     android:text="—" />
 
                 <TextView
-                    style="@style/TextAppearance.MaterialComponents.Subtitle1"
+                    style="@style/M3_Label_Medium"
                     android:text="Estado"
-                    android:layout_marginTop="8dp"
+                    android:textColor="@color/text_secondary"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
                 <TextView
                     android:id="@+id/tStatus"
+                    style="@style/M3_Body_Medium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingStart="10dp"
-                    android:paddingEnd="10dp"
-                    android:paddingTop="4dp"
-                    android:paddingBottom="4dp"
+                    android:paddingStart="@dimen/spacing_sm"
+                    android:paddingEnd="@dimen/spacing_sm"
+                    android:paddingTop="@dimen/spacing_xs"
+                    android:paddingBottom="@dimen/spacing_xs"
                     android:text="pendiente"
                     android:textColor="@android:color/white"
                     android:background="@color/pill_gray"
-                    android:layout_marginTop="4dp" />
+                    android:layout_marginTop="@dimen/spacing_xs" />
 
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
         <!-- Datos del cliente -->
         <com.google.android.material.card.MaterialCardView
+            style="@style/M3_Card_Elevated"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            app:cardUseCompatPadding="true">
+            android:layout_marginBottom="@dimen/spacing_md">
 
             <LinearLayout
                 android:orientation="vertical"
-                android:padding="12dp"
+                android:padding="@dimen/spacing_md"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <TextView
-                    style="@style/TextAppearance.MaterialComponents.Subtitle1"
-                    android:text="Cliente"
+                    style="@style/M3_Title_Medium"
+                    android:text="👤 Cliente"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/spacing_md" />
 
                 <TextView
                     android:id="@+id/tUser"
+                    style="@style/M3_Body_Large"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/spacing_sm"
                     android:text="—" />
 
                 <TextView
-                    style="@style/TextAppearance.MaterialComponents.Caption"
+                    style="@style/M3_Label_Medium"
                     android:text="Email"
-                    android:layout_marginTop="8dp"
+                    android:textColor="@color/text_secondary"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
                 <TextView
                     android:id="@+id/tEmail"
+                    style="@style/M3_Body_Medium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/spacing_sm"
                     android:text="—" />
 
                 <TextView
-                    style="@style/TextAppearance.MaterialComponents.Caption"
+                    style="@style/M3_Label_Medium"
                     android:text="Teléfono"
-                    android:layout_marginTop="8dp"
+                    android:textColor="@color/text_secondary"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
                 <TextView
                     android:id="@+id/tPhone"
+                    style="@style/M3_Body_Medium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/spacing_sm"
                     android:text="—" />
 
                 <TextView
-                    style="@style/TextAppearance.MaterialComponents.Caption"
+                    style="@style/M3_Label_Medium"
                     android:text="DNI"
-                    android:layout_marginTop="8dp"
+                    android:textColor="@color/text_secondary"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
                 <TextView
                     android:id="@+id/tDni"
+                    style="@style/M3_Body_Medium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="—" />
@@ -160,39 +195,41 @@
 
         <!-- QR -->
         <com.google.android.material.card.MaterialCardView
+            style="@style/M3_Card_Elevated"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            app:cardUseCompatPadding="true">
+            android:layout_marginBottom="@dimen/spacing_md">
 
             <LinearLayout
                 android:orientation="vertical"
-                android:padding="12dp"
+                android:padding="@dimen/spacing_md"
                 android:gravity="center_horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <TextView
-                    style="@style/TextAppearance.MaterialComponents.Subtitle1"
+                    style="@style/M3_Title_Medium"
                     android:text="Código QR de la reserva"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/spacing_md" />
 
                 <ImageView
                     android:id="@+id/imgQr"
                     android:layout_width="200dp"
                     android:layout_height="200dp"
-                    android:layout_marginTop="8dp"
-                    android:background="#EFEFEF"
+                    android:background="@color/surface_container"
                     android:scaleType="fitCenter"
-                    android:adjustViewBounds="true" />
+                    android:adjustViewBounds="true"
+                    android:layout_marginBottom="@dimen/spacing_md" />
 
                 <TextView
                     android:id="@+id/tQrMessage"
+                    style="@style/M3_Body_Medium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
                     android:textAlignment="center"
+                    android:textColor="@color/text_secondary"
                     android:text="Muestra este QR en el punto de encuentro para hacer check-in." />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
@@ -202,62 +239,63 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="12dp">
+            android:layout_marginBottom="@dimen/spacing_md">
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnAccept"
+                style="@style/M3_FilledButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Aceptar reserva"
-                android:backgroundTint="@color/brand_celeste"
-                android:textColor="@android:color/white" />
+                android:layout_marginEnd="@dimen/spacing_xs"
+                android:text="Aceptar" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnReject"
+                style="@style/M3_OutlinedButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_marginStart="8dp"
-                android:text="Rechazar"
-                style="@style/Widget.Material3.Button.OutlinedButton" />
+                android:layout_marginStart="@dimen/spacing_xs"
+                android:text="Rechazar" />
         </LinearLayout>
 
         <!-- Rating -->
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardRating"
+            style="@style/M3_Card_Elevated"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:visibility="gone"
-            app:cardUseCompatPadding="true">
+            android:layout_marginBottom="@dimen/spacing_md"
+            android:visibility="gone">
 
             <LinearLayout
                 android:orientation="vertical"
-                android:padding="12dp"
+                android:padding="@dimen/spacing_md"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <TextView
-                    style="@style/TextAppearance.MaterialComponents.Subtitle1"
-                    android:text="Valoración del tour"
+                    style="@style/M3_Title_Medium"
+                    android:text="⭐ Valoración del tour"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/spacing_sm" />
 
                 <RatingBar
                     android:id="@+id/tRating"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="@dimen/spacing_sm"
                     android:isIndicator="true"
                     android:numStars="5"
                     android:stepSize="0.5" />
 
                 <TextView
                     android:id="@+id/tRatingComment"
+                    style="@style/M3_Body_Medium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
                     android:text="—" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
@@ -265,12 +303,11 @@
         <!-- Botón volver -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnBack"
+            style="@style/M3_FilledButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Volver a reservas"
-            android:backgroundTint="@color/brand_celeste"
-            android:textColor="@android:color/white" />
+            android:text="Volver a reservas" />
 
     </LinearLayout>
-</ScrollView>
+    </androidx.core.widget.NestedScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,46 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/rootStops"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/brand_celeste"
-        android:titleTextColor="@android:color/white" />
-
-    <TextView
-        android:id="@+id/tvStopsTitle"
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
-        android:paddingTop="12dp"
-        android:text="Lugares a visitar"
-        android:textSize="20sp"
-        android:textStyle="bold" />
+        app:elevation="0dp">
 
-    <TextView
-        android:id="@+id/tvEmptyMessage"
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:titleTextColor="?attr/colorOnPrimary"
+            style="@style/Widget.Material3.Toolbar" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Este tour aún no tiene paradas registradas."
-        android:textColor="#808080"
-        android:gravity="center"
-        android:padding="16dp"
-        android:visibility="gone" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvStops"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="4dp"
-        android:layout_weight="1"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp" />
+        <TextView
+            android:id="@+id/tvStopsTitle"
+            style="@style/M3_Headline_Small"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/spacing_md"
+            android:text="Lugares a visitar" />
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/tvEmptyMessage"
+            style="@style/M3_Body_Large"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Este tour aún no tiene paradas registradas."
+            android:textColor="?attr/colorOnSurfaceVariant"
+            android:gravity="center"
+            android:padding="@dimen/spacing_lg"
+            android:visibility="gone" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvStops"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:padding="@dimen/spacing_md" />
+    </LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

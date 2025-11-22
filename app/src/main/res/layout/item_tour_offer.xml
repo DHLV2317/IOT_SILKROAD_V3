@@ -1,71 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/M3_Card_Elevated"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp"
-    app:cardElevation="4dp"
-    app:cardCornerRadius="12dp"
-    app:strokeWidth="1dp"
-    app:strokeColor="@color/brand_light">
+    android:layout_marginHorizontal="@dimen/spacing_md"
+    android:layout_marginBottom="@dimen/spacing_md">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="@dimen/spacing_md">
 
         <TextView
             android:id="@+id/tvCompanyName"
+            style="@style/M3_Label_Medium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Nombre de la Empresa"
-            android:textColor="@color/brand_dark"
-            android:textStyle="bold"
-            android:textSize="14sp"
-            android:layout_marginBottom="4dp"/>
+            android:textColor="?attr/colorPrimary" />
 
         <TextView
             android:id="@+id/tvTourName"
+            style="@style/M3_Title_Large"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Nombre del Tour"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            android:layout_marginTop="@dimen/spacing_xs" />
 
         <TextView
             android:id="@+id/tvPayment"
+            style="@style/M3_Body_Large"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Pago: S/ 0.00"
-            android:textSize="14sp"
-            android:layout_marginTop="4dp"/>
+            android:textColor="?attr/colorSecondary"
+            android:layout_marginTop="@dimen/spacing_sm"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="16dp">
+            android:layout_marginTop="@dimen/spacing_md">
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnRejectOffer"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
+                style="@style/M3_OutlinedButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Rechazar"
                 android:textColor="?attr/colorError"
-                android:layout_marginEnd="8dp"/>
+                app:strokeColor="?attr/colorError"
+                android:layout_marginEnd="@dimen/spacing_sm"/>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnAcceptOffer"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
+                style="@style/M3_FilledButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Aceptar"
-                android:textColor="@color/brand_celeste"
-                android:layout_marginStart="8dp"/>
+                android:layout_marginStart="@dimen/spacing_sm"/>
         </LinearLayout>
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

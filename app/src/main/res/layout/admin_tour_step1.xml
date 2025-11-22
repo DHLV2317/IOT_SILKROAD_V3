@@ -2,26 +2,21 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/groupStep1"
+    style="@style/M3_Card_Elevated"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="12dp"
-    app:cardCornerRadius="18dp"
-    app:cardElevation="5dp"
-    app:strokeWidth="1dp"
-    app:strokeColor="@color/brand_light">
+    android:layout_marginBottom="@dimen/spacing_md">
 
     <LinearLayout
         android:orientation="vertical"
-        android:padding="16dp"
+        android:padding="@dimen/spacing_lg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <TextView
+            style="@style/M3_Title_Large"
             android:text="Información del tour"
-            android:textStyle="bold"
-            android:textSize="17sp"
-            android:textColor="@color/brand_dark"
-            android:layout_marginBottom="12dp"
+            android:layout_marginBottom="@dimen/spacing_md"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
@@ -29,28 +24,28 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="180dp"
-            android:layout_marginBottom="12dp"
-            android:background="#EFEFEF"
+            android:layout_marginBottom="@dimen/spacing_md"
+            android:background="?attr/colorSurfaceContainerHighest"
             android:clipToOutline="true">
 
-            <ImageView
+            <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/img"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
                 android:src="@drawable/ic_image_24"
-                app:tint="@android:color/darker_gray" />
+                app:tint="?attr/colorOnSurfaceVariant"
+                app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Large" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/btnChangeImage"
+                style="@style/Widget.Material3.Chip.Assist"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|end"
-                android:layout_margin="8dp"
+                android:layout_margin="@dimen/spacing_md"
                 android:text="Cambiar"
-                android:textColor="@android:color/white"
                 app:chipIcon="@drawable/ic_image_24"
-                app:chipBackgroundColor="@color/brand_celeste"
                 app:chipIconVisible="true" />
         </FrameLayout>
 
@@ -59,7 +54,8 @@
             style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
             android:hint="Nombre del tour"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/spacing_md">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/inputName"
                 android:layout_width="match_parent"
@@ -74,7 +70,7 @@
             app:counterMaxLength="300"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp">
+            android:layout_marginBottom="@dimen/spacing_md">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/inputDesc"
                 android:minLines="2"
@@ -88,7 +84,7 @@
             android:hint="Duración (horas)"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp">
+            android:layout_marginBottom="@dimen/spacing_md">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/inputDuration"
                 android:layout_width="match_parent"
@@ -98,11 +94,11 @@
 
         <!-- Ciudad / Departamento (Perú) como AutoComplete -->
         <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
             android:hint="Departamento (Perú)"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp">
+            android:layout_marginBottom="@dimen/spacing_md">
             <com.google.android.material.textfield.MaterialAutoCompleteTextView
                 android:id="@+id/inputCity"
                 android:layout_width="match_parent"
@@ -116,7 +112,7 @@
             android:hint="Idiomas del tour"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp">
+            android:layout_marginBottom="@dimen/spacing_md">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/inputLangs"
                 android:layout_width="match_parent"
@@ -133,7 +129,7 @@
             android:hint="Rango de fechas"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp">
+            android:layout_marginBottom="@dimen/spacing_md">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/inputDate"
                 android:focusable="false"
@@ -146,8 +142,7 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp">
+            android:layout_height="wrap_content">
 
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
@@ -163,7 +158,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <Space
-                android:layout_width="8dp"
+                android:layout_width="@dimen/spacing_md"
                 android:layout_height="0dp" />
 
             <com.google.android.material.textfield.TextInputLayout

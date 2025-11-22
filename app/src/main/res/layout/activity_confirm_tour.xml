@@ -1,137 +1,160 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <!-- 🔷 Toolbar superior -->
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/toolbar"
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/brand_celeste"
-        android:title="Reservas"
-        android:titleTextColor="@android:color/white"
-        app:navigationIcon="@drawable/ic_arrow_back_24" />
+        android:layout_height="wrap_content"
+        app:elevation="0dp">
 
-    <!-- Contenido -->
-    <ScrollView
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:title="Confirmar Reserva"
+            app:titleTextColor="?attr/colorOnPrimary"
+            app:navigationIcon="@drawable/ic_arrow_back_24"
+            app:navigationIconTint="?attr/colorOnPrimary"
+            style="@style/Widget.Material3.Toolbar" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true">
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
             android:orientation="vertical"
-            android:gravity="center_horizontal"
-            android:padding="16dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:padding="@dimen/spacing_md">
 
-            <!-- Nombre del tour -->
-            <TextView
-                android:id="@+id/tTourName"
-                android:layout_width="wrap_content"
+            <!-- Card: Información del tour -->
+            <com.google.android.material.card.MaterialCardView
+                style="@style/M3_Card_Elevated"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="16dp"
-                android:text="Tour 1"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:layout_marginBottom="@dimen/spacing_md">
 
-            <!-- Cupo disponible -->
-            <TextView
-                android:id="@+id/tTourPeople"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Cupos disponibles: -"
-                android:layout_marginTop="4dp"
-                android:textSize="16sp" />
-
-            <!-- Fechas del tour -->
-            <TextView
-                android:id="@+id/tTourDates"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Fechas: -"
-                android:layout_marginTop="4dp"
-                android:textSize="16sp" />
-
-            <!-- Precio unitario -->
-            <TextView
-                android:id="@+id/tUnitPrice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Precio por persona: S/. 0.00"
-                android:layout_marginTop="8dp"
-                android:textSize="16sp" />
-
-            <!-- Título selector de personas -->
-            <TextView
-                android:id="@+id/tPaxLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Personas a reservar"
-                android:layout_marginTop="24dp"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-            <!-- Selector de pax [-   1   +] -->
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="8dp"
-                android:gravity="center_vertical">
-
-                <Button
-                    android:id="@+id/btnMinus"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:text="-"
-                    android:backgroundTint="@color/brand_celeste"
-                    android:textColor="@android:color/white" />
-
-                <TextView
-                    android:id="@+id/tPaxValue"
-                    android:layout_width="60dp"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="1"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginEnd="12dp" />
+                    android:orientation="vertical"
+                    android:padding="@dimen/spacing_lg">
 
-                <Button
-                    android:id="@+id/btnPlus"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:text="+"
-                    android:backgroundTint="@color/brand_celeste"
-                    android:textColor="@android:color/white" />
-            </LinearLayout>
+                    <TextView
+                        android:id="@+id/tTourName"
+                        style="@style/M3_Headline_Small"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tour 1"
+                        android:layout_marginBottom="@dimen/spacing_md" />
 
-            <!-- Total del tour -->
+                    <TextView
+                        android:id="@+id/tTourPeople"
+                        style="@style/M3_Body_Large"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Cupos disponibles: -"
+                        android:textColor="?attr/colorOnSurfaceVariant" />
+
+                    <TextView
+                        android:id="@+id/tTourDates"
+                        style="@style/M3_Body_Large"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Fechas: -"
+                        android:layout_marginTop="@dimen/spacing_xs"
+                        android:textColor="?attr/colorOnSurfaceVariant" />
+
+                    <TextView
+                        android:id="@+id/tUnitPrice"
+                        style="@style/M3_Title_Medium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Precio por persona: S/. 0.00"
+                        android:textColor="?attr/colorPrimary"
+                        android:layout_marginTop="@dimen/spacing_md" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Card: Selector de personas -->
+            <com.google.android.material.card.MaterialCardView
+                style="@style/M3_Card_Elevated"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_md">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/spacing_lg">
+
+                    <TextView
+                        android:id="@+id/tPaxLabel"
+                        style="@style/M3_Title_Medium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Personas a reservar"
+                        android:layout_marginBottom="@dimen/spacing_md" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center">
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnMinus"
+                            style="@style/Widget.Material3.Button.Icon"
+                            android:layout_width="56dp"
+                            android:layout_height="56dp"
+                            android:text="-"
+                            android:textSize="@dimen/text_xl" />
+
+                        <TextView
+                            android:id="@+id/tPaxValue"
+                            style="@style/M3_Headline_Large"
+                            android:layout_width="80dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="1"
+                            android:layout_marginHorizontal="@dimen/spacing_lg" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnPlus"
+                            style="@style/Widget.Material3.Button.Icon"
+                            android:layout_width="56dp"
+                            android:layout_height="56dp"
+                            android:text="+"
+                            android:textSize="@dimen/text_xl" />
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Total -->
             <TextView
                 android:id="@+id/tTotal"
+                style="@style/M3_Headline_Medium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Total: S/. 0.00"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:layout_marginTop="24dp"
-                android:layout_marginBottom="24dp"/>
+                android:textColor="?attr/colorPrimary"
+                android:layout_gravity="center"
+                android:layout_marginVertical="@dimen/spacing_lg"/>
 
-            <!-- Botón para confirmar la reserva -->
-            <Button
+            <!-- Botón confirmar -->
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnConfirm"
+                style="@style/M3_FilledButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Confirmar y pagar"
-                android:backgroundTint="@color/brand_celeste"
-                android:textColor="@android:color/white" />
+                android:text="Confirmar y pagar" />
         </LinearLayout>
-    </ScrollView>
-</LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

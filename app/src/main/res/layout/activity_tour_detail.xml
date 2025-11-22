@@ -1,185 +1,310 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/background">
 
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/toolbar"
+    <!-- App Bar con imagen colapsable -->
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/brand_celeste"
-        android:title="Tour"
-        android:titleTextColor="@android:color/white" />
+        android:layout_height="300dp"
+        android:theme="@style/ThemeOverlay.Material3.Dark">
 
-    <ImageView
-        android:id="@+id/imgTour"
-        android:layout_width="match_parent"
-        android:layout_height="220dp"
-        android:scaleType="centerCrop"
-        android:layout_marginTop="16dp"
-        android:background="#DDD"
-        android:layout_marginBottom="16dp"
-        tools:src="@drawable/ic_launcher_foreground"/>
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/collapsingToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:contentScrim="@color/primary"
+            app:expandedTitleMarginBottom="@dimen/spacing_lg"
+            app:expandedTitleMarginStart="@dimen/spacing_md"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
 
-    <ScrollView
+            <!-- Imagen del Tour -->
+            <ImageView
+                android:id="@+id/imgTour"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:background="@drawable/bg_image_placeholder"
+                app:layout_collapseMode="parallax"
+                tools:src="@drawable/ic_map_placeholder" />
+
+            <!-- Overlay oscuro -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/bg_gradient_primary"
+                android:alpha="0.4" />
+
+            <!-- Toolbar -->
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:navigationIcon="@drawable/ic_arrow_back_24"
+                app:navigationIconTint="@color/white"
+                app:layout_collapseMode="pin" />
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <!-- Contenido scrolleable -->
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:fillViewport="true">
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
+            android:paddingBottom="100dp">
 
-            <!-- Nombre del tour -->
-            <TextView
-                android:id="@+id/tTourName"
+            <!-- Card de información principal -->
+            <com.google.android.material.card.MaterialCardView
+                style="@style/Widget.SilkRoad.CardView"
+                android:layout_margin="@dimen/spacing_md"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Tour 1"
-                android:padding="8dp"
-                android:textStyle="bold"
-                android:textSize="20sp"
-                android:layout_marginBottom="8dp"/>
+                android:layout_height="wrap_content">
 
-            <!-- Empresa y guía -->
-            <TextView
-                android:id="@+id/tTourCompany"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Empresa: —"
-                android:padding="4dp"
-                android:textSize="14sp"
-                android:layout_marginBottom="4dp"/>
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:padding="@dimen/spacing_md"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/tTourGuide"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Guía: —"
-                android:padding="4dp"
-                android:textSize="14sp"
-                android:layout_marginBottom="8dp"/>
+                    <!-- Título -->
+                    <TextView
+                        android:id="@+id/tvTourName"
+                        android:textAppearance="@style/TextAppearance.SilkRoad.HeadlineMedium"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:text="City Tour Lima Colonial" />
 
-            <!-- Idiomas -->
-            <TextView
-                android:id="@+id/tTourLangs"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Idiomas: —"
-                android:padding="4dp"
-                android:textSize="14sp"
-                android:layout_marginBottom="8dp"/>
+                    <!-- Rating y reviews -->
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginTop="@dimen/spacing_sm"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
 
-            <!-- Capacidad y cupos -->
-            <TextView
-                android:id="@+id/tTourCapacity"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Cupos: 0 / 0"
-                android:padding="4dp"
-                android:textSize="14sp"
-                android:layout_marginBottom="8dp"/>
+                        <ImageView
+                            android:layout_width="@dimen/icon_size_small"
+                            android:layout_height="@dimen/icon_size_small"
+                            android:src="@android:drawable/star_on"
+                            app:tint="@color/rating_star" />
 
-            <!-- Descripción -->
-            <TextView
-                android:id="@+id/tTourDescription"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Descripción del tour"
-                android:padding="8dp"
-                android:layout_marginBottom="8dp" />
+                        <TextView
+                            android:id="@+id/tvRating"
+                            android:textAppearance="@style/TextAppearance.SilkRoad.BodyMedium"
+                            android:textStyle="bold"
+                            android:layout_marginStart="@dimen/spacing_xs"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            tools:text="4.9" />
 
-            <!-- Fechas rango -->
-            <TextView
-                android:id="@+id/tTourDateFrom"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Inicio: 20/10/2025"
-                android:padding="8dp"
-                android:layout_marginBottom="4dp"/>
+                        <TextView
+                            android:id="@+id/tvReviews"
+                            android:textAppearance="@style/TextAppearance.SilkRoad.BodyMedium"
+                            android:layout_marginStart="@dimen/spacing_xs"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            tools:text="(256 reseñas)" />
 
-            <TextView
-                android:id="@+id/tTourDateTo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Fin: 22/10/2025"
-                android:padding="8dp"
-                android:layout_marginBottom="8dp"/>
+                    </LinearLayout>
 
-            <!-- Selector de día específico -->
-            <TextView
-                android:id="@+id/tTourSelectedDateLabel"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Elige el día para tu tour:"
-                android:textStyle="bold"
-                android:textSize="14sp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="4dp"/>
+                    <!-- Precio -->
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginTop="@dimen/spacing_md"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
 
-            <Spinner
-                android:id="@+id/spinnerDates"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="4dp"/>
+                        <TextView
+                            android:text="Desde "
+                            android:textAppearance="@style/TextAppearance.SilkRoad.BodyMedium"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
 
-            <TextView
-                android:id="@+id/tTourSelectedDate"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Día seleccionado: —"
-                android:padding="8dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginBottom="8dp"/>
+                        <TextView
+                            android:id="@+id/tvPrice"
+                            android:textAppearance="@style/TextAppearance.SilkRoad.HeadlineLarge"
+                            android:textColor="@color/primary"
+                            android:textStyle="bold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            tools:text="S/. 150.00" />
 
-            <!-- Duración -->
-            <TextView
-                android:id="@+id/tTourDuration"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Duración: 3 días"
-                android:padding="8dp"
-                android:layout_marginBottom="8dp"/>
+                        <TextView
+                            android:text=" /persona"
+                            android:textAppearance="@style/TextAppearance.SilkRoad.BodyMedium"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
 
-            <!-- Lista de paradas -->
-            <TextView
-                android:id="@+id/tParadasTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Paradas del tour"
-                android:textStyle="bold"
-                android:textSize="16sp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="4dp"/>
+                    </LinearLayout>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvParadas"
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Card de descripción -->
+            <com.google.android.material.card.MaterialCardView
+                style="@style/Widget.SilkRoad.CardView"
+                android:layout_marginHorizontal="@dimen/spacing_md"
+                android:layout_marginBottom="@dimen/spacing_md"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                tools:listitem="@android:layout/simple_list_item_1"/>
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:padding="@dimen/spacing_md"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Descripción"
+                        android:textAppearance="@style/TextAppearance.SilkRoad.TitleLarge"
+                        android:textStyle="bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/tvDescription"
+                        android:textAppearance="@style/TextAppearance.SilkRoad.BodyLarge"
+                        android:layout_marginTop="@dimen/spacing_sm"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:text="Descubre la historia y cultura de Lima visitando sus principales atractivos turísticos..." />
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Card de detalles -->
+            <com.google.android.material.card.MaterialCardView
+                style="@style/Widget.SilkRoad.CardView"
+                android:layout_marginHorizontal="@dimen/spacing_md"
+                android:layout_marginBottom="@dimen/spacing_md"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:padding="@dimen/spacing_md"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Detalles del Tour"
+                        android:textAppearance="@style/TextAppearance.SilkRoad.TitleLarge"
+                        android:textStyle="bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <!-- Duración -->
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginTop="@dimen/spacing_md"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_size_medium"
+                            android:layout_height="@dimen/icon_size_medium"
+                            android:src="@drawable/baseline_arrow_circle_down_24"
+                            app:tint="@color/primary" />
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_marginStart="@dimen/spacing_md"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:text="Duración"
+                                android:textAppearance="@style/TextAppearance.SilkRoad.LabelLarge"
+                                android:textColor="@color/text_secondary"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+
+                            <TextView
+                                android:id="@+id/tvDuration"
+                                android:textAppearance="@style/TextAppearance.SilkRoad.BodyLarge"
+                                android:textStyle="bold"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                tools:text="4 horas" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <!-- Capacidad -->
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginTop="@dimen/spacing_md"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_size_medium"
+                            android:layout_height="@dimen/icon_size_medium"
+                            android:src="@drawable/ic_person_24"
+                            app:tint="@color/primary" />
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_marginStart="@dimen/spacing_md"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:text="Capacidad"
+                                android:textAppearance="@style/TextAppearance.SilkRoad.LabelLarge"
+                                android:textColor="@color/text_secondary"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+
+                            <TextView
+                                android:id="@+id/tvCapacity"
+                                android:textAppearance="@style/TextAppearance.SilkRoad.BodyLarge"
+                                android:textStyle="bold"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                tools:text="Hasta 30 personas" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
 
         </LinearLayout>
-    </ScrollView>
 
-    <!-- Botón Reservar abajo -->
-    <LinearLayout
+    </androidx.core.widget.NestedScrollView>
+
+    <!-- Botón de reserva flotante -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnReserve"
+        style="@style/Widget.SilkRoad.Button.Filled"
+        android:text="Reservar ahora"
+        android:layout_gravity="bottom"
+        android:layout_margin="@dimen/spacing_md"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:padding="16dp">
+        android:layout_height="@dimen/button_height_large"
+        android:elevation="@dimen/elevation_md" />
 
-        <Button
-            android:id="@+id/btnAdd"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Reservar S/. 100"
-            android:textColor="@android:color/white"
-            android:backgroundTint="@color/brand_celeste" />
-    </LinearLayout>
-</LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

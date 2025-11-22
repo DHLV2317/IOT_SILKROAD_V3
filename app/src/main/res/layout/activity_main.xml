@@ -2,149 +2,222 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:fillViewport="true">
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:padding="16dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:padding="@dimen/spacing_lg">
 
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:title="Iniciar sesión"
-            app:backgroundTint="@color/brand_celeste"
-            app:titleTextColor="@color/white" />
-
+        <!-- Logo -->
         <ImageView
             android:id="@+id/imgLogo"
-            android:layout_width="180dp"
-            android:layout_height="180dp"
-            android:layout_marginTop="20dp"
-            android:layout_gravity="center_horizontal"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:layout_marginTop="@dimen/spacing_xxl"
             android:src="@drawable/logo_silkroad"
-            android:contentDescription="@string/app_name" />
+            android:contentDescription="@string/app_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
+        <!-- Título de Bienvenida -->
         <TextView
             android:id="@+id/tvHola"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="¡Hola!"
-            android:textStyle="bold"
-            android:textSize="22sp"
-            android:layout_marginTop="16dp"
-            android:textColor="@color/brand_celeste" />
+            android:layout_marginTop="@dimen/spacing_xl"
+            android:text="¡Bienvenido!"
+            android:textAppearance="@style/TextAppearance.SilkRoad.HeadlineLarge"
+            android:textColor="@color/primary"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imgLogo" />
 
+        <!-- Subtítulo -->
         <TextView
             android:id="@+id/tvSubtitulo"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Ingresa con tu cuenta para continuar"
-            android:textSize="14sp"
-            android:layout_marginTop="4dp"
-            android:textColor="@android:color/darker_gray" />
+            android:layout_marginTop="@dimen/spacing_sm"
+            android:text="Ingresa con tu cuenta para continuar tu aventura"
+            android:textAppearance="@style/TextAppearance.SilkRoad.BodyMedium"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvHola" />
 
+        <!-- Campo de Email -->
         <com.google.android.material.textfield.TextInputLayout
-            android:hint="@string/email_hint"
-            android:layout_width="match_parent"
+            android:id="@+id/layoutEmail"
+            style="@style/Widget.SilkRoad.TextInputLayout"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp">
+            android:layout_marginTop="@dimen/spacing_xl"
+            android:hint="@string/email_hint"
+            app:startIconDrawable="@drawable/ic_person_24"
+            app:startIconTint="@color/primary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvSubtitulo">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/inputEmail"
-                android:inputType="textEmailAddress"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:textAppearance="@style/TextAppearance.SilkRoad.BodyLarge" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <!-- Campo de Contraseña -->
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layoutPass"
+            style="@style/Widget.SilkRoad.TextInputLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_md"
             android:hint="@string/password_hint"
             app:endIconMode="password_toggle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp">
+            app:endIconTint="@color/primary"
+            app:startIconDrawable="@android:drawable/ic_lock_idle_lock"
+            app:startIconTint="@color/primary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutEmail">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/inputPass"
-                android:inputType="textPassword"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:textAppearance="@style/TextAppearance.SilkRoad.BodyLarge" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <!-- ¿Olvidaste tu contraseña? -->
         <TextView
             android:id="@+id/tvForgot"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/forgot_password"
-            android:textStyle="bold"
-            android:textColor="@color/brand_celeste"
+            android:layout_marginTop="@dimen/spacing_sm"
+            android:background="?attr/selectableItemBackgroundBorderless"
             android:clickable="true"
             android:focusable="true"
-            android:layout_marginTop="8dp" />
+            android:paddingVertical="@dimen/spacing_sm"
+            android:text="@string/forgot_password"
+            android:textAppearance="@style/TextAppearance.SilkRoad.LabelLarge"
+            android:textColor="@color/primary"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutPass" />
 
+        <!-- Botón Iniciar Sesión -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnLogin"
+            style="@style/Widget.SilkRoad.Button.Filled"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/button_height_medium"
+            android:layout_marginTop="@dimen/spacing_lg"
             android:text="@string/login"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:backgroundTint="@color/brand_celeste"
-            android:textColor="@color/white" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvForgot" />
 
+        <!-- Botón Registrarse -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnGoRegister"
-            style="@style/Widget.Material3.Button.OutlinedButton"
+            style="@style/Widget.SilkRoad.Button.Outlined"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/button_height_medium"
+            android:layout_marginTop="@dimen/spacing_md"
             android:text="@string/register"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnLogin" />
+
+        <!-- Separador -->
+        <View
+            android:id="@+id/divider1"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/spacing_lg"
+            android:layout_marginEnd="@dimen/spacing_md"
+            android:background="@color/divider"
+            app:layout_constraintBottom_toBottomOf="@id/tvSeparator"
+            app:layout_constraintEnd_toStartOf="@id/tvSeparator"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tvSeparator" />
 
         <TextView
             android:id="@+id/tvSeparator"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_lg"
+            android:paddingHorizontal="@dimen/spacing_md"
             android:text="@string/continue_with"
-            android:gravity="center"
-            android:textSize="14sp"
-            android:textColor="@android:color/darker_gray"
-            android:layout_marginTop="16dp" />
+            android:textAppearance="@style/TextAppearance.SilkRoad.BodyMedium"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnGoRegister" />
+
+        <View
+            android:id="@+id/divider2"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginStart="@dimen/spacing_md"
+            android:background="@color/divider"
+            app:layout_constraintBottom_toBottomOf="@id/tvSeparator"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tvSeparator"
+            app:layout_constraintTop_toTopOf="@id/tvSeparator" />
 
         <!-- Botón Google -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnGoogle"
-            style="@style/Widget.Material3.Button.OutlinedButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            style="@style/Widget.SilkRoad.Button.Outlined"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/button_height_medium"
+            android:layout_marginTop="@dimen/spacing_lg"
             android:text="@string/sign_in_with_google"
+            android:textColor="@color/text_primary"
             app:icon="@drawable/ic_google"
-            app:iconGravity="start"
-            app:iconPadding="8dp"
-            app:iconTint="@null" />
+            app:iconGravity="textStart"
+            app:iconPadding="@dimen/spacing_sm"
+            app:iconTint="@null"
+            app:strokeColor="@color/outline_variant"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvSeparator" />
 
         <!-- Botón Facebook -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnFacebook"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="@string/sign_in_with_facebook"
+            style="@style/Widget.SilkRoad.Button.Filled"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/button_height_medium"
+            android:layout_marginTop="@dimen/spacing_md"
             android:backgroundTint="#1877F2"
-            android:textColor="@android:color/white"
+            android:text="@string/sign_in_with_facebook"
             app:icon="@drawable/ic_facebook"
-            app:iconGravity="start"
-            app:iconPadding="8dp"
-            app:iconTint="@android:color/white" />
+            app:iconGravity="textStart"
+            app:iconPadding="@dimen/spacing_sm"
+            app:iconTint="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnGoogle" />
 
+        <!-- Progress Bar -->
         <ProgressBar
             android:id="@+id/progressBar"
             style="?android:attr/progressBarStyleLarge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="16dp"
-            android:visibility="gone" />
-    </LinearLayout>
+            android:layout_marginTop="@dimen/spacing_lg"
+            android:indeterminateTint="@color/primary"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnFacebook" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

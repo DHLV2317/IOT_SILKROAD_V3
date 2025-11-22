@@ -1,55 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/M3_Card_Elevated"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="12dp"
-    android:layout_marginHorizontal="12dp"
-    android:elevation="4dp"
-    android:padding="12dp">
+    android:layout_marginHorizontal="@dimen/spacing_md"
+    android:layout_marginBottom="@dimen/spacing_md">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:padding="@dimen/spacing_md">
 
-        <TextView
-            android:id="@+id/tvStopName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="1° Parada"
-            android:textStyle="bold"
-            android:textSize="16sp" />
-
-        <TextView
-            android:id="@+id/tvStopAddress"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Dirección"
-            android:textColor="#66000000"
-            android:layout_marginTop="4dp"/>
-
-        <TextView
-            android:id="@+id/tvStopTime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Tiempo en el lugar"
-            android:textColor="#66000000"
-            android:layout_marginTop="2dp"/>
-
-        <TextView
-            android:id="@+id/tvStopCost"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="S/. 0.00"
-            android:textColor="#66000000"
-            android:layout_marginTop="2dp"/>
-
-        <ImageView
+        <!-- Mapa en miniatura -->
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/ivMapImage"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_marginTop="8dp"
+            android:layout_width="0dp"
+            android:layout_height="140dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/ic_map" />
-    </LinearLayout>
-</androidx.cardview.widget.CardView>
+            android:src="@drawable/ic_map"
+            app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Medium"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- Contenido de texto -->
+        <LinearLayout
+            android:id="@+id/contentLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/spacing_md"
+            app:layout_constraintTop_toBottomOf="@id/ivMapImage"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <TextView
+                android:id="@+id/tvStopName"
+                style="@style/M3_Title_Medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1° Parada" />
+
+            <TextView
+                android:id="@+id/tvStopAddress"
+                style="@style/M3_Body_Medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Dirección"
+                android:textColor="?attr/colorOnSurfaceVariant"
+                android:layout_marginTop="@dimen/spacing_xs"
+                android:drawablePadding="@dimen/spacing_xs"
+                android:drawableStart="@drawable/location_on_24px"
+                android:drawableTint="?attr/colorOnSurfaceVariant" />
+
+            <TextView
+                android:id="@+id/tvStopTime"
+                style="@style/M3_Body_Medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tiempo en el lugar"
+                android:textColor="?attr/colorOnSurfaceVariant"
+                android:layout_marginTop="@dimen/spacing_xs" />
+
+            <TextView
+                android:id="@+id/tvStopCost"
+                style="@style/M3_Label_Large"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="S/. 0.00"
+                android:textColor="?attr/colorPrimary"
+                android:layout_marginTop="@dimen/spacing_sm" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

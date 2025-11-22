@@ -1,2 +1,0 @@
-# IOT_SILKROAD_V3
-
