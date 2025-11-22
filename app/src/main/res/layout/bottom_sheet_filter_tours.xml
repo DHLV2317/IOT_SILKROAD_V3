@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/bottom_sheet_filter"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="@dimen/spacing_md"
+    android:background="@color/surface"
+    app:behavior_peekHeight="200dp"
+    app:behavior_hideable="true"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+    <!-- Handle visual para indicar que es draggable -->
+    <View
+        android:layout_width="40dp"
+        android:layout_height="4dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/spacing_sm"
+        android:layout_marginBottom="@dimen/spacing_md"
+        android:background="@color/text_tertiary"
+        android:backgroundTint="@color/text_tertiary" />
+
+    <TextView
+        style="@style/M3_Title_Large"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/spacing_md"
+        android:text="Filtros"
+        android:textColor="@color/text_primary" />
+
+    <!-- Filtro por Destino -->
+    <TextView
+        style="@style/M3_Label_Medium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/spacing_xs"
+        android:text="Destino"
+        android:textColor="@color/text_secondary" />
+
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/chip_group_destination"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/spacing_md"
+        app:singleSelection="false"
+        app:chipSpacingHorizontal="@dimen/spacing_xs">
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip_arequipa"
+            style="@style/Widget.Material3.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Arequipa"
+            app:chipBackgroundColor="@color/surface_container"
+            app:chipStrokeColor="@color/primary"
+            app:chipStrokeWidth="1dp" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip_cusco"
+            style="@style/Widget.Material3.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cusco"
+            app:chipBackgroundColor="@color/surface_container" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip_puno"
+            style="@style/Widget.Material3.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Puno"
+            app:chipBackgroundColor="@color/surface_container" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip_lima"
+            style="@style/Widget.Material3.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lima"
+            app:chipBackgroundColor="@color/surface_container" />
+
+    </com.google.android.material.chip.ChipGroup>
+
+    <!-- Filtro por Precio -->
+    <TextView
+        style="@style/M3_Label_Medium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/spacing_xs"
+        android:text="Rango de Precio"
+        android:textColor="@color/text_secondary" />
+
+    <com.google.android.material.slider.RangeSlider
+        android:id="@+id/price_range_slider"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/spacing_md"
+        android:valueFrom="0"
+        android:valueTo="500"
+        app:values="@array/initial_slider_values"
+        app:labelBehavior="withinBounds" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="@dimen/spacing_lg">
+
+        <TextView
+            android:id="@+id/tv_min_price"
+            style="@style/M3_Body_Small"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="S/ 0"
+            android:textColor="@color/text_secondary" />
+
+        <TextView
+            android:id="@+id/tv_max_price"
+            style="@style/M3_Body_Small"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="end"
+            android:text="S/ 500"
+            android:textColor="@color/text_secondary" />
+
+    </LinearLayout>
+
+    <!-- Filtro por Duración -->
+    <TextView
+        style="@style/M3_Label_Medium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/spacing_xs"
+        android:text="Duración"
+        android:textColor="@color/text_secondary" />
+
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/chip_group_duration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/spacing_lg"
+        app:singleSelection="true">
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip_half_day"
+            style="@style/Widget.Material3.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Medio día"
+            app:chipBackgroundColor="@color/surface_container" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip_full_day"
+            style="@style/Widget.Material3.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Día completo"
+            app:chipBackgroundColor="@color/surface_container" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip_multi_day"
+            style="@style/Widget.Material3.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Varios días"
+            app:chipBackgroundColor="@color/surface_container" />
+
+    </com.google.android.material.chip.ChipGroup>
+
+    <!-- Botones de acción -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="end">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_clear_filters"
+            style="@style/M3_TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/spacing_sm"
+            android:text="Limpiar"
+            android:textAllCaps="false" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_apply_filters"
+            style="@style/M3_FilledButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Aplicar"
+            android:textAllCaps="false" />
+
+    </LinearLayout>
+
+</LinearLayout>

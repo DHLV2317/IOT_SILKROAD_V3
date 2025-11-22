@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="com_google_android_gms_fonts_certs" />
+    
+    <!-- Valores iniciales para RangeSlider de filtros -->
+    <array name="initial_slider_values">
+        <item>0.0</item>
+        <item>500.0</item>
+    </array>
 </resources>

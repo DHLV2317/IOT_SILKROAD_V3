@@ -11,7 +11,8 @@
     <!-- Contenido Principal -->
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/background">
 
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
@@ -24,6 +25,7 @@
                 android:layout_height="?attr/actionBarSize"
                 app:title="SuperAdministrador"
                 app:titleTextAppearance="@style/M3_Title_Large"
+                app:titleTextColor="@color/text_primary"
                 app:navigationIcon="@drawable/ic_menu_grey" />
         </com.google.android.material.appbar.AppBarLayout>
 
@@ -32,113 +34,114 @@
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <LinearLayout
-            android:id="@+id/main_content_container"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="@dimen/spacing_md">
-
-            <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/spacing_xl"
-                android:layout_marginBottom="@dimen/spacing_xl"
-                app:srcCompat="@drawable/logo_silkroad" />
-
-            <com.google.android.material.card.MaterialCardView
-                style="@style/M3_Card_Elevated"
+            <LinearLayout
+                android:id="@+id/main_content_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/spacing_md">
+                android:orientation="vertical"
+                android:padding="@dimen/spacing_md">
 
-                <LinearLayout
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/spacing_lg"
+                    android:layout_marginBottom="@dimen/spacing_xl"
+                    android:scaleType="centerCrop"
+                    app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Medium"
+                    app:srcCompat="@drawable/logo_silkroad" />
+
+                <com.google.android.material.card.MaterialCardView
+                    style="@style/M3_Card_Elevated"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="@dimen/spacing_lg">
+                    android:layout_marginBottom="@dimen/spacing_md">
 
-                    <TextView
-                        android:id="@+id/textView2"
-                        style="@style/M3_Title_Medium"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/spacing_md"
-                        android:text="Cambiar contraseña" />
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/textInputLayout2"
-                        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/spacing_md"
-                        android:hint="Nueva contraseña"
-                        app:endIconMode="password_toggle">
+                        android:orientation="vertical"
+                        android:padding="@dimen/spacing_lg">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textPassword"
-                    android:hint="Contraseña actual" />
-            </com.google.android.material.textfield.TextInputLayout>
+                        <TextView
+                            android:id="@+id/textView2"
+                            style="@style/M3_Title_Medium"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/spacing_md"
+                            android:text="Cambiar contraseña"
+                            android:textColor="@color/text_primary" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputLayout4"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="32dp"
-                app:endIconMode="password_toggle"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textInputLayout2">
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/textInputLayout2"
+                            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/spacing_md"
+                            android:hint="Contraseña actual"
+                            app:endIconMode="password_toggle"
+                            app:startIconDrawable="@drawable/ic_person_24">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textPassword"
-                    android:hint="Nueva contraseña" />
-            </com.google.android.material.textfield.TextInputLayout>
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/editCurrentPassword"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="textPassword" />
+                        </com.google.android.material.textfield.TextInputLayout>
 
-            <Button
-                android:id="@+id/button"
-                android:layout_width="0dp"
-                android:layout_height="60dp"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="32dp"
-                android:text="Cambiar"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                android:backgroundTint="@color/seda"
-                app:cornerRadius="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textInputLayout4" />
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/textInputLayout4"
+                            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/spacing_lg"
+                            android:hint="Nueva contraseña"
+                            app:endIconMode="password_toggle"
+                            app:startIconDrawable="@drawable/ic_person_24">
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/editNewPassword"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="textPassword" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/button"
+                            style="@style/M3_FilledButton"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:minHeight="56dp"
+                            android:text="Cambiar contraseña"
+                            android:textAllCaps="false" />
+
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 
-    </LinearLayout>
-
-
+    <!-- Navigation Drawer -->
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
-        android:layout_width="256dp"
+        android:layout_width="280dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="@color/seda"
+        android:background="@color/surface"
+        android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_superadmin"
         app:menu="@menu/drawer_menu"
-        app:itemTextColor="@android:color/white"
-        app:itemShapeInsetBottom="0dp"
-        app:itemShapeInsetEnd="0dp"
-        app:itemShapeInsetStart="0dp"
-        app:itemShapeInsetTop="0dp" />
+        app:itemIconTint="@color/primary"
+        app:itemTextColor="@color/text_primary"
+        app:itemShapeFillColor="@color/primary_container"
+        app:itemShapeInsetBottom="@dimen/spacing_xs"
+        app:itemShapeInsetEnd="@dimen/spacing_sm"
+        app:itemShapeInsetStart="@dimen/spacing_sm"
+        app:itemShapeInsetTop="@dimen/spacing_xs" />
 
 </androidx.drawerlayout.widget.DrawerLayout>

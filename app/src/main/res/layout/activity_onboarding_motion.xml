@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/onboarding_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    app:layoutDescription="@xml/scene_onboarding">
+
+    <!-- Imagen ilustrativa -->
+    <ImageView
+        android:id="@+id/onboarding_image"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:src="@drawable/logo_silkroad"
+        android:contentDescription="Onboarding illustration"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/onboarding_title"
+        android:layout_marginBottom="@dimen/spacing_xl" />
+
+    <!-- Título -->
+    <TextView
+        android:id="@+id/onboarding_title"
+        style="@style/M3_Headline_Large"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Bienvenido a Silk Road"
+        android:textAlignment="center"
+        android:textColor="@color/text_primary"
+        app:layout_constraintTop_toBottomOf="@id/onboarding_image"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/onboarding_description"
+        android:layout_marginStart="@dimen/spacing_xl"
+        android:layout_marginEnd="@dimen/spacing_xl"
+        android:layout_marginBottom="@dimen/spacing_md" />
+
+    <!-- Descripción -->
+    <TextView
+        android:id="@+id/onboarding_description"
+        style="@style/M3_Body_Large"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Descubre los mejores tours y experiencias en Perú. Explora destinos increíbles con guías expertos."
+        android:textAlignment="center"
+        android:textColor="@color/text_secondary"
+        app:layout_constraintTop_toBottomOf="@id/onboarding_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/btn_next"
+        android:layout_marginStart="@dimen/spacing_xl"
+        android:layout_marginEnd="@dimen/spacing_xl"
+        android:layout_marginBottom="@dimen/spacing_xxl" />
+
+    <!-- Botón siguiente -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_next"
+        style="@style/M3_FilledButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:minHeight="56dp"
+        android:text="Siguiente"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="@dimen/spacing_xl"
+        android:layout_marginEnd="@dimen/spacing_xl"
+        android:layout_marginBottom="@dimen/spacing_xl" />
+
+    <!-- Indicador de página -->
+    <LinearLayout
+        android:id="@+id/page_indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@id/btn_next"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="@dimen/spacing_md">
+
+        <View
+            android:layout_width="8dp"
+            android:layout_height="8dp"
+            android:layout_margin="4dp"
+            android:background="@drawable/shape_circle_white"
+            android:backgroundTint="@color/primary" />
+
+        <View
+            android:layout_width="8dp"
+            android:layout_height="8dp"
+            android:layout_margin="4dp"
+            android:background="@drawable/shape_circle_white"
+            android:backgroundTint="@color/text_tertiary" />
+
+        <View
+            android:layout_width="8dp"
+            android:layout_height="8dp"
+            android:layout_margin="4dp"
+            android:background="@drawable/shape_circle_white"
+            android:backgroundTint="@color/text_tertiary" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.motion.widget.MotionLayout>
