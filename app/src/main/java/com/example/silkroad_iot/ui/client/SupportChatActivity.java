@@ -25,6 +25,7 @@ public class SupportChatActivity extends AppCompatActivity {
 
     private enum ChatState {
         AWAITING_MENU_CHOICE,
+        AWAITING_TOUR_NAME,
         AWAITING_TICKET_CONTEXT,
         AWAITING_TICKET_SELECTION
     }
@@ -35,6 +36,7 @@ public class SupportChatActivity extends AppCompatActivity {
 
     private ChatState currentState = ChatState.AWAITING_MENU_CHOICE;
     private List<QueryDocumentSnapshot> listedTickets = new ArrayList<>();
+    private String tempTourName;
 
     private FirebaseFirestore db;
     private FirebaseUser currentUser;
@@ -66,7 +68,6 @@ public class SupportChatActivity extends AppCompatActivity {
         rvMessages.setLayoutManager(new LinearLayoutManager(this));
         rvMessages.setAdapter(adapter);
 
-        // Mensaje inicial con el menú
         showMenu();
 
         // Envío de mensajes
@@ -80,6 +81,9 @@ public class SupportChatActivity extends AppCompatActivity {
             switch (currentState) {
                 case AWAITING_MENU_CHOICE:
                     handleMenuChoice(txt);
+                    break;
+                case AWAITING_TOUR_NAME:
+                    handleTourName(txt);
                     break;
                 case AWAITING_TICKET_CONTEXT:
                     handleTicketContext(txt);
@@ -95,16 +99,22 @@ public class SupportChatActivity extends AppCompatActivity {
         if ("1".equals(choice)) {
             listExistingTickets();
         } else if ("2".equals(choice)) {
-            addMessage("Soporte: Por favor, describa brevemente su problema para crear un nuevo chat.");
-            currentState = ChatState.AWAITING_TICKET_CONTEXT;
+            addMessage("Soporte: Por favor, ingrese el nombre del tour.");
+            currentState = ChatState.AWAITING_TOUR_NAME;
         } else {
             addMessage("Soporte: Opción no válida. Por favor, intente de nuevo.");
             showMenu();
         }
     }
 
+    private void handleTourName(String tourName) {
+        this.tempTourName = tourName;
+        addMessage("Soporte: Entendido. Ahora, por favor, ingrese el contexto del problema.");
+        currentState = ChatState.AWAITING_TICKET_CONTEXT;
+    }
+
     private void handleTicketContext(String context) {
-        saveNewChat(context);
+        saveNewChat(this.tempTourName, context, "admin@demo.com");
     }
 
     private void handleTicketSelection(String selection) {
@@ -143,9 +153,7 @@ public class SupportChatActivity extends AppCompatActivity {
                         int i = 1;
                         for (QueryDocumentSnapshot document : task.getResult()) {
                             listedTickets.add(document);
-                            String idticket = document.getString("idticket");
-                            String contexto = document.getString("contexto");
-                            ticketsList.append(i++).append(") Ticket #").append(idticket).append(" - ").append(contexto).append("\n");
+                            ticketsList.append(i++).append(") Ticket #").append(document.getString("idticket")).append(" - ").append(document.getString("contexto")).append("\n");
                         }
                         ticketsList.append("\nIngrese el número del ticket que desea seleccionar.");
                         addMessage(ticketsList.toString());
@@ -160,7 +168,7 @@ public class SupportChatActivity extends AppCompatActivity {
                 });
     }
 
-    private void saveNewChat(String contexto) {
+    private void saveNewChat(String tourName, String contexto, String idSoporte) {
         if (currentUser == null) {
             addMessage("Soporte: Debe iniciar sesión para crear un chat.");
             resetToMenu();
@@ -172,8 +180,9 @@ public class SupportChatActivity extends AppCompatActivity {
         Map<String, Object> chat = new HashMap<>();
         chat.put("idticket", ticketId);
         chat.put("idusuario", currentUser.getUid());
-        chat.put("idsoporte", "");
+        chat.put("idsoporte", idSoporte);
         chat.put("fecha_creacion", new Date());
+        chat.put("nombre del tour", tourName);
         chat.put("contexto", contexto);
 
         db.collection("chats").add(chat)
