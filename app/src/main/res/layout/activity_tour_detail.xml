@@ -17,12 +17,12 @@
     <ImageView
         android:id="@+id/imgTour"
         android:layout_width="match_parent"
-        android:layout_height="220dp"
-        android:scaleType="centerCrop"
+        android:layout_height="141dp"
         android:layout_marginTop="16dp"
-        android:background="#DDD"
         android:layout_marginBottom="16dp"
-        tools:src="@drawable/ic_launcher_foreground"/>
+        android:background="#DDD"
+        android:scaleType="centerCrop"
+        tools:src="@drawable/ic_launcher_foreground" />
 
     <ScrollView
         android:layout_width="match_parent"

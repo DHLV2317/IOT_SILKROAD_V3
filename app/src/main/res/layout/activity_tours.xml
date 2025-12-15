@@ -14,13 +14,13 @@
     <!-- 🏢 Imagen de la empresa -->
     <ImageView
         android:id="@+id/imgCompanyLogo"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
+        android:layout_width="196dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="16dp"
-        android:src="@drawable/ic_launcher_foreground"
+        android:contentDescription="Logo Empresa"
         android:scaleType="centerCrop"
-        android:contentDescription="Logo Empresa" />
+        android:src="@drawable/ic_launcher_foreground" />
 
     <!-- 🏢 Nombre de la empresa -->
     <TextView
