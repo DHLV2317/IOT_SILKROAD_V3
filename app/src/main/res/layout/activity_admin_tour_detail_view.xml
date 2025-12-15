@@ -1,250 +1,377 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#F5F5F5"
+    android:fillViewport="true">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:paddingBottom="32dp">
 
-        <!-- Toolbar -->
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/toolbar"
+        <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@color/brand_celeste"
-            app:title="Detalle del tour"
-            app:titleTextColor="@android:color/white" />
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            app:elevation="0dp">
 
-        <!-- Imagen -->
-        <ImageView
-            android:id="@+id/img"
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@android:color/white"
+                app:navigationIcon="@drawable/ic_arrow_back_24"
+                app:navigationIconTint="#333333"
+                app:title="Detalles del Tour"
+                app:titleCentered="true"
+                app:titleTextColor="#333333" />
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="180dp"
-            android:layout_marginTop="12dp"
-            android:src="@drawable/ic_menu_24"
-            android:background="#EFEFEF"
-            app:tint="@android:color/darker_gray" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
 
-        <!-- Datos básicos -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="4dp">
+
+                <ImageView
+                    android:id="@+id/img"
+                    android:layout_width="match_parent"
+                    android:layout_height="220dp"
+                    android:background="#EEEEEE"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_menu_gallery"
+                    app:tint="#BDBDBD" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                android:id="@+id/tName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="Nombre del Tour"
+                android:textColor="#333333"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tDesc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:lineSpacingExtra="4dp"
+                android:text="Descripción detallada del tour..."
+                android:textColor="#555555"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_status_rounded"
+                android:backgroundTint="#E3F2FD"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="6dp"
+                android:text="Estado: Activo"
+                android:textColor="@color/brand_celeste"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            app:cardUseCompatPadding="true">
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginBottom="16dp"
+            app:cardBackgroundColor="@android:color/white"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="2dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="12dp">
+                android:padding="20dp">
 
                 <TextView
-                    android:id="@+id/tName"
-                    style="@style/TextAppearance.MaterialComponents.Headline6"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-                <TextView
-                    android:id="@+id/tDesc"
-                    style="@style/TextAppearance.MaterialComponents.Body2"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp" />
+                    android:layout_marginBottom="16dp"
+                    android:text="Información General"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/tCity"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
-                    android:text="Ciudad: —" />
+                    android:layout_marginBottom="12dp"
+                    android:drawablePadding="12dp"
+                    android:text="Ciudad: Cusco"
+                    android:gravity="center_vertical"
+                    app:drawableStartCompat="@drawable/ic_menu_mylocation"
+                    app:drawableTint="@color/brand_celeste" />
 
                 <TextView
                     android:id="@+id/tDuration"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
-                    android:text="Duración: —" />
+                    android:layout_marginBottom="12dp"
+                    android:drawablePadding="12dp"
+                    android:text="Duración: 5 horas"
+                    android:gravity="center_vertical"
+                    app:drawableStartCompat="@drawable/ic_menu_recent_history"
+                    app:drawableTint="@color/brand_celeste" />
+                <TextView
+                    android:id="@+id/tDates"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    android:drawablePadding="12dp"
+                    android:text="Fechas: 10 Ago - 12 Ago"
+                    android:gravity="center_vertical"
+                    app:drawableStartCompat="@drawable/ic_menu_today"
+                    app:drawableTint="@color/brand_celeste" />
 
                 <TextView
                     android:id="@+id/tLangs"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Idiomas: —" />
+                    android:layout_marginBottom="12dp"
+                    android:drawablePadding="12dp"
+                    android:text="Idiomas: ES, EN"
+                    android:gravity="center_vertical"
+                    app:drawableStartCompat="@drawable/ic_menu_mapmode"
+                    app:drawableTint="@color/brand_celeste" />
 
-                <TextView
-                    android:id="@+id/tDates"
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginVertical="12dp"
+                    android:background="#EEEEEE"/>
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Fechas: —" />
+                    android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/tPrice"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Precio: —" />
-
-                <TextView
-                    android:id="@+id/tPeople"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Personas: —" />
-
-                <!-- Estado del tour (status / estado) -->
-                <TextView
-                    android:id="@+id/tStatus"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
-                    android:text="Estado: —" />
+                    <TextView
+                        android:id="@+id/tPrice"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="S/. 150.00"
+                        android:textColor="#333333"
+                        android:textStyle="bold"
+                        android:textSize="16sp"
+                        android:gravity="center_vertical"
+                        android:drawablePadding="8dp"
+                        app:drawableStartCompat="@drawable/ic_menu_manage"
+                        app:drawableTint="#4CAF50"/>
+                    <TextView
+                        android:id="@+id/tPeople"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Max: 10 pers."
+                        android:textColor="#555555"
+                        android:gravity="center_vertical"
+                        android:drawablePadding="8dp"
+                        app:drawableStartCompat="@drawable/ic_person_24"
+                        app:drawableTint="#555555"/>
+                </LinearLayout>
 
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
-        <!-- Paradas -->
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            app:cardUseCompatPadding="true">
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginBottom="16dp"
+            app:cardBackgroundColor="@android:color/white"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="2dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="12dp">
+                android:padding="20dp">
 
                 <TextView
-                    style="@style/TextAppearance.MaterialComponents.Subtitle1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Lugares / Paradas" />
-
-                <!-- Loader -->
-                <ProgressBar
-                    android:id="@+id/progressStops"
-                    style="?android:attr/progressBarStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="12dp"
+                    android:text="Itinerario / Paradas"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <ProgressBar
+                    android:id="@+id/progressStops"
+                    style="?android:attr/progressBarStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:visibility="gone" />
 
-                <!-- Empty state -->
                 <TextView
                     android:id="@+id/tEmptyStops"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
                     android:gravity="center"
                     android:text="@string/empty_stops"
+                    android:textColor="#999999"
+                    android:textSize="12sp"
                     android:visibility="gone" />
 
                 <com.google.android.material.chip.ChipGroup
                     android:id="@+id/boxStops"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
+                    app:chipSpacing="8dp"
                     app:singleLine="false" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
-        <!-- Servicios -->
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            app:cardUseCompatPadding="true">
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginBottom="16dp"
+            app:cardBackgroundColor="@android:color/white"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="2dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="12dp">
+                android:padding="20dp">
 
                 <TextView
-                    style="@style/TextAppearance.MaterialComponents.Subtitle1"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Servicios" />
+                    android:layout_marginBottom="12dp"
+                    android:text="Servicios Incluidos"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
                 <com.google.android.material.chip.ChipGroup
                     android:id="@+id/boxServices"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
+                    app:chipSpacing="8dp"
                     app:singleLine="false" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
-        <!-- Guía / Pago -->
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            app:cardUseCompatPadding="true">
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginBottom="24dp"
+            app:cardBackgroundColor="#FFF3E0"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="0dp"
+            app:strokeColor="#FFCC80"
+            app:strokeWidth="1dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="12dp">
+                android:padding="20dp">
 
                 <TextView
-                    style="@style/TextAppearance.MaterialComponents.Subtitle1"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Guía asignado" />
+                    android:layout_marginBottom="12dp"
+                    android:text="Datos Administrativos"
+                    android:textColor="#E65100"
+                    android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/tGuide"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="—" />
+                    android:layout_marginBottom="8dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Guía asignado:"
+                        android:textStyle="bold"
+                        android:textSize="13sp"/>
+                    <TextView
+                        android:id="@+id/tGuide"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:text="Por definir"
+                        android:textSize="13sp"/>
+                </LinearLayout>
 
-                <TextView
-                    style="@style/TextAppearance.MaterialComponents.Subtitle1"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
-                    android:text="Pago propuesto" />
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Pago al guía:"
+                        android:textStyle="bold"
+                        android:textSize="13sp"/>
+                    <TextView
+                        android:id="@+id/tPayment"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:text="S/. 0.00"
+                        android:textSize="13sp"/>
+                </LinearLayout>
 
-                <TextView
-                    android:id="@+id/tPayment"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="—" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
-        <!-- Botones -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginHorizontal="16dp"
             android:orientation="horizontal">
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnEdit"
+                style="@style/Widget.Material3.Button.OutlinedButton"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="56dp"
                 android:layout_marginEnd="8dp"
                 android:layout_weight="1"
-                android:backgroundTint="@color/brand_celeste"
-                android:text="Editar tour"
-                android:textColor="@android:color/white" />
+                android:text="Editar"
+                android:textColor="@color/brand_celeste"
+                app:cornerRadius="12dp"
+                app:icon="@drawable/ic_menu_edit"
+                app:iconTint="@color/brand_celeste"
+                app:strokeColor="@color/brand_celeste" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnDelete"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="56dp"
+                android:layout_marginStart="8dp"
                 android:layout_weight="1"
-                android:backgroundTint="@android:color/holo_red_light"
-                android:text="Finalizar tour"
-                android:textColor="@android:color/white" />
+                android:text="Finalizar"
+                android:textColor="@android:color/white"
+                app:backgroundTint="#D32F2F"
+                app:cornerRadius="12dp"
+                app:icon="@drawable/ic_menu_close_clear_cancel" />
+
         </LinearLayout>
 
     </LinearLayout>

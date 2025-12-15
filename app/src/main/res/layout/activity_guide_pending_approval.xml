@@ -1,151 +1,334 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#F5F5F5"
+    android:fillViewport="true">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingBottom="24dp">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:title="Cuenta Pendiente"
-            app:backgroundTint="@android:color/holo_orange_dark"
-            app:titleTextColor="@color/white" />
+            android:layout_height="?attr/actionBarSize"
+            android:background="@android:color/white"
+            android:elevation="0dp"
+            app:title="Estado de Cuenta"
+            app:titleCentered="true"
+            app:titleTextColor="#333333" />
 
-        <!-- Header de estado -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:gravity="center"
             android:orientation="vertical"
-            android:padding="24dp"
-            android:background="@android:color/holo_orange_dark"
-            android:gravity="center">
+            android:paddingBottom="32dp">
 
-            <ImageView
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:src="@drawable/ic_person_24"
-                android:background="@drawable/bg_chip"
-                android:backgroundTint="@color/white"
-                android:padding="16dp"
-                android:contentDescription="@string/app_name"
-                android:layout_marginBottom="16dp"/>
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="88dp"
+                android:layout_height="88dp"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="44dp"
+                app:cardElevation="0dp"
+                app:strokeColor="#F0F0F0"
+                app:strokeWidth="1dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#FAFAFA"
+                    android:contentDescription="@string/app_name"
+                    android:padding="16dp"
+                    android:src="@drawable/ic_person_24"
+                    app:tint="@android:color/holo_orange_dark" />
+            </com.google.android.material.card.MaterialCardView>
 
             <TextView
                 android:id="@+id/txtGuideName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Nombre del Guía"
-                android:textColor="@color/white"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="8dp"/>
+                android:textColor="#222222"
+                android:textSize="22sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/txtGuideEmail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
                 android:text="email@demo.com"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                android:layout_marginBottom="16dp"/>
+                android:textColor="@android:color/darker_gray"
+                android:textSize="14sp" />
 
-            <TextView
-                android:id="@+id/txtStatusInfo"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="⏳ Pendiente de Aprobación"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                android:textStyle="bold"/>
+                android:layout_marginTop="16dp"
+                android:background="@drawable/bg_status_rounded"
+                android:backgroundTint="#FFF3E0"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="8dp">
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:src="@drawable/ic_menu_recent_history"
+                    app:tint="@android:color/holo_orange_dark" />
+                <TextView
+                    android:id="@+id/txtStatusInfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pendiente de Aprobación"
+                    android:textColor="@android:color/holo_orange_dark"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
 
         </LinearLayout>
 
-        <!-- Información de la solicitud -->
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="4dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="20dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="📋 Información de tu Solicitud"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="16dp"/>
-
-                <TextView
-                    android:id="@+id/txtStatusDescription"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Tu solicitud está siendo revisada por nuestro equipo de administradores."
-                    android:textSize="16sp"
-                    android:layout_marginBottom="16dp"/>
-
-                <TextView
-                    android:id="@+id/txtDocumentInfo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="DNI: 12345678"
-                    android:textSize="14sp"
-                    android:layout_marginBottom="8dp"/>
-
-                <TextView
-                    android:id="@+id/txtPhoneInfo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Teléfono: +51 987 654 321"
-                    android:textSize="14sp"
-                    android:layout_marginBottom="8dp"/>
-
-                <TextView
-                    android:id="@+id/txtLanguagesInfo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Idiomas: Español, Inglés"
-                    android:textSize="14sp"
-                    android:layout_marginBottom="16dp"/>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@android:color/darker_gray"
-                    android:layout_marginVertical="16dp"/>
-
-                <TextView
-                    android:id="@+id/txtLastCheck"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Envío inicial: Hace 2 días"
-                    android:textSize="12sp"
-                    android:textColor="@android:color/darker_gray"/>
-
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
-
-        <!-- Acciones -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="-16dp"
+            android:background="@drawable/bg_rounded_top_sheet"
             android:orientation="vertical"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginBottom="16dp">
+            android:padding="24dp">
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardBackgroundColor="@android:color/white"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp">
 
-            <!-- Botón + loader -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        android:gravity="center_vertical">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_marginEnd="12dp"
+                            android:src="@drawable/ic_menu_sort_by_size"
+                            app:tint="#555555" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Resumen de Solicitud"
+                            android:textColor="#333333"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/txtStatusDescription"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        android:lineSpacingExtra="4dp"
+                        android:text="Tu solicitud está siendo revisada por nuestro equipo de administradores."
+                        android:textColor="#555555"
+                        android:textSize="14sp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginBottom="16dp"
+                        android:background="#EEEEEE" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp"
+                        android:gravity="center_vertical">
+
+                        <ImageView
+                            android:layout_width="18dp"
+                            android:layout_height="18dp"
+                            android:layout_marginEnd="12dp"
+                            android:src="@drawable/ic_person_24"
+                            app:tint="@color/brand_celeste" />
+
+                        <TextView
+                            android:id="@+id/txtDocumentInfo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="DNI: 12345678"
+                            android:textColor="#333333" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp"
+                        android:gravity="center_vertical">
+
+                        <ImageView
+                            android:layout_width="18dp"
+                            android:layout_height="18dp"
+                            android:layout_marginEnd="12dp"
+                            android:src="@drawable/ic_menu_call"
+                            app:tint="@color/brand_celeste" />
+                        <TextView
+                            android:id="@+id/txtPhoneInfo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Teléfono: +51 987 654 321"
+                            android:textColor="#333333" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp"
+                        android:gravity="center_vertical">
+
+                        <ImageView
+                            android:layout_width="18dp"
+                            android:layout_height="18dp"
+                            android:layout_marginEnd="12dp"
+                            android:src="@drawable/ic_menu_mapmode"
+                            app:tint="@color/brand_celeste" />
+                        <TextView
+                            android:id="@+id/txtLanguagesInfo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Idiomas: Español, Inglés"
+                            android:textColor="#333333" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/txtLastCheck"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="Envío inicial: Hace 2 días"
+                        android:textColor="@android:color/darker_gray"
+                        android:textSize="12sp"
+                        android:fontStyle="italic"/>
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                app:cardBackgroundColor="@android:color/white"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        android:text="Próximos pasos"
+                        android:textColor="#333333"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="12dp">
+                        <TextView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:background="@drawable/bg_status_rounded"
+                            android:backgroundTint="#E3F2FD"
+                            android:gravity="center"
+                            android:text="1"
+                            android:textColor="@color/brand_celeste"
+                            android:textStyle="bold"
+                            android:textSize="12sp"/>
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="12dp"
+                            android:text="Revisión de documentación."
+                            android:textColor="#444444"
+                            android:textSize="13sp"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="12dp">
+                        <TextView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:background="@drawable/bg_status_rounded"
+                            android:backgroundTint="#E3F2FD"
+                            android:gravity="center"
+                            android:text="2"
+                            android:textColor="@color/brand_celeste"
+                            android:textStyle="bold"
+                            android:textSize="12sp"/>
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="12dp"
+                            android:text="Verificación de antecedentes."
+                            android:textColor="#444444"
+                            android:textSize="13sp"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:background="@drawable/bg_status_rounded"
+                            android:backgroundTint="#E3F2FD"
+                            android:gravity="center"
+                            android:text="3"
+                            android:textColor="@color/brand_celeste"
+                            android:textStyle="bold"
+                            android:textSize="12sp"/>
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="12dp"
+                            android:text="Aprobación y activación de cuenta."
+                            android:textColor="#444444"
+                            android:textSize="13sp"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -153,64 +336,41 @@
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnRefreshStatus"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="🔄 Verificar Estado"
-                    android:textSize="16sp"
+                    android:layout_height="56dp"
                     android:layout_marginBottom="12dp"
-                    app:backgroundTint="@color/brand_celeste" />
-
+                    android:text="Verificar Estado"
+                    android:textAllCaps="false"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:backgroundTint="@color/brand_celeste"
+                    app:cornerRadius="12dp"
+                    app:icon="@drawable/ic_menu_rotate"
+                    app:iconGravity="textStart" />
                 <ProgressBar
                     android:id="@+id/progress"
                     style="?android:attr/progressBarStyleSmall"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:layout_gravity="end|center_vertical"
-                    android:layout_marginEnd="16dp"
-                    android:visibility="gone"/>
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="6dp"
+                    android:elevation="4dp"
+                    android:indeterminateTint="@color/white"
+                    android:visibility="gone" />
             </FrameLayout>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnBackToLogin"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="← Volver al Login"
-                android:textSize="16sp"
                 style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:text="Volver al inicio"
+                android:textAllCaps="false"
+                android:textColor="@android:color/holo_orange_dark"
+                app:cornerRadius="12dp"
                 app:strokeColor="@android:color/holo_orange_dark" />
 
         </LinearLayout>
-
-        <!-- Información adicional -->
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="4dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="20dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="ℹ️ ¿Qué sigue?"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="12dp"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="1. Nuestro equipo revisará tu documentación\n2. Verificaremos tus referencias y experiencia\n3. Te notificaremos por email sobre la decisión\n4. Una vez aprobado, tendrás acceso completo"
-                    android:textSize="14sp"
-                    android:lineSpacingExtra="4dp"/>
-
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
 
     </LinearLayout>
 </ScrollView>

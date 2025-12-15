@@ -5,54 +5,68 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F5F5F5"
     tools:context=".ui.guide.GuideTourOffersActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        app:elevation="0dp">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/brand_celeste"
-            android:titleTextColor="@android:color/white"
+            android:background="@android:color/white"
             app:navigationIcon="@drawable/ic_arrow_back_24"
-            app:navigationIconTint="@android:color/white"
-            app:title="Ofertas de Tours Disponibles"/>
+            app:navigationIconTint="#333333"
+            app:title="Ofertas Disponibles"
+            app:titleCentered="true"
+            app:titleTextColor="#333333" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        android:padding="12dp">
+        android:orientation="vertical"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <ProgressBar
             android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="32dp"
+            android:indeterminateTint="@color/brand_celeste"
             android:visibility="gone" />
 
         <TextView
             android:id="@+id/textEmpty"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="No tienes ofertas pendientes."
-            android:textSize="14sp"
-            android:textColor="@android:color/darker_gray"
+            android:layout_marginTop="60dp"
+            android:layout_marginHorizontal="32dp"
+            android:drawableTop="@drawable/ic_menu_mapmode"
+            android:drawablePadding="16dp"
+            android:drawableTint="#DDDDDD"
             android:gravity="center"
-            android:layout_marginTop="12dp"
-            android:visibility="gone" />
-
+            android:lineSpacingExtra="4dp"
+            android:text="No hay ofertas de tours pendientes por el momento."
+            android:textColor="#999999"
+            android:textSize="16sp"
+            android:visibility="gone"
+            tools:visibility="visible" />
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewTourOffers"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:paddingHorizontal="16dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="24dp"
+            android:scrollbars="vertical"
             tools:listitem="@layout/item_tour_offer"/>
 
     </LinearLayout>
