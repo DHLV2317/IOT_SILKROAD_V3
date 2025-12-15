@@ -11,7 +11,10 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
@@ -21,11 +24,14 @@ import com.example.silkroad_iot.data.TourFB;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.datepicker.MaterialDatePicker;
-import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.progressindicator.LinearProgressIndicator;
 import com.google.android.material.textfield.MaterialAutoCompleteTextView;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -35,16 +41,19 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
+import java.util.UUID;
 
 public class AdminTourWizardActivity extends AppCompatActivity {
 
     // Firestore
     private FirebaseFirestore db;
+    private FirebaseStorage storage;
 
     // Vistas comunes
     private View group1, group2, group3, group4;
     private MaterialButton btnPrev, btnNext;
     private MaterialToolbar toolbar;
+    private LinearProgressIndicator progressIndicator;
 
     // Paso 1
     private TextInputEditText inName, inDesc, inDuration, inDate, inPrice, inPeople;
@@ -94,10 +103,8 @@ public class AdminTourWizardActivity extends AppCompatActivity {
     private String existingAssignedGuideId;
     private String existingAssignedGuideName;
 
-    // Picker de imagen (por ahora usamos la URI local, la subida real a Storage se puede
-    // implementar luego si quieres que sea pública entre dispositivos)
-    private final androidx.activity.result.ActivityResultLauncher<String> pickImage =
-            registerForActivityResult(new androidx.activity.result.contract.ActivityResultContracts.GetContent(),
+    private final ActivityResultLauncher<String> pickImage =
+            registerForActivityResult(new ActivityResultContracts.GetContent(),
                     uri -> {
                         if (uri != null) {
                             pickedImage = uri;
@@ -111,6 +118,7 @@ public class AdminTourWizardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_admin_tour_wizard);
 
         db = FirebaseFirestore.getInstance();
+        storage = FirebaseStorage.getInstance();
 
         editingDocId = getIntent().getStringExtra("docId");
         defaultEmpresaId = getIntent().getStringExtra("empresaId");
@@ -119,15 +127,13 @@ public class AdminTourWizardActivity extends AppCompatActivity {
         setupStep1();
         setupStep2();
         setupStep3();
-        setupStep4(); // solo prepara la UI, la carga de guías se hace abajo
+        setupStep4();
 
         if (editingDocId == null) {
-            // NUEVO TOUR
             setTitle("Nuevo Tour (1/4)");
             addServiceDefaultsIfNew();
-            loadGuidesFromFirestore(); // Carga guías para que el admin pueda invitarlos
+            loadGuidesFromFirestore();
         } else {
-            // EDITAR TOUR
             setTitle("Editar Tour (1/4)");
             loadTourForEdit();
         }
@@ -148,20 +154,21 @@ public class AdminTourWizardActivity extends AppCompatActivity {
                 updateUiForStep();
             } else {
                 if (!validateStep(4)) return;
-                // Validar duración vs paradas antes de guardar
                 if (!validateDurationVsStops()) return;
-                saveTourToFirestore();
+                // En el último paso, iniciamos el proceso de guardado con subida de imagen
+                uploadImageAndSaveTour();
             }
         });
     }
 
-    /* ================== Bind ================== */
     private void bindViews() {
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null)
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setNavigationOnClickListener(v -> finish());
+
+        progressIndicator = findViewById(R.id.progress_indicator);
 
         group1 = findViewById(R.id.groupStep1);
         group2 = findViewById(R.id.groupStep2);
@@ -193,7 +200,6 @@ public class AdminTourWizardActivity extends AppCompatActivity {
         inPayment = findViewById(R.id.inputPayment);
     }
 
-    /* ================== Paso 1 ================== */
     private void setupStep1() {
         img.setOnClickListener(v -> pickImage.launch("image/*"));
 
@@ -202,13 +208,10 @@ public class AdminTourWizardActivity extends AppCompatActivity {
             btnChangeImage.setOnClickListener(v -> pickImage.launch("image/*"));
         }
 
-        // ❗ Idiomas: en esta versión NO se seleccionan manualmente.
-        // Se mostrarán cuando el tour tenga guía asignado.
         inLangs.setInputType(InputType.TYPE_NULL);
         inLangs.setFocusable(false);
         inLangs.setHint("Se llenará cuando un guía acepte el tour");
 
-        // Ciudad: departamentos de Perú
         String[] departamentosPeru = {
                 "Amazonas", "Áncash", "Apurímac", "Arequipa", "Ayacucho",
                 "Cajamarca", "Callao", "Cusco", "Huancavelica", "Huánuco",
@@ -229,7 +232,6 @@ public class AdminTourWizardActivity extends AppCompatActivity {
             if (has) inCity.showDropDown();
         });
 
-        // Selector de rango de fechas
         inDate.setOnClickListener(v -> {
             MaterialDatePicker.Builder<androidx.core.util.Pair<Long, Long>> b =
                     MaterialDatePicker.Builder.dateRangePicker();
@@ -245,7 +247,6 @@ public class AdminTourWizardActivity extends AppCompatActivity {
         });
     }
 
-    /* ================== Paso 2 ================== */
     private void setupStep2() {
         MaterialButton btnAddStop = findViewById(R.id.btnAddStop);
         btnAddStop.setOnClickListener(v -> {
@@ -293,7 +294,6 @@ public class AdminTourWizardActivity extends AppCompatActivity {
         boxStops.addView(row);
     }
 
-    /* ================== Paso 3 ================== */
     private void setupStep3() {
         MaterialButton btnAddService = findViewById(R.id.btnAddService);
         btnAddService.setOnClickListener(v -> {
@@ -339,11 +339,7 @@ public class AdminTourWizardActivity extends AppCompatActivity {
         boxServices.addView(row);
     }
 
-    /* ================== Paso 4 ================== */
     private void setupStep4() {
-        // La carga real de guías se hace en:
-        //  - onCreate (si es nuevo)
-        //  - loadTourForEdit() -> luego loadGuidesFromFirestore() (si es edición)
     }
 
     private void loadGuidesFromFirestore() {
@@ -361,8 +357,6 @@ public class AdminTourWizardActivity extends AppCompatActivity {
                         String a = d.getString("apellidos");
                         gi.name = ((n == null ? "" : n) + " " + (a == null ? "" : a)).trim();
                         if (gi.name.isEmpty()) gi.name = d.getString("nombre");
-                        // IMPORTANTE: aquí depende de cómo guardas los idiomas en "guias"
-                        // en GuideRegisterActivity guardas "langs" (códigos), aquí lo leemos:
                         gi.langs = d.getString("langs");
                         gi.email = d.getString("email") != null
                                 ? d.getString("email")
@@ -374,7 +368,6 @@ public class AdminTourWizardActivity extends AppCompatActivity {
                                 + "  ·  " + (gi.langs == null ? "—" : gi.langs);
                         cb.setText(label);
 
-                        // Preseleccionar si ya estaba invitado (modo edición)
                         if (selectedGuideIds.contains(gi.id)) {
                             cb.setChecked(true);
                         }
@@ -389,7 +382,6 @@ public class AdminTourWizardActivity extends AppCompatActivity {
                                 selectedGuideIds.remove(gi.id);
                                 selectedGuideNames.remove(gi.name);
                             }
-                            // SOLO UI: mostrar idiomas combinados en el campo, NO se guardan aquí
                             updateLangsFromSelectedGuides();
                         });
                         boxGuides.addView(cb);
@@ -397,10 +389,6 @@ public class AdminTourWizardActivity extends AppCompatActivity {
                 });
     }
 
-    /**
-     * Solo para mostrar en el campo "Idiomas" un resumen de los idiomas
-     * de los guías seleccionados. NO se persiste en Firestore desde aquí.
-     */
     private void updateLangsFromSelectedGuides() {
         langsSel.clear();
         for (GuideItem gi : guideItems) {
@@ -413,14 +401,12 @@ public class AdminTourWizardActivity extends AppCompatActivity {
         if (!langsSel.isEmpty()) {
             inLangs.setText(String.join("/", langsSel));
         } else if (editingTour != null && !TextUtils.isEmpty(editingTour.getLangs())) {
-            // Si estamos editando un tour ya aceptado, mantenemos sus idiomas
             inLangs.setText(editingTour.getLangs());
         } else {
             inLangs.setText("");
         }
     }
 
-    /* ================== Carga en modo EDICIÓN ================== */
     private void loadTourForEdit() {
         db.collection("tours")
                 .document(editingDocId)
@@ -433,15 +419,11 @@ public class AdminTourWizardActivity extends AppCompatActivity {
                     editingTour = doc.toObject(TourFB.class);
                     if (editingTour == null) editingTour = new TourFB();
 
-                    // Empresa
                     if (TextUtils.isEmpty(editingTour.getEmpresaId()) && defaultEmpresaId != null) {
                         editingTour.setEmpresaId(defaultEmpresaId);
                     }
 
-                    // Imagen existente
                     existingImageUrl = editingTour.getDisplayImageUrl();
-
-                    // Guía asignado (si lo hubiera)
                     existingAssignedGuideId = editingTour.getAssignedGuideId();
                     existingAssignedGuideName = editingTour.getAssignedGuideName();
 
@@ -456,7 +438,6 @@ public class AdminTourWizardActivity extends AppCompatActivity {
 
     private void bindEditingToUi(TourFB t, com.google.firebase.firestore.DocumentSnapshot doc) {
 
-        // ===== Paso 1 =====
         String imageToShow = t.getDisplayImageUrl();
         if (TextUtils.isEmpty(imageToShow)) {
             Glide.with(this)
@@ -502,12 +483,10 @@ public class AdminTourWizardActivity extends AppCompatActivity {
             inPeople.setText(String.valueOf(t.getDisplayPeople()));
         }
 
-        // ===== Paso 2 (paradas) =====
         stops.clear();
         boxStops.removeAllViews();
         List<String> id_paradas_list = t.getIdParadasList();
         if (id_paradas_list != null && !id_paradas_list.isEmpty()) {
-            // MODO NUEVO: lista de strings
             if (id_paradas_list.size() > 1 || !id_paradas_list.get(0).contains("|")) {
                 for (String item : id_paradas_list) {
                     String s = item.trim();
@@ -528,7 +507,6 @@ public class AdminTourWizardActivity extends AppCompatActivity {
                     addStopRow(addr, mins);
                 }
             } else {
-                // LEGACY: un solo string con " | "
                 String raw = id_paradas_list.get(0);
                 if (!TextUtils.isEmpty(raw)) {
                     String[] chunks = raw.split("\\|");
@@ -554,7 +532,6 @@ public class AdminTourWizardActivity extends AppCompatActivity {
             }
         }
 
-        // ===== Paso 3 (servicios) =====
         services.clear();
         boxServices.removeAllViews();
         List<ServiceFB> srvList = t.getServices();
@@ -572,7 +549,6 @@ public class AdminTourWizardActivity extends AppCompatActivity {
             }
         }
 
-        // ===== Paso 4 (guías + pago) =====
         List<String> invitedIds = (List<String>) doc.get("invitedGuideIds");
         List<String> invitedNames = (List<String>) doc.get("invitedGuideNames");
         selectedGuideIds.clear();
@@ -586,8 +562,35 @@ public class AdminTourWizardActivity extends AppCompatActivity {
         }
     }
 
-    /* ================== Guardado Firestore ================== */
-    private void saveTourToFirestore() {
+    private void uploadImageAndSaveTour() {
+        setLoading(true);
+
+        // Si se seleccionó una imagen nueva, subirla a Storage
+        if (pickedImage != null) {
+            String fileName = "tour_images/" + UUID.randomUUID().toString() + ".jpg";
+            StorageReference ref = storage.getReference().child(fileName);
+
+            ref.putFile(pickedImage)
+                    .addOnSuccessListener(task -> ref.getDownloadUrl()
+                            .addOnSuccessListener(uri -> {
+                                // Una vez subida, guardar el tour con la nueva URL
+                                saveTourToFirestore(uri.toString());
+                            })
+                            .addOnFailureListener(e -> {
+                                showToast("Error al obtener URL: " + e.getMessage());
+                                setLoading(false);
+                            }))
+                    .addOnFailureListener(e -> {
+                        showToast("Error al subir imagen: " + e.getMessage());
+                        setLoading(false);
+                    });
+        } else {
+            // Si no hay imagen nueva, guardar con la URL existente (o ninguna)
+            saveTourToFirestore(existingImageUrl);
+        }
+    }
+
+    private void saveTourToFirestore(String finalImageUrl) {
         boolean isNew = (editingDocId == null);
 
         String nombre = safeText(inName);
@@ -595,9 +598,6 @@ public class AdminTourWizardActivity extends AppCompatActivity {
         String duration = safeText(inDuration);
         String ciudad = safeText(inCity);
 
-        // ❗ Idiomas:
-        // - Si es NUEVO: se dejan vacíos. Se llenarán cuando el guía acepte el tour.
-        // - Si es EDICIÓN: mantenemos lo que ya tenga el documento.
         String langsFinal = "";
         if (!isNew && editingTour != null && !TextUtils.isEmpty(editingTour.getLangs())) {
             langsFinal = editingTour.getLangs();
@@ -607,25 +607,15 @@ public class AdminTourWizardActivity extends AppCompatActivity {
         int cantidad = parseInt(safeText(inPeople), 1);
         Double payProp = parseDouble(safeText(inPayment), 0);
 
-        // Imagen:
-        String imagen = null;
-        if (pickedImage != null) {
-            imagen = pickedImage.toString();
-        } else if (editingTour != null && !TextUtils.isEmpty(editingTour.getDisplayImageUrl())) {
-            imagen = editingTour.getDisplayImageUrl();
-        }
-
-        // Empresa
         String empresaId;
         if (defaultEmpresaId != null) {
             empresaId = defaultEmpresaId;
         } else if (editingTour != null && !TextUtils.isEmpty(editingTour.getEmpresaId())) {
             empresaId = editingTour.getEmpresaId();
         } else {
-            empresaId = "1";
+            empresaId = "1"; // Fallback, debería venir de la intención
         }
 
-        // Descripción grande (FULL TEXT)
         StringBuilder full = new StringBuilder();
         if (!desc.isEmpty()) full.append(desc).append("\n");
         if (!duration.isEmpty()) full.append("Duración: ").append(duration).append(" horas\n");
@@ -635,11 +625,9 @@ public class AdminTourWizardActivity extends AppCompatActivity {
             for (String s : services) full.append("• ").append(s).append("\n");
         }
 
-        // Guía asignado:
         String assignedGuideName = null;
         String assignedGuideId = null;
 
-        // Si estamos editando y el tour ya tiene guía asignado, lo preservamos
         if (!isNew && editingTour != null) {
             assignedGuideId = existingAssignedGuideId;
             assignedGuideName = existingAssignedGuideName;
@@ -648,7 +636,7 @@ public class AdminTourWizardActivity extends AppCompatActivity {
         TourFB t = new TourFB();
         t.setNombre(nombre);
         t.setDescription(desc);
-        t.setImagen(imagen);
+        t.setImagen(finalImageUrl != null ? finalImageUrl : "https://llerena.org/wp-content/uploads/2017/11/imagen-no-disponible-1.jpg");
         t.setPrecio(precio);
         t.setCantidad_personas(cantidad);
         t.setCiudad(ciudad);
@@ -659,19 +647,12 @@ public class AdminTourWizardActivity extends AppCompatActivity {
         t.setAssignedGuideId(assignedGuideId);
         t.setPaymentProposal(payProp);
 
-        // Paradas como lista (nuevo formato)
         if (stops.isEmpty()) {
             t.setId_paradas(Collections.emptyList());
         } else {
             t.setId_paradas(new ArrayList<>(stops));
         }
 
-        // Imagen por defecto si no se eligió ninguna ni había previa
-        if (t.getImagen() == null || t.getImagen().trim().isEmpty()) {
-            t.setImagen("https://llerena.org/wp-content/uploads/2017/11/imagen-no-disponible-1.jpg");
-        }
-
-        // Servicios embebidos
         List<ServiceFB> serviceList = new ArrayList<>();
         for (String label : services) {
             String[] parts = label.split(" - ");
@@ -686,10 +667,7 @@ public class AdminTourWizardActivity extends AppCompatActivity {
                 sv.setIncluded(true);
                 sv.setPrice(0.0);
             } else {
-                String num = sVal.replace("S/", "")
-                        .replace("s/", "")
-                        .replace("S/.", "")
-                        .trim();
+                String num = sVal.replaceAll("[^\\d.,]", "").trim();
                 double p = parseDouble(num, 0.0);
                 sv.setIncluded(false);
                 sv.setPrice(p);
@@ -698,11 +676,9 @@ public class AdminTourWizardActivity extends AppCompatActivity {
         }
         t.setServices(serviceList);
 
-        // CUPOS: por ahora igual a cantidad de personas (por día se maneja en otra capa)
         t.setCuposTotales(cantidad);
         t.setCuposDisponibles(cantidad);
 
-        // Extras para merge
         java.util.Map<String, Object> extra = new java.util.HashMap<>();
         if (full.length() > 0) extra.put("description", full.toString());
         if (dateRangeStart != null) extra.put("dateFrom", new Date(dateRangeStart));
@@ -716,7 +692,6 @@ public class AdminTourWizardActivity extends AppCompatActivity {
         if (!TextUtils.isEmpty(langsFinal))
             extra.put("idiomas_array", new ArrayList<>(splitLangs(langsFinal)));
 
-        // Solo cuando es NUEVO tour:
         if (isNew) {
             extra.put("status", "PENDING");
             extra.put("estado", "pendiente");
@@ -726,40 +701,41 @@ public class AdminTourWizardActivity extends AppCompatActivity {
             t.setPublicado(true);
         }
 
+        Runnable onComplete = () -> {
+            setLoading(false);
+            finish();
+        };
+
         if (isNew) {
             db.collection("tours")
                     .add(t)
                     .addOnSuccessListener(ref -> {
                         if (!extra.isEmpty()) {
-                            ref.set(extra, SetOptions.merge())
-                                    .addOnSuccessListener(unused -> finish());
-                        } else finish();
+                            ref.set(extra, SetOptions.merge()).addOnSuccessListener(unused -> onComplete.run());
+                        } else onComplete.run();
+                    })
+                    .addOnFailureListener(e -> {
+                        showToast("Error al crear tour: " + e.getMessage());
+                        setLoading(false);
                     });
         } else {
             DocumentReference ref = db.collection("tours").document(editingDocId);
             ref.set(t, SetOptions.merge())
                     .addOnSuccessListener(unused -> {
                         if (!extra.isEmpty()) {
-                            // En edición NO tocamos status/estado/publicado
-                            ref.set(extra, SetOptions.merge())
-                                    .addOnSuccessListener(u2 -> finish());
-                        } else finish();
+                            ref.set(extra, SetOptions.merge()).addOnSuccessListener(u2 -> onComplete.run());
+                        } else onComplete.run();
+                    })
+                    .addOnFailureListener(e -> {
+                        showToast("Error al actualizar: " + e.getMessage());
+                        setLoading(false);
                     });
         }
     }
 
-    /* ================== Helpers ================== */
     private MaterialButton createOutlinedButton(String text) {
-        int styleM3 = R.style.M3_OutlinedButton;
-        int styleMDC = R.style.MDC_OutlinedButton;
-
-        ContextThemeWrapper ctw;
-        try {
-            ctw = new ContextThemeWrapper(this, styleM3);
-        } catch (Throwable ignore) {
-            ctw = new ContextThemeWrapper(this, styleMDC);
-        }
-
+        int styleM3 = com.google.android.material.R.style.Widget_Material3_Button_OutlinedButton;
+        ContextThemeWrapper ctw = new ContextThemeWrapper(this, styleM3);
         MaterialButton b = new MaterialButton(ctw, null, 0);
         b.setText(text);
         return b;
@@ -811,7 +787,6 @@ public class AdminTourWizardActivity extends AppCompatActivity {
                 inPeople.setError("Requerido");
                 return false;
             }
-            // Duración en horas, solo números
             String durText = safeText(inDuration);
             double durHours = parseDouble(durText, -1);
             if (durHours <= 0) {
@@ -867,6 +842,12 @@ public class AdminTourWizardActivity extends AppCompatActivity {
                 : "Siguiente ➜");
     }
 
+    private void setLoading(boolean isLoading) {
+        progressIndicator.setVisibility(isLoading ? View.VISIBLE : View.GONE);
+        btnPrev.setEnabled(!isLoading);
+        btnNext.setEnabled(!isLoading);
+    }
+
     private String fmtDate(long millis) {
         SimpleDateFormat sdfUi = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
         return sdfUi.format(new Date(millis));
@@ -905,6 +886,6 @@ public class AdminTourWizardActivity extends AppCompatActivity {
     }
 
     private void showToast(String msg) {
-        android.widget.Toast.makeText(this, msg, android.widget.Toast.LENGTH_LONG).show();
+        Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
     }
 }

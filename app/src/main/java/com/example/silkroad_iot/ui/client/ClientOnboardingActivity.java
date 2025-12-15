@@ -10,6 +10,7 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
 import com.example.silkroad_iot.data.User;
 import com.example.silkroad_iot.data.UserStore;
 import com.example.silkroad_iot.databinding.ActivityClientOnboardingBinding;
@@ -18,6 +19,8 @@ import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 public class ClientOnboardingActivity extends AppCompatActivity {
 
@@ -27,6 +30,7 @@ public class ClientOnboardingActivity extends AppCompatActivity {
 
     private FirebaseAuth auth;
     private FirebaseFirestore db;
+    private FirebaseStorage storage;
 
     // true = perfil, false = primera vez (onboarding)
     private boolean isProfileMode = false;
@@ -49,6 +53,7 @@ public class ClientOnboardingActivity extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
         db   = FirebaseFirestore.getInstance();
+        storage = FirebaseStorage.getInstance();
 
         if (getSupportActionBar()!=null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -81,17 +86,43 @@ public class ClientOnboardingActivity extends AppCompatActivity {
 
         if (!TextUtils.isEmpty(u.getPhotoUri())) {
             photoUri = Uri.parse(u.getPhotoUri());
-            b.imgAvatar.setImageURI(photoUri);
+            Glide.with(this).load(photoUri).into(b.imgAvatar);
         }
 
         b.btnPickPhoto.setOnClickListener(v -> pickImage.launch("image/*"));
 
-        b.btnConfirm.setOnClickListener(v -> saveProfile(u));
+        b.btnConfirm.setOnClickListener(v -> uploadImageAndSaveProfile(u));
 
         b.btnChangePassword.setOnClickListener(v -> changePassword(u));
     }
 
-    private void saveProfile(User u) {
+    private void uploadImageAndSaveProfile(User u) {
+        // Si no se seleccionó una foto nueva, o la URI ya es de Firebase, guardar directamente
+        if (photoUri == null || photoUri.toString().startsWith("https://firebasestorage.googleapis.com")) {
+            saveProfile(u, photoUri != null ? photoUri.toString() : null);
+            return;
+        }
+
+        // Si hay una foto nueva (URI local), subirla a Storage
+        final StorageReference photoRef = storage.getReference()
+                .child("profile_images")
+                .child(u.getUid() + ".jpg");
+
+        photoRef.putFile(photoUri)
+                .addOnSuccessListener(taskSnapshot -> photoRef.getDownloadUrl()
+                        .addOnSuccessListener(downloadUri -> {
+                            // Una vez subida, obtenemos la URL de descarga y guardamos el perfil
+                            saveProfile(u, downloadUri.toString());
+                        })
+                        .addOnFailureListener(e -> {
+                            Snackbar.make(b.getRoot(), "Error al obtener URL de descarga: " + e.getMessage(), Snackbar.LENGTH_LONG).show();
+                        }))
+                .addOnFailureListener(e -> {
+                    Snackbar.make(b.getRoot(), "Error al subir imagen: " + e.getMessage(), Snackbar.LENGTH_LONG).show();
+                });
+    }
+
+    private void saveProfile(User u, String photoUrl) {
         String name  = b.inputName.getText().toString().trim();
         String last  = b.inputLastName.getText().toString().trim();
         String phone = b.inputPhone.getText().toString().trim();
@@ -123,7 +154,7 @@ public class ClientOnboardingActivity extends AppCompatActivity {
         u.setPhone(phoneStored);
         u.setAddress(addr);
         u.setDni(dni);
-        if (photoUri!=null) u.setPhotoUri(photoUri.toString());
+        if (photoUrl != null) u.setPhotoUri(photoUrl);
         u.setClientProfileCompleted(true);
 
         store.updateLogged(u);

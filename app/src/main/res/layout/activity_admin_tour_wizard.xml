@@ -32,10 +32,11 @@
         </com.google.android.material.appbar.AppBarLayout>
 
         <com.google.android.material.progressindicator.LinearProgressIndicator
-            android:id="@+id/progressIndicator"
+            android:id="@+id/progress_indicator"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:indeterminate="true"
+            android:visibility="gone"
             app:indicatorColor="@color/brand_celeste"
             app:trackColor="#E0E0E0" />
         <LinearLayout

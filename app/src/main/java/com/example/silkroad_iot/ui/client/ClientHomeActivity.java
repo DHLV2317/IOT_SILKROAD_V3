@@ -78,26 +78,6 @@ public class ClientHomeActivity extends AppCompatActivity {
         b.drawerLayout.addDrawerListener(drawerToggle);
         drawerToggle.syncState();
 
-        // Usuario actual
-        User u = store.getLogged();
-        String name = (u != null ? u.getName() : "Usuario");
-        String email = (u != null ? u.getEmail() : "");
-
-        b.toolbar.setTitle("Hola " + name);
-        b.tvHello.setText("Hola " + name);
-
-        // Header del NavigationView
-        View header = b.navViewClient.getHeaderView(0);
-        TextView tvHeaderName = header.findViewById(R.id.tvHeaderName);
-        TextView tvHeaderEmail = header.findViewById(R.id.tvHeaderEmail);
-        ImageView imgAvatarHeader = header.findViewById(R.id.imgAvatarHeader);
-
-        tvHeaderName.setText(name);
-        tvHeaderEmail.setText(email);
-        if (u != null && u.getPhotoUri() != null && !u.getPhotoUri().isEmpty()) {
-            Glide.with(this).load(u.getPhotoUri()).into(imgAvatarHeader);
-        }
-
         // Listener del menú lateral
         b.navViewClient.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
@@ -163,6 +143,30 @@ public class ClientHomeActivity extends AppCompatActivity {
             Intent i = new Intent(this, TourHistoryActivity.class);
             startActivity(i);
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // Actualizar datos del usuario
+        User u = store.getLogged();
+        String name = (u != null ? u.getName() : "Usuario");
+        String email = (u != null ? u.getEmail() : "");
+
+        b.toolbar.setTitle("Hola " + name);
+        b.tvHello.setText("Hola " + name);
+
+        // Header del NavigationView
+        View header = b.navViewClient.getHeaderView(0);
+        TextView tvHeaderName = header.findViewById(R.id.tvHeaderName);
+        TextView tvHeaderEmail = header.findViewById(R.id.tvHeaderEmail);
+        ImageView imgAvatarHeader = header.findViewById(R.id.imgAvatarHeader);
+
+        tvHeaderName.setText(name);
+        tvHeaderEmail.setText(email);
+        if (u != null && u.getPhotoUri() != null && !u.getPhotoUri().isEmpty()) {
+            Glide.with(this).load(u.getPhotoUri()).into(imgAvatarHeader);
+        }
     }
 
     @Override
