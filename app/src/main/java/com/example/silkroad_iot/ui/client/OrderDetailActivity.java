@@ -152,41 +152,52 @@ public class OrderDetailActivity extends AppCompatActivity {
 
         // ========= VER PARADAS (Lugares a visitar) =========
         b.btnPlaces.setOnClickListener(v -> {
-            // 1) Si el TourFB ya trae paradas en memoria, las usamos directamente
-            if (tour.getParadas() != null && !tour.getParadas().isEmpty()) {
-                Intent it = new Intent(this, StopsActivity.class);
-                it.putExtra("tour", tour);
-                startActivity(it);
-                return;
-            }
-
-            // 2) Si no hay paradas cargadas, las leemos de Firestore (fallback)
             if (tour.getId() == null || tour.getId().isEmpty()) {
-                Toast.makeText(this, "Tour sin ID", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "ID del Tour no disponible.", Toast.LENGTH_SHORT).show();
                 return;
             }
 
+            // Obtener el documento del tour de Firestore para leer el campo 'id_paradas'
             FirebaseFirestore.getInstance()
                     .collection("tours")
                     .document(tour.getId())
-                    .collection("paradas")
-                    .orderBy("orden")
                     .get()
-                    .addOnSuccessListener(snapshot -> {
-                        List<ParadaFB> paradas = new ArrayList<>();
-                        for (QueryDocumentSnapshot doc : snapshot) {
-                            ParadaFB p = doc.toObject(ParadaFB.class);
-                            p.setId(doc.getId());
-                            paradas.add(p);
+                    .addOnSuccessListener(documentSnapshot -> {
+                        if (!documentSnapshot.exists()) {
+                            Toast.makeText(OrderDetailActivity.this, "No se encontró el detalle del tour.", Toast.LENGTH_SHORT).show();
+                            return;
                         }
-                        tour.setParadas(paradas);
-                        Intent it = new Intent(this, StopsActivity.class);
-                        it.putExtra("tour", tour);
-                        startActivity(it);
+
+                        // Obtener el array de strings
+                        Object paradasObj = documentSnapshot.get("id_paradas");
+                        if (!(paradasObj instanceof List)) {
+                            Toast.makeText(OrderDetailActivity.this, "Este tour no tiene un itinerario definido.", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+
+                        List<?> paradasList = (List<?>) paradasObj;
+                        if (paradasList.isEmpty()) {
+                            Toast.makeText(OrderDetailActivity.this, "Este tour no tiene paradas en el itinerario.", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+
+                        // Convertir la lista a un array para el diálogo
+                        final CharSequence[] items = new CharSequence[paradasList.size()];
+                        for(int i = 0; i < paradasList.size(); i++) {
+                            Object item = paradasList.get(i);
+                            items[i] = item instanceof String ? (String) item : "Parada no válida";
+                        }
+
+                        // Crear y mostrar el diálogo
+                        new AlertDialog.Builder(OrderDetailActivity.this)
+                                .setTitle("Itinerario del Tour")
+                                .setItems(items, null) // No se necesita acción al hacer clic en un item
+                                .setPositiveButton("Cerrar", (dialog, which) -> dialog.dismiss())
+                                .show();
                     })
                     .addOnFailureListener(e -> {
                         e.printStackTrace();
-                        Toast.makeText(this, "No se pudieron cargar las paradas", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(OrderDetailActivity.this, "No se pudo cargar el itinerario.", Toast.LENGTH_SHORT).show();
                     });
         });
 
